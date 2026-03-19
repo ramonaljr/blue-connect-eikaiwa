@@ -38,6 +38,7 @@ export function DashboardContent({ userName }: { userName: string }) {
     <div className="space-y-6">
       {/* Welcome + Daily Goal */}
       <SectionReveal>
+        <div className="rounded-2xl bg-gradient-to-r from-primary/5 to-accent/5 p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold md:text-3xl">
@@ -61,13 +62,14 @@ export function DashboardContent({ userName }: { userName: string }) {
             </div>
           </div>
         </div>
+        </div>
       </SectionReveal>
 
       {/* Stat Cards */}
       <StaggerContainer className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {statCards.map(({ key, icon: Icon, value, suffix, color, borderColor }) => (
           <StaggerItem key={key}>
-            <Card className={cn('border-t-2', borderColor)}>
+            <Card className={cn('border-t-2 glass shadow-elevated', borderColor)}>
               <CardContent className="pt-4">
                 <div className="flex items-center justify-between">
                   <Icon className={cn('size-5', color)} />
@@ -91,7 +93,7 @@ export function DashboardContent({ userName }: { userName: string }) {
         <div className="grid gap-3 sm:grid-cols-3">
           {quickActions.map(({ key, icon: Icon, href, color }) => (
             <Link key={key} href={href}>
-              <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover">
+              <Card className="cursor-pointer border-l-4 border-l-transparent transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-l-primary">
                 <CardContent className="flex items-center gap-4 py-4">
                   <div className={cn('flex size-10 items-center justify-center rounded-xl', color)}>
                     <Icon className="size-5" />
@@ -132,18 +134,18 @@ export function DashboardContent({ userName }: { userName: string }) {
         <Card>
           <CardContent className="divide-y">
             {[
-              { icon: MessageSquare, text: 'Completed AI conversation practice', time: '2h ago', color: 'text-primary' },
-              { icon: BookOpen, text: 'Finished Course: Basic Greetings', time: '1d ago', color: 'text-[oklch(0.65_0.18_155)]' },
-              { icon: GraduationCap, text: 'Earned badge: First Steps', time: '2d ago', color: 'text-accent' },
+              { icon: MessageSquare, textKey: 'activity.aiPractice', timeKey: 'activity.timeAgo2h', color: 'text-primary' },
+              { icon: BookOpen, textKey: 'activity.courseFinished', timeKey: 'activity.timeAgo1d', color: 'text-[oklch(0.65_0.18_155)]' },
+              { icon: GraduationCap, textKey: 'activity.badgeEarned', timeKey: 'activity.timeAgo2d', color: 'text-accent' },
             ].map((activity, i) => (
               <div key={i} className="flex items-center gap-3 py-3 first:pt-4 last:pb-4">
                 <div className={cn('flex size-8 items-center justify-center rounded-lg bg-muted', activity.color)}>
                   <activity.icon className="size-4" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm">{activity.text}</p>
+                  <p className="text-sm">{t(activity.textKey)}</p>
                 </div>
-                <span className="text-xs text-muted-foreground">{activity.time}</span>
+                <span className="text-xs text-muted-foreground">{t(activity.timeKey)}</span>
               </div>
             ))}
           </CardContent>
