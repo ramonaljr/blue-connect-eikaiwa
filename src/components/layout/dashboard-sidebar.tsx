@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import {
-  LayoutDashboard, MessageSquare, Mic, BookOpen,
+  LayoutDashboard, MessageSquare, Mic, BookOpen, BookMarked,
   Calendar, Users, TrendingUp, Settings,
   ChevronLeft, Flame,
 } from 'lucide-react'
@@ -20,6 +20,7 @@ const navGroups = [
       { href: '/dashboard/ai-chat', icon: MessageSquare, labelKey: 'aiChat' },
       { href: '/dashboard/ai-voice', icon: Mic, labelKey: 'aiVoice' },
       { href: '/dashboard/courses', icon: BookOpen, labelKey: 'courses' },
+      { href: '/dashboard/phrases', icon: BookMarked, labelKey: 'phrases' },
     ],
   },
   {
