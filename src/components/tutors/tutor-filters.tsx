@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import {
@@ -23,39 +24,40 @@ interface TutorFiltersProps {
   onFilterChange: (filters: TutorFilters) => void
 }
 
-const SPECIALTIES = [
-  { value: 'all', label: 'すべて' },
-  { value: 'Conversation', label: '会話' },
-  { value: 'Business', label: 'ビジネス' },
-  { value: 'TOEIC', label: 'TOEIC' },
-  { value: 'EIKEN', label: '英検' },
-  { value: 'Pronunciation', label: '発音' },
-  { value: 'Grammar', label: '文法' },
-  { value: 'Travel', label: '旅行' },
-]
+const SPECIALTY_KEYS = [
+  { value: 'all', labelKey: 'all' },
+  { value: 'Conversation', labelKey: 'conversation' },
+  { value: 'Business', labelKey: 'business' },
+  { value: 'TOEIC', labelKey: 'toeic' },
+  { value: 'EIKEN', labelKey: 'eiken' },
+  { value: 'Pronunciation', labelKey: 'pronunciation' },
+  { value: 'Grammar', labelKey: 'grammar' },
+  { value: 'Travel', labelKey: 'travel' },
+] as const
 
 const RATING_OPTIONS = [
-  { value: '0', label: 'すべて' },
+  { value: '0', labelKey: 'all' },
   { value: '3.0', label: '3.0+' },
   { value: '3.5', label: '3.5+' },
   { value: '4.0', label: '4.0+' },
   { value: '4.5', label: '4.5+' },
-]
+] as const
 
-const SORT_OPTIONS = [
-  { value: 'recommended', label: 'おすすめ' },
-  { value: 'rating', label: '評価順' },
-  { value: 'price_low', label: '料金安い順' },
-  { value: 'experienced', label: '経験豊富' },
-]
+const SORT_KEYS = [
+  { value: 'recommended', labelKey: 'recommended' },
+  { value: 'rating', labelKey: 'rating' },
+  { value: 'price_low', labelKey: 'priceLow' },
+  { value: 'experienced', labelKey: 'experienced' },
+] as const
 
-const TUTOR_TYPES = [
-  { value: 'all', label: 'すべて' },
-  { value: 'certified', label: '認定講師' },
-  { value: 'community', label: 'コミュニティ' },
+const TUTOR_TYPE_KEYS = [
+  { value: 'all', labelKey: 'allTutors' },
+  { value: 'certified', labelKey: 'certifiedTutor' },
+  { value: 'community', labelKey: 'communityTutor' },
 ] as const
 
 export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
+  const t = useTranslations('filters')
   const [filters, setFilters] = useState<TutorFilters>({
     specialty: 'all',
     tutorType: 'all',
@@ -92,7 +94,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
         <Input
-          placeholder="講師を検索..."
+          placeholder={t('searchTutors')}
           value={filters.search}
           onChange={(e) => handleSearchChange(e.target.value)}
           className="pl-9"
@@ -102,7 +104,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
       <div className="flex flex-wrap items-center gap-3">
         {/* Tutor Type Toggle */}
         <div className="flex items-center gap-1.5">
-          {TUTOR_TYPES.map((type) => (
+          {TUTOR_TYPE_KEYS.map((type) => (
             <button
               key={type.value}
               onClick={() => setFilters(prev => ({ ...prev, tutorType: type.value }))}
@@ -112,7 +114,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
                   : 'bg-muted text-muted-foreground hover:bg-muted/80'
               }`}
             >
-              {type.label}
+              {t(type.labelKey)}
             </button>
           ))}
         </div>
@@ -123,12 +125,12 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, specialty: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="専門分野" />
+            <SelectValue placeholder={t('specialty')} />
           </SelectTrigger>
           <SelectContent>
-            {SPECIALTIES.map((s) => (
+            {SPECIALTY_KEYS.map((s) => (
               <SelectItem key={s.value} value={s.value}>
-                {s.label}
+                {t(s.labelKey)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -140,12 +142,12 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, minRating: parseFloat(val as string) }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="最低評価" />
+            <SelectValue placeholder={t('minRating')} />
           </SelectTrigger>
           <SelectContent>
             {RATING_OPTIONS.map((opt) => (
               <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+                {'labelKey' in opt ? t(opt.labelKey) : opt.label}
               </SelectItem>
             ))}
           </SelectContent>
@@ -157,12 +159,12 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, sort: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="並び替え" />
+            <SelectValue placeholder={t('sortBy')} />
           </SelectTrigger>
           <SelectContent>
-            {SORT_OPTIONS.map((opt) => (
+            {SORT_KEYS.map((opt) => (
               <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+                {t(opt.labelKey)}
               </SelectItem>
             ))}
           </SelectContent>

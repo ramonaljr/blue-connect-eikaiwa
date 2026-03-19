@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import {
@@ -27,31 +28,32 @@ interface CourseFiltersProps {
 
 const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
-const CATEGORIES = [
-  { value: 'all', label: 'すべて' },
-  { value: 'Foundations', label: '基礎' },
-  { value: 'Daily Conversation', label: '日常会話' },
-  { value: 'Business English', label: 'ビジネス英語' },
-  { value: 'TOEIC Prep', label: 'TOEIC対策' },
-  { value: 'EIKEN Prep', label: '英検対策' },
-  { value: 'Travel English', label: '旅行英語' },
-  { value: 'Advanced Discussion', label: '上級ディスカッション' },
-]
+const CATEGORY_KEYS = [
+  { value: 'all', labelKey: 'all' },
+  { value: 'Foundations', labelKey: 'foundations' },
+  { value: 'Daily Conversation', labelKey: 'dailyConversation' },
+  { value: 'Business English', labelKey: 'businessEnglish' },
+  { value: 'TOEIC Prep', labelKey: 'toeicPrep' },
+  { value: 'EIKEN Prep', labelKey: 'eikenPrep' },
+  { value: 'Travel English', labelKey: 'travelEnglish' },
+  { value: 'Advanced Discussion', labelKey: 'advancedDiscussion' },
+] as const
 
-const STATUSES = [
-  { value: 'all', label: 'すべて' },
-  { value: 'not_started', label: '未開始' },
-  { value: 'in_progress', label: '学習中' },
-  { value: 'completed', label: '完了' },
-]
+const STATUS_KEYS = [
+  { value: 'all', labelKey: 'all' },
+  { value: 'not_started', labelKey: 'notStarted' },
+  { value: 'in_progress', labelKey: 'inProgress' },
+  { value: 'completed', labelKey: 'completed' },
+] as const
 
-const SORT_OPTIONS = [
-  { value: 'recommended', label: 'おすすめ' },
-  { value: 'newest', label: '新着' },
-  { value: 'difficulty', label: '難易度' },
-]
+const SORT_KEYS = [
+  { value: 'recommended', labelKey: 'recommended' },
+  { value: 'newest', labelKey: 'newest' },
+  { value: 'difficulty', labelKey: 'difficulty' },
+] as const
 
 export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersProps) {
+  const t = useTranslations('filters')
   const [filters, setFilters] = useState<CourseFilters>({
     levels: initialFilters?.levels ?? [],
     category: initialFilters?.category ?? 'all',
@@ -97,7 +99,7 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
         <Input
-          placeholder="コースを検索..."
+          placeholder={t('searchCourses')}
           value={filters.search}
           onChange={(e) => handleSearchChange(e.target.value)}
           className="pl-9"
@@ -107,7 +109,7 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
       <div className="flex flex-wrap items-center gap-3">
         {/* CEFR Level Pills */}
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted-foreground mr-1">レベル:</span>
+          <span className="text-xs text-muted-foreground mr-1">{t('level')}:</span>
           {CEFR_LEVELS.map((level) => (
             <button
               key={level}
@@ -129,12 +131,12 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, category: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="カテゴリ" />
+            <SelectValue placeholder={t('category')} />
           </SelectTrigger>
           <SelectContent>
-            {CATEGORIES.map((cat) => (
+            {CATEGORY_KEYS.map((cat) => (
               <SelectItem key={cat.value} value={cat.value}>
-                {cat.label}
+                {t(cat.labelKey)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -146,12 +148,12 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, status: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="ステータス" />
+            <SelectValue placeholder={t('status')} />
           </SelectTrigger>
           <SelectContent>
-            {STATUSES.map((s) => (
+            {STATUS_KEYS.map((s) => (
               <SelectItem key={s.value} value={s.value}>
-                {s.label}
+                {t(s.labelKey)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -163,12 +165,12 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, sort: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder="並び替え" />
+            <SelectValue placeholder={t('sortBy')} />
           </SelectTrigger>
           <SelectContent>
-            {SORT_OPTIONS.map((opt) => (
+            {SORT_KEYS.map((opt) => (
               <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+                {t(opt.labelKey)}
               </SelectItem>
             ))}
           </SelectContent>

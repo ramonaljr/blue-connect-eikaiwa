@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 import { CourseCard } from '@/components/courses/course-card'
 import { CourseFilters, type CourseFilters as CourseFiltersType } from '@/components/courses/course-filters'
 import type { CEFRLevel } from '@/lib/types/database'
@@ -45,6 +46,7 @@ function getStatusForCourse(courseId: string, progressMap: Record<string, number
 }
 
 export function CoursesPageContent({ courses, progressMap, userLevel }: CoursesPageContentProps) {
+  const t = useTranslations('filters')
   const [filters, setFilters] = useState<CourseFiltersType>({
     levels: [],
     category: 'all',
@@ -151,7 +153,7 @@ export function CoursesPageContent({ courses, progressMap, userLevel }: CoursesP
         </div>
         {filteredCourses.length === 0 && (
           <p className="text-muted-foreground text-center py-12">
-            条件に一致するコースが見つかりませんでした
+            {t('noResults')}
           </p>
         )}
       </section>

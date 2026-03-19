@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 import { TutorFilters, type TutorFilters as TutorFiltersType } from '@/components/tutors/tutor-filters'
 import { TutorCard } from '@/components/tutors/tutor-card'
 
@@ -26,6 +27,7 @@ interface TutorsPageContentProps {
 }
 
 export function TutorsPageContent({ tutors, locale }: TutorsPageContentProps) {
+  const t = useTranslations('filters')
   const [filters, setFilters] = useState<TutorFiltersType>({
     specialty: 'all',
     tutorType: 'all',
@@ -103,7 +105,7 @@ export function TutorsPageContent({ tutors, locale }: TutorsPageContentProps) {
         </div>
       ) : (
         <p className="text-muted-foreground text-center py-12">
-          条件に合う講師が見つかりませんでした
+          {t('noResults')}
         </p>
       )}
     </div>
