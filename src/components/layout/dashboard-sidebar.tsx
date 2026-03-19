@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 
 const navGroups = [
   {
-    label: 'Learn',
+    labelKey: 'learn',
     items: [
       { href: '/dashboard', icon: LayoutDashboard, labelKey: 'dashboard' },
       { href: '/dashboard/ai-chat', icon: MessageSquare, labelKey: 'aiChat' },
@@ -24,14 +24,14 @@ const navGroups = [
     ],
   },
   {
-    label: 'Connect',
+    labelKey: 'connect',
     items: [
       { href: '/dashboard/lessons', icon: Calendar, labelKey: 'lessons' },
       { href: '/dashboard/tutors', icon: Users, labelKey: 'tutors' },
     ],
   },
   {
-    label: 'Track',
+    labelKey: 'track',
     items: [
       { href: '/dashboard/progress', icon: TrendingUp, labelKey: 'progress' },
       { href: '/dashboard/settings', icon: Settings, labelKey: 'settings' },
@@ -42,6 +42,8 @@ const navGroups = [
 export function DashboardSidebar() {
   const pathname = usePathname()
   const t = useTranslations('nav')
+  const tg = useTranslations('nav.sidebarGroups')
+  const td = useTranslations('dashboard')
   const tc = useTranslations('common')
   const [collapsed, setCollapsed] = useState(false)
 
@@ -73,9 +75,9 @@ export function DashboardSidebar() {
       <nav className="flex-1 overflow-y-auto p-2">
         {navGroups.map((group, gi) => (
           <div key={gi} className={cn(gi > 0 && 'mt-4')}>
-            {!collapsed && group.label && (
+            {!collapsed && group.labelKey && (
               <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">
-                {group.label}
+                {tg(group.labelKey)}
               </p>
             )}
             {collapsed && gi > 0 && (
@@ -123,14 +125,14 @@ export function DashboardSidebar() {
             <Flame className="size-5 text-accent" />
             <div>
               <p className="text-sm font-semibold text-accent">7</p>
-              <p className="text-xs text-muted-foreground">day streak</p>
+              <p className="text-xs text-muted-foreground">{td('streak')}</p>
             </div>
           </div>
         </div>
       )}
       {collapsed && (
         <div className="border-t p-2">
-          <div className="flex items-center justify-center rounded-lg bg-accent/10 p-2" title="7 day streak">
+          <div className="flex items-center justify-center rounded-lg bg-accent/10 p-2" title={"7 " + td('streak')}>
             <Flame className="size-5 text-accent" />
           </div>
         </div>
