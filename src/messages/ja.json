@@ -57,6 +57,68 @@
       "cta": "今すぐ始めよう",
       "ctaDescription": "無料プランで今日から英語学習をスタート",
       "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    },
+    "stats": {
+      "learners": "5,000+",
+      "learnersLabel": "アクティブな学習者",
+      "tutors": "50+",
+      "tutorsLabel": "経験豊富な講師",
+      "satisfaction": "98%",
+      "satisfactionLabel": "満足度"
+    },
+    "problem": {
+      "title": "こんな悩み、ありませんか？",
+      "subtitle": "日本での英語学習には、こんな壁があります",
+      "cost": {
+        "title": "費用が高すぎる",
+        "description": "従来の英会話スクールは年間30万円以上かかります"
+      },
+      "schedule": {
+        "title": "時間がない",
+        "description": "固定のレッスン時間は忙しいスケジュールに合いません"
+      },
+      "confidence": {
+        "title": "自信がない",
+        "description": "間違いを恐れて、話せなくなってしまう"
+      }
+    },
+    "solution": {
+      "title": "Blue Connectがすべて解決します",
+      "cost": {
+        "title": "手頃な料金",
+        "description": "無料から始められます。Proプランは月額¥2,980 — 従来のスクールの一部の費用"
+      },
+      "schedule": {
+        "title": "いつでも学習",
+        "description": "AIパートナーは24時間対応。講師も好きな時間に予約"
+      },
+      "confidence": {
+        "title": "安心して練習",
+        "description": "まずAIで練習して自信をつけ、それからライブレッスンに挑戦"
+      }
+    },
+    "testimonials": {
+      "title": "学習者の声",
+      "1": {
+        "name": "田中 ゆき",
+        "role": "会社員・東京",
+        "quote": "職場で英語を話すのが恥ずかしかったのですが、Blue ConnectのAIと3ヶ月練習した後、初めて英語でプレゼンができました！"
+      },
+      "2": {
+        "name": "村田 健二",
+        "role": "大学生・大阪",
+        "quote": "AI練習とリアル講師レッスンの組み合わせが最高です。TOEICスコアが150点上がりました。"
+      },
+      "3": {
+        "name": "花田 さくら",
+        "role": "フリーランス・福岡",
+        "quote": "夜2時にインスピレーションが湧いた時も練習できるのが嬉しい。AIは間違いを絶対に笑わない。"
+      }
+    },
+    "finalCta": {
+      "title": "今日から英語の旅を始めましょう",
+      "subtitle": "何千人もの日本人学習者と一緒に、本物の英語力を身につけよう",
+      "cta": "無料で始める"
     }
   },
   "pricing": {
@@ -123,5 +185,39 @@
     "progress": "学習進捗",
     "dashboard": "ダッシュボード",
     "settings": "設定"
+  },
+  "dashboard": {
+    "welcome": {
+      "morning": "おはようございます",
+      "afternoon": "こんにちは",
+      "evening": "こんばんは"
+    },
+    "dailyGoal": "今日の目標",
+    "activitiesCompleted": "{count}/{total} アクティビティ完了",
+    "streak": "日連続",
+    "stats": {
+      "studyTime": "学習時間",
+      "thisWeek": "今週",
+      "lessonsCompleted": "完了レッスン",
+      "wordsLearned": "習得単語",
+      "nextLesson": "次のレッスン"
+    },
+    "sections": {
+      "continueLearning": "学習を続ける",
+      "upcomingLessons": "今後のレッスン",
+      "recentActivity": "最近のアクティビティ",
+      "quickActions": "クイックアクション",
+      "achievements": "実績",
+      "weeklyProgress": "週間の進捗",
+      "recommended": "おすすめ"
+    },
+    "quickActions": {
+      "aiChat": "AI英会話を始める",
+      "findTutor": "講師を探す",
+      "browseCourses": "コースを見る"
+    },
+    "noUpcoming": "予定されたレッスンはありません",
+    "joinLesson": "参加",
+    "viewAll": "すべて見る"
   }
 }

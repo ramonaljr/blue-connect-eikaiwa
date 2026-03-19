@@ -57,6 +57,68 @@
       "cta": "Get Started Today",
       "ctaDescription": "Start learning English today with our free plan",
       "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    },
+    "stats": {
+      "learners": "5,000+",
+      "learnersLabel": "Active Learners",
+      "tutors": "50+",
+      "tutorsLabel": "Expert Tutors",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Satisfaction Rate"
+    },
+    "problem": {
+      "title": "Sound familiar?",
+      "subtitle": "Learning English in Japan comes with real challenges",
+      "cost": {
+        "title": "Too Expensive",
+        "description": "Traditional English schools charge ¥300,000+ per year"
+      },
+      "schedule": {
+        "title": "No Time",
+        "description": "Fixed lesson times don't fit your busy schedule"
+      },
+      "confidence": {
+        "title": "Too Nervous",
+        "description": "Fear of making mistakes holds you back"
+      }
+    },
+    "solution": {
+      "title": "Blue Connect solves all three",
+      "cost": {
+        "title": "Affordable Plans",
+        "description": "Start free. Pro from just ¥2,980/month — fraction of traditional schools"
+      },
+      "schedule": {
+        "title": "Learn Anytime",
+        "description": "AI partner available 24/7. Book tutors when it suits you"
+      },
+      "confidence": {
+        "title": "Judgment-Free Practice",
+        "description": "Practice with AI first, build confidence, then try live lessons"
+      }
+    },
+    "testimonials": {
+      "title": "Loved by Learners",
+      "1": {
+        "name": "Yuki T.",
+        "role": "Office Worker, Tokyo",
+        "quote": "I was too shy to speak English at work. After 3 months with Blue Connect's AI, I gave my first presentation in English!"
+      },
+      "2": {
+        "name": "Kenji M.",
+        "role": "University Student, Osaka",
+        "quote": "The mix of AI practice and real tutor lessons is perfect. My TOEIC score jumped 150 points."
+      },
+      "3": {
+        "name": "Sakura H.",
+        "role": "Freelancer, Fukuoka",
+        "quote": "I love that I can practice at 2am when inspiration hits. The AI never judges my mistakes."
+      }
+    },
+    "finalCta": {
+      "title": "Start your English journey today",
+      "subtitle": "Join thousands of Japanese learners building real English confidence",
+      "cta": "Get Started Free"
     }
   },
   "pricing": {
@@ -123,5 +185,39 @@
     "progress": "Progress",
     "dashboard": "Dashboard",
     "settings": "Settings"
+  },
+  "dashboard": {
+    "welcome": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "dailyGoal": "Daily Goal",
+    "activitiesCompleted": "{count}/{total} activities",
+    "streak": "day streak",
+    "stats": {
+      "studyTime": "Study Time",
+      "thisWeek": "this week",
+      "lessonsCompleted": "Lessons Done",
+      "wordsLearned": "Words Learned",
+      "nextLesson": "Next Lesson"
+    },
+    "sections": {
+      "continueLearning": "Continue Learning",
+      "upcomingLessons": "Upcoming Lessons",
+      "recentActivity": "Recent Activity",
+      "quickActions": "Quick Actions",
+      "achievements": "Achievements",
+      "weeklyProgress": "Weekly Progress",
+      "recommended": "Recommended For You"
+    },
+    "quickActions": {
+      "aiChat": "Start AI Chat",
+      "findTutor": "Find a Tutor",
+      "browseCourses": "Browse Courses"
+    },
+    "noUpcoming": "No upcoming lessons",
+    "joinLesson": "Join",
+    "viewAll": "View All"
   }
 }
