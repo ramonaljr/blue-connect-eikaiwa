@@ -19,7 +19,7 @@ export async function transcribeAudio(audioBuffer: Buffer): Promise<string> {
       Authorization: `Token ${process.env.DEEPGRAM_API_KEY}`,
       'Content-Type': 'audio/webm',
     },
-    body: audioBuffer,
+    body: audioBuffer as unknown as BodyInit,
   })
 
   const data = await res.json()
@@ -80,7 +80,7 @@ export async function scorePronunciation(audioBuffer: Buffer, referenceText: str
         Granularity: 'Phoneme',
       })).toString('base64'),
     },
-    body: audioBuffer,
+    body: audioBuffer as unknown as BodyInit,
   })
 
   const data = await res.json()
