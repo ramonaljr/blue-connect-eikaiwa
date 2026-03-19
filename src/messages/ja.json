@@ -119,6 +119,58 @@
       "title": "今日から英語の旅を始めましょう",
       "subtitle": "何千人もの日本人学習者と一緒に、本物の英語力を身につけよう",
       "cta": "無料で始める"
+    },
+    "transform": {
+      "title": "あなたの悩み、すべて解決"
+    },
+    "featureTabs": {
+      "ai": {
+        "bullets": {
+          "1": "24時間いつでも英会話練習",
+          "2": "リアルタイムの発音フィードバック",
+          "3": "実際の場面を想定したロールプレイ",
+          "4": "あなたのレベルに自動適応"
+        }
+      },
+      "courses": {
+        "bullets": {
+          "1": "CEFR準拠のA1〜C2レベル",
+          "2": "インタラクティブな演習とクイズ",
+          "3": "達成バッジで進捗を追跡",
+          "4": "自分のペースで学習"
+        }
+      },
+      "tutors": {
+        "bullets": {
+          "1": "認定講師とコミュニティ講師",
+          "2": "Daily.coによるビデオ通話",
+          "3": "スケジュールに合わせて予約",
+          "4": "パーソナライズされたフィードバック"
+        }
+      }
+    },
+    "footerNav": {
+      "tagline": "AIとリアル講師で英語を学ぼう",
+      "product": "プロダクト",
+      "productLinks": {
+        "features": "機能",
+        "pricing": "料金",
+        "courses": "コース",
+        "tutors": "講師"
+      },
+      "company": "会社情報",
+      "companyLinks": {
+        "about": "会社概要",
+        "blog": "ブログ",
+        "contact": "お問い合わせ"
+      },
+      "support": "サポート",
+      "supportLinks": {
+        "help": "ヘルプセンター",
+        "faq": "よくある質問",
+        "terms": "利用規約",
+        "privacy": "プライバシーポリシー"
+      }
     }
   },
   "pricing": {
@@ -184,7 +236,12 @@
     "lessons": "レッスン",
     "progress": "学習進捗",
     "dashboard": "ダッシュボード",
-    "settings": "設定"
+    "settings": "設定",
+    "sidebarGroups": {
+      "learn": "学ぶ",
+      "connect": "つながる",
+      "track": "記録"
+    }
   },
   "dashboard": {
     "welcome": {
@@ -262,6 +319,14 @@
     },
     "newContent": {
       "title": "新着コース"
+    },
+    "activity": {
+      "aiPractice": "AI英会話練習を完了",
+      "courseFinished": "コース完了: 基本の挨拶",
+      "badgeEarned": "バッジ獲得: はじめの一歩",
+      "timeAgo2h": "2時間前",
+      "timeAgo1d": "1日前",
+      "timeAgo2d": "2日前"
     }
   },
   "settings": {

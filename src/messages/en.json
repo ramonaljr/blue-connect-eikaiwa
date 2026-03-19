@@ -119,6 +119,58 @@
       "title": "Start your English journey today",
       "subtitle": "Join thousands of Japanese learners building real English confidence",
       "cta": "Get Started Free"
+    },
+    "transform": {
+      "title": "Your challenges, solved"
+    },
+    "featureTabs": {
+      "ai": {
+        "bullets": {
+          "1": "24/7 conversation practice",
+          "2": "Real-time pronunciation feedback",
+          "3": "Roleplay scenarios for real situations",
+          "4": "Adapts to your level automatically"
+        }
+      },
+      "courses": {
+        "bullets": {
+          "1": "CEFR-aligned A1 to C2 levels",
+          "2": "Interactive exercises and quizzes",
+          "3": "Track progress with completion badges",
+          "4": "Learn at your own pace"
+        }
+      },
+      "tutors": {
+        "bullets": {
+          "1": "Certified and community tutors",
+          "2": "Video calls powered by Daily.co",
+          "3": "Book lessons that fit your schedule",
+          "4": "Get personalized feedback"
+        }
+      }
+    },
+    "footerNav": {
+      "tagline": "Learn English with AI and real tutors",
+      "product": "Product",
+      "productLinks": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "courses": "Courses",
+        "tutors": "Tutors"
+      },
+      "company": "Company",
+      "companyLinks": {
+        "about": "About",
+        "blog": "Blog",
+        "contact": "Contact"
+      },
+      "support": "Support",
+      "supportLinks": {
+        "help": "Help Center",
+        "faq": "FAQ",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      }
     }
   },
   "pricing": {
@@ -184,7 +236,12 @@
     "lessons": "Lessons",
     "progress": "Progress",
     "dashboard": "Dashboard",
-    "settings": "Settings"
+    "settings": "Settings",
+    "sidebarGroups": {
+      "learn": "Learn",
+      "connect": "Connect",
+      "track": "Track"
+    }
   },
   "dashboard": {
     "welcome": {
@@ -262,6 +319,14 @@
     },
     "newContent": {
       "title": "New Courses"
+    },
+    "activity": {
+      "aiPractice": "Completed AI conversation practice",
+      "courseFinished": "Finished Course: Basic Greetings",
+      "badgeEarned": "Earned badge: First Steps",
+      "timeAgo2h": "2h ago",
+      "timeAgo1d": "1d ago",
+      "timeAgo2d": "2d ago"
     }
   },
   "settings": {
