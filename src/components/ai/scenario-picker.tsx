@@ -75,7 +75,7 @@ export function ScenarioPicker({ onSelect }: ScenarioPickerProps) {
         {/* Free Conversation — special first card */}
         <button
           onClick={() => handleSelect(null)}
-          className="flex flex-col items-center gap-3 rounded-xl border-2 border-primary bg-primary/10 p-6 text-center transition-all hover:shadow-md"
+          className="flex flex-col items-center gap-3 rounded-xl border-2 border-primary bg-primary/10 p-6 text-center transition-all hover:shadow-md dark:bg-primary/15 dark:hover:bg-primary/20"
         >
           <MessageSquare className="h-8 w-8 text-primary" />
           <span className="text-sm font-medium">自由会話</span>
@@ -89,7 +89,7 @@ export function ScenarioPicker({ onSelect }: ScenarioPickerProps) {
             <button
               key={key}
               onClick={() => handleSelect(key)}
-              className="flex flex-col items-center gap-3 rounded-xl border-2 border-transparent bg-card p-6 text-center transition-all hover:border-primary hover:shadow-md"
+              className="flex flex-col items-center gap-3 rounded-xl border-2 border-transparent bg-card p-6 text-center transition-all hover:border-primary hover:shadow-md dark:border-border dark:hover:border-primary dark:hover:bg-card/80"
             >
               <Icon className="h-8 w-8 text-primary" />
               <span className="text-sm font-medium">{scenario.name_ja}</span>

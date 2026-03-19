@@ -14,7 +14,7 @@ interface Conversation {
   scenario: string | null
   scenario_key: string | null
   created_at: string
-  messages: Array<{ role: string; content: string; timestamp?: string }>
+  messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp?: string }>
 }
 
 interface AIChatPageContentProps {
@@ -37,7 +37,7 @@ export function AIChatPageContent({ conversations, usageRemaining, tier }: AICha
   function handleLoadConversation(conv: Conversation) {
     loadConversation({
       id: conv.id,
-      messages: conv.messages,
+      messages: conv.messages.map(m => ({ ...m, timestamp: m.timestamp ?? '' })),
       scenario: conv.scenario ?? undefined,
     })
     setView('chat')

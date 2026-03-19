@@ -135,7 +135,7 @@ function downloadNotes(lesson: LessonData, notes: LessonNotes | null, prep: Less
 
   if (lesson.learner_review) {
     lines.push('--- あなたのレビュー ---')
-    lines.push(`評価: ${'★'.repeat(lesson.learner_rating)}${'☆'.repeat(5 - lesson.learner_rating)}`)
+    lines.push(`評価: ${'★'.repeat(lesson.learner_rating ?? 0)}${'☆'.repeat(5 - (lesson.learner_rating ?? 0))}`)
     lines.push(lesson.learner_review)
     lines.push('')
   }
@@ -234,11 +234,11 @@ export function LessonSummary({ lesson, notes, prep, showReview }: LessonSummary
                 <p className="text-sm text-muted-foreground">{prep.topics}</p>
               </div>
             )}
-            {prep.vocabulary?.length > 0 && (
+            {(prep.vocabulary?.length ?? 0) > 0 && (
               <div>
                 <p className="mb-1 text-sm font-medium">語彙</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {prep.vocabulary.map((word: string) => (
+                  {(prep.vocabulary ?? []).map((word: string) => (
                     <Badge key={word} variant="secondary">
                       {word}
                     </Badge>
@@ -246,11 +246,11 @@ export function LessonSummary({ lesson, notes, prep, showReview }: LessonSummary
                 </div>
               </div>
             )}
-            {prep.goals?.length > 0 && (
+            {(prep.goals?.length ?? 0) > 0 && (
               <div>
                 <p className="mb-1 text-sm font-medium">目標</p>
                 <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
-                  {prep.goals.map((goal: string) => (
+                  {(prep.goals ?? []).map((goal: string) => (
                     <li key={goal}>{goal}</li>
                   ))}
                 </ul>
@@ -294,7 +294,7 @@ export function LessonSummary({ lesson, notes, prep, showReview }: LessonSummary
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <RatingStars rating={lesson.learner_rating} />
+            <RatingStars rating={lesson.learner_rating ?? 0} />
             {lesson.learner_review_categories && (
               <div className="grid gap-2 sm:grid-cols-2">
                 {Object.entries(lesson.learner_review_categories as Record<string, number>).map(
