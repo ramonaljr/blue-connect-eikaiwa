@@ -79,7 +79,7 @@ export function FeatureTabs() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="w-full max-w-sm flex-1">
+        <div className="w-full max-w-md flex-1">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -87,6 +87,7 @@ export function FeatureTabs() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
+              className="rounded-2xl border border-border/50 bg-background/50 p-2 shadow-elevated"
             >
               <ActiveMockup />
             </motion.div>
