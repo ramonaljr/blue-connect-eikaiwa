@@ -120,7 +120,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
           <div className="space-y-2">
             <Label htmlFor="timezone">タイムゾーン</Label>
-            <Select value={timezone} onValueChange={setTimezone}>
+            <Select value={timezone} onValueChange={(value) => value && setTimezone(value)}>
               <SelectTrigger id="timezone">
                 <SelectValue placeholder="タイムゾーンを選択" />
               </SelectTrigger>
