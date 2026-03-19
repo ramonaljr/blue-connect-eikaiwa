@@ -349,3 +349,26 @@ export interface Friendship {
   created_at: string
   updated_at: string
 }
+
+export type OrgPlan = 'team' | 'enterprise'
+export type OrgMemberRole = 'admin' | 'manager' | 'member'
+
+export interface Organization {
+  id: string
+  name: string
+  slug: string
+  admin_user_id: string
+  plan: OrgPlan
+  max_seats: number
+  stripe_customer_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface OrganizationMember {
+  id: string
+  organization_id: string
+  user_id: string
+  role: OrgMemberRole
+  joined_at: string
+}
