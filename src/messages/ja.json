@@ -588,6 +588,125 @@
       "sessionExpired": "セッションの制限時間に達しました"
     }
   },
+  "progress": {
+    "title": "学習進捗",
+    "tabs": {
+      "overview": "概要",
+      "skills": "スキル",
+      "activity": "アクティビティ",
+      "achievements": "実績",
+      "goals": "目標"
+    },
+    "stats": {
+      "xp": "XP",
+      "level": "レベル {level}",
+      "streak": "日連続",
+      "longestStreak": "最長記録: {days}日",
+      "cefrLevel": "CEFRレベル",
+      "monthlyTime": "今月の学習時間",
+      "hours": "{hours}時間",
+      "minutes": "{minutes}分"
+    },
+    "heatmap": {
+      "title": "学習アクティビティ",
+      "noActivity": "アクティビティなし",
+      "xpEarned": "獲得XP: {xp}"
+    },
+    "streak": {
+      "title": "連続学習カレンダー",
+      "active": "学習済み",
+      "missed": "未学習",
+      "today": "今日"
+    }
+  },
+  "skills": {
+    "grammar": "文法",
+    "vocabulary": "語彙",
+    "listening": "リスニング",
+    "pronunciation": "発音",
+    "fluency": "流暢さ",
+    "accuracy": "正確率: {percent}%",
+    "exercisesCompleted": "演習完了: {count}問"
+  },
+  "activity": {
+    "title": "アクティビティ",
+    "filter": {
+      "all": "すべて",
+      "aiChat": "AIチャット",
+      "aiVoice": "AI音声",
+      "exercises": "演習",
+      "lessons": "レッスン"
+    },
+    "loadMore": "もっと見る",
+    "empty": "アクティビティはまだありません"
+  },
+  "achievements": {
+    "title": "実績",
+    "unlocked": "達成済み",
+    "locked": "未達成",
+    "count": "{unlocked} / {total} 達成",
+    "categories": {
+      "all": "すべて",
+      "consistency": "継続",
+      "ai_practice": "AI練習",
+      "pronunciation": "発音",
+      "courses": "コース",
+      "lessons": "レッスン",
+      "social": "ソーシャル",
+      "xp": "XP",
+      "cefr": "CEFR"
+    },
+    "unlockedOn": "達成日: {date}",
+    "reward": "+{xp} XP"
+  },
+  "goals": {
+    "title": "目標",
+    "active": "進行中の目標",
+    "completed": "完了した目標",
+    "addGoal": "目標を追加",
+    "suggestions": "おすすめの目標",
+    "custom": "カスタム目標",
+    "goalTitle": "目標タイトル",
+    "targetValue": "目標値",
+    "goalType": "目標タイプ",
+    "period": "期間",
+    "weekly": "週間",
+    "monthly": "月間",
+    "create": "作成",
+    "delete": "削除",
+    "noGoals": "目標を設定して学習を加速しましょう"
+  },
+  "leaderboard": {
+    "title": "ランキング",
+    "thisWeek": "今週のランキング",
+    "optIn": "ランキングに参加する",
+    "optInDescription": "他の学習者と週間XPを競い合いましょう",
+    "join": "参加する",
+    "leave": "ランキングから退出",
+    "yourRank": "あなたの順位: {rank}位",
+    "anonymous": "匿名"
+  },
+  "weeklySummary": {
+    "title": "週間の進捗",
+    "xpEarned": "獲得XP",
+    "exercises": "演習完了",
+    "aiSessions": "AIセッション",
+    "lessons": "レッスン",
+    "studyDays": "学習日数",
+    "vsLastWeek": "先週比"
+  },
+  "gamification": {
+    "xp": "XP",
+    "level": "レベル",
+    "streak": "連続学習",
+    "badge": "バッジ",
+    "achievement": "実績",
+    "leaderboard": "ランキング",
+    "dailyBonus": "デイリーボーナス",
+    "levelUp": "レベルアップ！",
+    "newAchievement": "新しい実績を達成しました！",
+    "streakMilestone": "{days}日連続達成！"
+  },
   "tutorsPage": {
     "title": "経験豊富な講師から学ぼう",
     "subtitle": "認定講師やネイティブ講師とのマンツーマンビデオレッスン。好きな時間に予約、どこでも学習。",

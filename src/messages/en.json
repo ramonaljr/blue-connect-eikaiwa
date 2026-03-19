@@ -588,6 +588,125 @@
       "sessionExpired": "Session time limit reached"
     }
   },
+  "progress": {
+    "title": "Learning Progress",
+    "tabs": {
+      "overview": "Overview",
+      "skills": "Skills",
+      "activity": "Activity",
+      "achievements": "Achievements",
+      "goals": "Goals"
+    },
+    "stats": {
+      "xp": "XP",
+      "level": "Level {level}",
+      "streak": "day streak",
+      "longestStreak": "Longest streak: {days} days",
+      "cefrLevel": "CEFR Level",
+      "monthlyTime": "Study time this month",
+      "hours": "{hours} hours",
+      "minutes": "{minutes} min"
+    },
+    "heatmap": {
+      "title": "Learning Activity",
+      "noActivity": "No activity",
+      "xpEarned": "XP earned: {xp}"
+    },
+    "streak": {
+      "title": "Streak Calendar",
+      "active": "Completed",
+      "missed": "Missed",
+      "today": "Today"
+    }
+  },
+  "skills": {
+    "grammar": "Grammar",
+    "vocabulary": "Vocabulary",
+    "listening": "Listening",
+    "pronunciation": "Pronunciation",
+    "fluency": "Fluency",
+    "accuracy": "Accuracy: {percent}%",
+    "exercisesCompleted": "Exercises completed: {count}"
+  },
+  "activity": {
+    "title": "Activity",
+    "filter": {
+      "all": "All",
+      "aiChat": "AI Chat",
+      "aiVoice": "AI Voice",
+      "exercises": "Exercises",
+      "lessons": "Lessons"
+    },
+    "loadMore": "Load more",
+    "empty": "No activity yet"
+  },
+  "achievements": {
+    "title": "Achievements",
+    "unlocked": "Unlocked",
+    "locked": "Locked",
+    "count": "{unlocked} / {total} unlocked",
+    "categories": {
+      "all": "All",
+      "consistency": "Consistency",
+      "ai_practice": "AI Practice",
+      "pronunciation": "Pronunciation",
+      "courses": "Courses",
+      "lessons": "Lessons",
+      "social": "Social",
+      "xp": "XP",
+      "cefr": "CEFR"
+    },
+    "unlockedOn": "Unlocked on {date}",
+    "reward": "+{xp} XP"
+  },
+  "goals": {
+    "title": "Goals",
+    "active": "Active Goals",
+    "completed": "Completed Goals",
+    "addGoal": "Add Goal",
+    "suggestions": "Suggested Goals",
+    "custom": "Custom Goal",
+    "goalTitle": "Goal Title",
+    "targetValue": "Target Value",
+    "goalType": "Goal Type",
+    "period": "Period",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "create": "Create",
+    "delete": "Delete",
+    "noGoals": "Set a goal to accelerate your learning"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "thisWeek": "This Week's Rankings",
+    "optIn": "Join the Leaderboard",
+    "optInDescription": "Compete with other learners on weekly XP",
+    "join": "Join",
+    "leave": "Leave Leaderboard",
+    "yourRank": "Your rank: #{rank}",
+    "anonymous": "Anonymous"
+  },
+  "weeklySummary": {
+    "title": "Weekly Progress",
+    "xpEarned": "XP Earned",
+    "exercises": "Exercises Done",
+    "aiSessions": "AI Sessions",
+    "lessons": "Lessons",
+    "studyDays": "Study Days",
+    "vsLastWeek": "vs. last week"
+  },
+  "gamification": {
+    "xp": "XP",
+    "level": "Level",
+    "streak": "Streak",
+    "badge": "Badge",
+    "achievement": "Achievement",
+    "leaderboard": "Leaderboard",
+    "dailyBonus": "Daily Bonus",
+    "levelUp": "Level Up!",
+    "newAchievement": "New achievement unlocked!",
+    "streakMilestone": "{days}-day streak achieved!"
+  },
   "tutorsPage": {
     "title": "Learn from Expert Tutors",
     "subtitle": "One-on-one video lessons with certified and native English tutors. Book anytime, learn anywhere.",
