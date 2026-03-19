@@ -113,9 +113,9 @@ export function BookingConfirmation({
           <Calendar className="h-4 w-4" />
           カレンダーに追加
         </Button>
-        <Button asChild className="w-full">
-          <Link href="/dashboard/lessons">レッスン一覧へ</Link>
-        </Button>
+        <Link href="/dashboard/lessons" className="inline-flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+          レッスン一覧へ
+        </Link>
       </div>
     </div>
   )
