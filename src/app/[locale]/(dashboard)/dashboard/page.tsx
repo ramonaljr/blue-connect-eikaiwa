@@ -9,6 +9,7 @@ import { WeakAreas } from '@/components/dashboard/weak-areas'
 import { RecentNotifications } from '@/components/dashboard/recent-notifications'
 import { NewContentCarousel } from '@/components/dashboard/new-content-carousel'
 import { DailyTip } from '@/components/dashboard/daily-tip'
+import { Greeting } from '@/components/dashboard/greeting'
 
 export default async function DashboardPage() {
   const user = await requireAuth()
@@ -81,16 +82,12 @@ export default async function DashboardPage() {
   const todayXPTotal = (todayXP ?? []).reduce((sum: number, e: { amount: number }) => sum + e.amount, 0)
   const todayMinutesEstimate = (todayXP ?? []).length * 3
 
-  // Determine time-based greeting
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? 'おはようございます' : hour < 18 ? 'こんにちは' : 'こんばんは'
-
   return (
     <div className="space-y-6">
       {/* Welcome + Daily Progress */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">{greeting}、{user.display_name}さん</h1>
+          <Greeting displayName={user.display_name} />
           <DailyTip />
         </div>
         <DailyProgress
