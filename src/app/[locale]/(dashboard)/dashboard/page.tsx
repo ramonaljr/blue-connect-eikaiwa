@@ -10,6 +10,7 @@ import { RecentNotifications } from '@/components/dashboard/recent-notifications
 import { NewContentCarousel } from '@/components/dashboard/new-content-carousel'
 import { DailyTip } from '@/components/dashboard/daily-tip'
 import { Greeting } from '@/components/dashboard/greeting'
+import { TodaysMissions } from '@/components/dashboard/todays-missions'
 
 export default async function DashboardPage() {
   const user = await requireAuth()
@@ -100,6 +101,9 @@ export default async function DashboardPage() {
 
       {/* Quick Actions */}
       <QuickActions />
+
+      {/* Today's Missions */}
+      <TodaysMissions />
 
       {/* Main content grid */}
       <div className="grid gap-6 lg:grid-cols-2">
