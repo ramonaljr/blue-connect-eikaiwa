@@ -413,5 +413,97 @@
       "deleteConfirm": "Type \"DELETE\" to confirm",
       "deleteButton": "Delete Account"
     }
+  },
+  "aiChat": {
+    "title": "AI English Chat",
+    "subtitle": "Try speaking in English",
+    "scenarioPicker": {
+      "title": "Select a Scenario",
+      "subtitle": "Choose a scene to practice English conversation",
+      "freeConversation": "Free Conversation",
+      "customTopic": "Custom Topic",
+      "customPlaceholder": "Enter a topic you'd like to practice...",
+      "start": "Start"
+    },
+    "history": {
+      "title": "Conversation History",
+      "empty": "No conversations yet",
+      "freeChat": "Free Conversation",
+      "messages": "{count} messages"
+    },
+    "usage": {
+      "remaining": "Remaining today: {remaining}/3",
+      "upgrade": "Upgrade for unlimited"
+    },
+    "actions": {
+      "newChat": "New Conversation",
+      "speak": "Speak",
+      "save": "Save",
+      "explain": "Explain",
+      "back": "Back"
+    },
+    "corrections": {
+      "original": "Original",
+      "corrected": "Corrected",
+      "explanation": "Explanation"
+    },
+    "phrases": {
+      "saved": "Phrase saved",
+      "saveFailed": "Failed to save phrase"
+    }
+  },
+  "aiVoice": {
+    "title": "AI Voice Practice",
+    "upgradeRequired": "AI Voice is available on Pro plan and above",
+    "upgradeDescription": "Practice English conversation with AI and get real-time pronunciation scores",
+    "upgradeCta": "Upgrade Plan",
+    "tabs": {
+      "voiceChat": "Voice Chat",
+      "roleplay": "Roleplay",
+      "pronunciation": "Pronunciation"
+    },
+    "controls": {
+      "startRecording": "Speak",
+      "stopRecording": "Stop",
+      "slowDown": "Slow Down",
+      "slowDownOn": "Normal Speed",
+      "endSession": "End Session",
+      "listen": "Listen",
+      "record": "Record",
+      "next": "Next",
+      "connecting": "Connecting..."
+    },
+    "transcript": {
+      "title": "Transcript",
+      "you": "You",
+      "ai": "AI",
+      "showTranscript": "Show Transcript",
+      "hideTranscript": "Hide Transcript"
+    },
+    "pronunciation": {
+      "title": "Pronunciation Practice",
+      "targetPhrase": "Please pronounce the following phrase",
+      "score": "Pronunciation Score",
+      "excellent": "Excellent!",
+      "good": "Good job!",
+      "needsPractice": "Keep practicing!"
+    },
+    "summary": {
+      "title": "Session Results",
+      "duration": "Duration",
+      "avgScore": "Average Pronunciation Score",
+      "messageCount": "Messages",
+      "corrections": "Corrections",
+      "practiceAgain": "Practice Again",
+      "tryDifferent": "Try Different Scenario"
+    },
+    "timer": {
+      "remaining": "{minutes} min remaining"
+    },
+    "errors": {
+      "connectionFailed": "Connection failed. Please try again.",
+      "micPermission": "Please allow microphone access",
+      "sessionExpired": "Session time limit reached"
+    }
   }
 }

@@ -413,5 +413,97 @@
       "deleteConfirm": "確認のため「DELETE」と入力してください",
       "deleteButton": "アカウントを削除"
     }
+  },
+  "aiChat": {
+    "title": "AI英会話チャット",
+    "subtitle": "英語で話しかけてみましょう",
+    "scenarioPicker": {
+      "title": "シナリオを選択",
+      "subtitle": "英会話の練習をしたいシーンを選びましょう",
+      "freeConversation": "自由会話",
+      "customTopic": "カスタムトピック",
+      "customPlaceholder": "練習したいトピックを入力...",
+      "start": "開始"
+    },
+    "history": {
+      "title": "会話履歴",
+      "empty": "まだ会話がありません",
+      "freeChat": "自由会話",
+      "messages": "{count}件のメッセージ"
+    },
+    "usage": {
+      "remaining": "本日の残り回数: {remaining}/3",
+      "upgrade": "アップグレードして無制限に"
+    },
+    "actions": {
+      "newChat": "新しい会話",
+      "speak": "読み上げ",
+      "save": "保存",
+      "explain": "解説",
+      "back": "戻る"
+    },
+    "corrections": {
+      "original": "元の表現",
+      "corrected": "正しい表現",
+      "explanation": "解説"
+    },
+    "phrases": {
+      "saved": "フレーズを保存しました",
+      "saveFailed": "フレーズの保存に失敗しました"
+    }
+  },
+  "aiVoice": {
+    "title": "AI音声練習",
+    "upgradeRequired": "AI音声機能はProプラン以上でご利用いただけます",
+    "upgradeDescription": "AIと英語で会話し、発音スコアをリアルタイムで確認できます",
+    "upgradeCta": "プランをアップグレード",
+    "tabs": {
+      "voiceChat": "音声チャット",
+      "roleplay": "ロールプレイ",
+      "pronunciation": "発音練習"
+    },
+    "controls": {
+      "startRecording": "話す",
+      "stopRecording": "停止",
+      "slowDown": "ゆっくり",
+      "slowDownOn": "通常速度",
+      "endSession": "終了",
+      "listen": "聞く",
+      "record": "録音",
+      "next": "次へ",
+      "connecting": "接続中..."
+    },
+    "transcript": {
+      "title": "トランスクリプト",
+      "you": "あなた",
+      "ai": "AI",
+      "showTranscript": "トランスクリプトを表示",
+      "hideTranscript": "トランスクリプトを非表示"
+    },
+    "pronunciation": {
+      "title": "発音練習",
+      "targetPhrase": "次のフレーズを発音してください",
+      "score": "発音スコア",
+      "excellent": "素晴らしい！",
+      "good": "いい感じ！",
+      "needsPractice": "もう少し練習しましょう"
+    },
+    "summary": {
+      "title": "セッション結果",
+      "duration": "所要時間",
+      "avgScore": "平均発音スコア",
+      "messageCount": "メッセージ数",
+      "corrections": "修正箇所",
+      "practiceAgain": "もう一度練習",
+      "tryDifferent": "別のシナリオ"
+    },
+    "timer": {
+      "remaining": "残り{minutes}分"
+    },
+    "errors": {
+      "connectionFailed": "接続に失敗しました。もう一度お試しください。",
+      "micPermission": "マイクの使用を許可してください",
+      "sessionExpired": "セッションの制限時間に達しました"
+    }
   }
 }
