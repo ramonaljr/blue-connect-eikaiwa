@@ -61,12 +61,12 @@ export function TutorSchedule({
   const [weekOffset, setWeekOffset] = useState(0)
   const [duration, setDuration] = useState<25 | 50>(25)
 
-  const now = new Date()
+  const [now] = useState(() => new Date())
   const currentWeekStart = useMemo(() => {
     const ws = getWeekStart(now)
     ws.setDate(ws.getDate() + weekOffset * 7)
     return ws
-  }, [weekOffset])
+  }, [now, weekOffset])
 
   // Generate all 30-min time slot labels
   const timeSlots = useMemo(() => {

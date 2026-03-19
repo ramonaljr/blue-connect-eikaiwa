@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { ExerciseRenderer } from '@/components/courses/exercise-renderer'
-import type { CourseExercise } from '@/lib/types/database'
+import type { CourseExercise, ExerciseType } from '@/lib/types/database'
 
 // Mock child components to verify routing
 vi.mock('@/components/courses/exercises/multiple-choice', () => ({
@@ -75,7 +75,7 @@ describe('ExerciseRenderer', () => {
   })
 
   it('shows placeholder for unknown type', () => {
-    render(<ExerciseRenderer exercise={{ ...baseExercise, type: 'unknown' as any }} locale="ja" onComplete={vi.fn()} />)
+    render(<ExerciseRenderer exercise={{ ...baseExercise, type: 'unknown' as unknown as ExerciseType }} locale="ja" onComplete={vi.fn()} />)
     expect(screen.getByText(/近日公開予定/)).toBeTruthy()
   })
 })

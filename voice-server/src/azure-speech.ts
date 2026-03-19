@@ -40,15 +40,21 @@ export async function scorePronunciation(audioBuffer: Buffer, referenceText: str
     return { overallScore: 0, phonemes: [], words: [] }
   }
 
-  const phonemes = (nBest.Words ?? []).flatMap((word: any) =>
-    (word.Phonemes ?? []).map((p: any) => ({
+  interface AzureWord {
+    Word: string
+    Phonemes?: Array<{ Phoneme: string; PronunciationAssessment?: { AccuracyScore?: number }; Offset?: number }>
+    PronunciationAssessment?: { AccuracyScore?: number }
+  }
+
+  const phonemes = (nBest.Words ?? []).flatMap((word: AzureWord) =>
+    (word.Phonemes ?? []).map((p: AzureWord['Phonemes'] extends Array<infer T> | undefined ? NonNullable<T> : never) => ({
       phoneme: p.Phoneme,
       score: p.PronunciationAssessment?.AccuracyScore ?? 0,
       offset: p.Offset ?? 0,
     }))
   )
 
-  const words = (nBest.Words ?? []).map((w: any) => ({
+  const words = (nBest.Words ?? []).map((w: AzureWord) => ({
     word: w.Word,
     score: w.PronunciationAssessment?.AccuracyScore ?? 0,
   }))

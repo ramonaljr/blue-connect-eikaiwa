@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -63,21 +63,25 @@ export function AssessmentResults({
   }, [exercises, scores])
 
   // Cooldown check for retake
-  const cooldownActive = useMemo(() => {
-    if (typeof window === 'undefined') return false
+  const nowRef = useRef(0)
+  const [cooldownActive, setCooldownActive] = useState(false)
+
+  useEffect(() => {
+    nowRef.current = Date.now()
     const key = COOLDOWN_KEY_PREFIX + courseId
     const lastAttempt = localStorage.getItem(key)
-    if (!lastAttempt) return false
-    const elapsed = Date.now() - parseInt(lastAttempt, 10)
-    return elapsed < COOLDOWN_HOURS * 60 * 60 * 1000
+    if (lastAttempt) {
+      const elapsed = nowRef.current - parseInt(lastAttempt, 10)
+      setCooldownActive(elapsed < COOLDOWN_HOURS * 60 * 60 * 1000)
+    }
   }, [courseId])
 
   // Save attempt timestamp when results are shown (for failed attempts)
-  useMemo(() => {
+  useEffect(() => {
     if (!passed && typeof window !== 'undefined') {
       localStorage.setItem(
         COOLDOWN_KEY_PREFIX + courseId,
-        Date.now().toString()
+        (nowRef.current || Date.now()).toString()
       )
     }
   }, [passed, courseId])

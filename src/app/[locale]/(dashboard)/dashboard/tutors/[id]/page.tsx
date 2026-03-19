@@ -29,7 +29,8 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
     .order('day_of_week')
 
   // Fetch booked lessons (next 4 weeks)
-  const fourWeeksFromNow = new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString()
+  const now = new Date()
+  const fourWeeksFromNow = new Date(now.getTime() + 28 * 24 * 60 * 60 * 1000).toISOString()
   const { data: bookedLessons } = await supabase
     .from('lessons')
     .select('scheduled_at, duration_minutes')
@@ -74,7 +75,7 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
         </TabsContent>
 
         <TabsContent value="reviews">
-          <TutorReviews reviews={(reviews ?? []).map((r: any) => ({ ...r, learner: Array.isArray(r.learner) ? r.learner[0] : r.learner }))} />
+          <TutorReviews reviews={(reviews ?? []).map((r: typeof reviews extends Array<infer T> ? T : never) => ({ ...r, learner: Array.isArray(r.learner) ? r.learner[0] : r.learner }))} />
         </TabsContent>
       </Tabs>
     </div>

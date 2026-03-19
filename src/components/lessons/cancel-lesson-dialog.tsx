@@ -32,9 +32,10 @@ export function CancelLessonDialog({
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
+  const [mountTime] = useState(() => Date.now())
   const hoursUntil = useMemo(() => {
-    return (new Date(scheduledAt).getTime() - Date.now()) / (1000 * 60 * 60)
-  }, [scheduledAt])
+    return (new Date(scheduledAt).getTime() - mountTime) / (1000 * 60 * 60)
+  }, [scheduledAt, mountTime])
 
   const refundPolicy = useMemo(() => {
     if (hoursUntil >= 24) {

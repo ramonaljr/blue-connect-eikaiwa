@@ -18,10 +18,34 @@ import {
   BookOpen,
 } from 'lucide-react'
 
+interface LessonData {
+  id: string
+  scheduled_at: string
+  duration_minutes: number
+  status: string
+  tutor_id: string
+  learner_rating: number | null
+  learner_review: string | null
+  learner_review_categories: Record<string, number> | null
+  tutor?: { display_name: string; avatar_url: string | null }
+}
+
+interface LessonNotes {
+  ai_summary?: string | null
+  shared_notes?: string | null
+  tutor_private_notes?: string | null
+}
+
+interface LessonPrep {
+  topics?: string | null
+  vocabulary?: string[]
+  goals?: string[]
+}
+
 interface LessonSummaryProps {
-  lesson: any
-  notes: any | null
-  prep: any | null
+  lesson: LessonData
+  notes: LessonNotes | null
+  prep: LessonPrep | null
   showReview: boolean
 }
 
@@ -64,7 +88,7 @@ function statusLabel(status: string) {
   return <Badge variant={s.variant}>{s.label}</Badge>
 }
 
-function downloadNotes(lesson: any, notes: any, prep: any) {
+function downloadNotes(lesson: LessonData, notes: LessonNotes | null, prep: LessonPrep | null) {
   const lines: string[] = []
 
   const tutorName = lesson.tutor?.display_name ?? '講師'

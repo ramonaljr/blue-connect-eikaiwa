@@ -14,7 +14,7 @@ interface Conversation {
   scenario: string | null
   scenario_key: string | null
   created_at: string
-  messages: any[]
+  messages: Array<{ role: string; content: string; timestamp?: string }>
 }
 
 interface AIChatPageContentProps {
@@ -59,7 +59,7 @@ export function AIChatPageContent({ conversations, usageRemaining, tier }: AICha
     <div className="flex h-full flex-col gap-4">
       {/* Usage banner for free tier */}
       {tier === 'free' && (
-        <div className="flex items-center justify-between rounded-lg border bg-muted/50 px-4 py-3">
+        <div className="flex items-center justify-between rounded-lg border bg-muted/50 px-4 py-3 dark:bg-muted/80 dark:border-border">
           <span className="text-sm">
             本日の残り回数: <strong>{usageRemaining}</strong>/3
           </span>
@@ -97,7 +97,7 @@ export function AIChatPageContent({ conversations, usageRemaining, tier }: AICha
                 <button
                   key={conv.id}
                   onClick={() => handleLoadConversation(conv)}
-                  className="w-full rounded-lg border p-3 text-left transition-colors hover:bg-muted/50"
+                  className="w-full rounded-lg border p-3 text-left transition-colors hover:bg-muted/50 dark:bg-card dark:hover:bg-muted"
                 >
                   <p className="text-sm font-medium truncate">
                     {conv.scenario || '自由会話'}

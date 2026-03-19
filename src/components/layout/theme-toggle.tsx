@@ -1,20 +1,28 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export function ThemeToggle() {
-  const [dark, setDark] = useState(false)
+function subscribeTheme(callback: () => void) {
+  const observer = new MutationObserver(callback)
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+  return () => observer.disconnect()
+}
 
-  useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark')
-    setDark(isDark)
-  }, [])
+function getThemeSnapshot() {
+  return document.documentElement.classList.contains('dark')
+}
+
+function getServerSnapshot() {
+  return false
+}
+
+export function ThemeToggle() {
+  const dark = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerSnapshot)
 
   function toggle() {
     const next = !dark
-    setDark(next)
     document.documentElement.classList.toggle('dark', next)
     localStorage.setItem('theme', next ? 'dark' : 'light')
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -80,7 +80,11 @@ export function AudioExercise({ exercise, locale, onComplete }: AudioExercisePro
   const [dictationScore, setDictationScore] = useState(0)
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const startTimeRef = useRef(Date.now())
+  const startTimeRef = useRef(0)
+
+  useEffect(() => {
+    startTimeRef.current = Date.now()
+  }, [])
 
   const question =
     locale === 'ja' ? exercise.question_ja || exercise.question : exercise.question

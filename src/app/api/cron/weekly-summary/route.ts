@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
       const xpEarned = xpEntries?.reduce((sum, e) => sum + e.amount, 0) ?? 0
       const minutesPracticed = (xpEntries?.length ?? 0) * 5 // rough estimate
       const achievementTitles = achievements
-        ?.map((a: any) => a.achievement?.title_ja)
+        ?.map((a: { achievement: { title_ja: string } | null }) => a.achievement?.title_ja)
         .filter(Boolean) ?? []
 
       await sendWeeklySummary({

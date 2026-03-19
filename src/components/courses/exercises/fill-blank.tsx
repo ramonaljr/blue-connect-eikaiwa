@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -48,7 +48,12 @@ export function FillBlank({ exercise, locale, onComplete }: FillBlankProps) {
   const [usedWords, setUsedWords] = useState<string[]>([])
   const [completed, setCompleted] = useState(false)
 
-  const startTimeRef = useRef(Date.now())
+  const startTimeRef = useRef(0)
+
+  useEffect(() => {
+    startTimeRef.current = Date.now()
+  }, [])
+
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   const allFilled = answers.every((a) => a.trim() !== '')

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Video, Mic, Clock, BookOpen, User } from 'lucide-react'
@@ -14,8 +14,33 @@ interface PreJoinScreenProps {
   onJoin: () => void
 }
 
+async function initMediaPreview(
+  videoEl: HTMLVideoElement | null,
+  cameraId?: string,
+  micId?: string,
+): Promise<{ stream: MediaStream; analyser: AnalyserNode } | null> {
+  const constraints: MediaStreamConstraints = {
+    video: cameraId ? { deviceId: { exact: cameraId } } : true,
+    audio: micId ? { deviceId: { exact: micId } } : true,
+  }
+
+  const stream = await navigator.mediaDevices.getUserMedia(constraints)
+
+  if (videoEl) {
+    videoEl.srcObject = stream
+  }
+
+  const audioCtx = new AudioContext()
+  const source = audioCtx.createMediaStreamSource(stream)
+  const analyser = audioCtx.createAnalyser()
+  analyser.fftSize = 256
+  source.connect(analyser)
+
+  return { stream, analyser }
+}
+
 export function PreJoinScreen({
-  lessonId,
+  lessonId: _lessonId,
   tutorName,
   scheduledAt,
   duration,
@@ -24,7 +49,6 @@ export function PreJoinScreen({
 }: PreJoinScreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
   const animFrameRef = useRef<number>(0)
 
   const [devices, setDevices] = useState<{
@@ -36,68 +60,44 @@ export function PreJoinScreen({
   const [micLevel, setMicLevel] = useState(0)
   const [mediaError, setMediaError] = useState<string | null>(null)
 
-  const startPreview = useCallback(
-    async (cameraId?: string, micId?: string) => {
-      try {
-        // Stop existing stream
-        if (streamRef.current) {
-          streamRef.current.getTracks().forEach((t) => t.stop())
-        }
-        if (animFrameRef.current) {
-          cancelAnimationFrame(animFrameRef.current)
-        }
+  useEffect(() => {
+    let cancelled = false
 
-        const constraints: MediaStreamConstraints = {
-          video: cameraId ? { deviceId: { exact: cameraId } } : true,
-          audio: micId ? { deviceId: { exact: micId } } : true,
-        }
+    navigator.mediaDevices.enumerateDevices().then((list) => {
+      if (!cancelled) {
+        setDevices({
+          cameras: list.filter((d) => d.kind === 'videoinput'),
+          mics: list.filter((d) => d.kind === 'audioinput'),
+        })
+      }
+    })
 
-        const stream = await navigator.mediaDevices.getUserMedia(constraints)
-        streamRef.current = stream
+    initMediaPreview(videoRef.current).then((result) => {
+      if (cancelled || !result) return
+      const { stream, analyser } = result
+      streamRef.current = stream
 
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream
-        }
-
-        // Mic level analyser
-        const audioCtx = new AudioContext()
-        const source = audioCtx.createMediaStreamSource(stream)
-        const analyser = audioCtx.createAnalyser()
-        analyser.fftSize = 256
-        source.connect(analyser)
-        analyserRef.current = analyser
-
-        const dataArray = new Uint8Array(analyser.frequencyBinCount)
-        const updateLevel = () => {
-          analyser.getByteFrequencyData(dataArray)
-          const avg =
-            dataArray.reduce((sum, v) => sum + v, 0) / dataArray.length
-          setMicLevel(Math.min(avg / 128, 1))
-          animFrameRef.current = requestAnimationFrame(updateLevel)
-        }
-        updateLevel()
-
-        setMediaError(null)
-      } catch (err) {
+      const dataArray = new Uint8Array(analyser.frequencyBinCount)
+      const updateLevel = () => {
+        if (cancelled) return
+        analyser.getByteFrequencyData(dataArray)
+        const avg =
+          dataArray.reduce((sum, v) => sum + v, 0) / dataArray.length
+        setMicLevel(Math.min(avg / 128, 1))
+        animFrameRef.current = requestAnimationFrame(updateLevel)
+      }
+      updateLevel()
+      setMediaError(null)
+    }).catch(() => {
+      if (!cancelled) {
         setMediaError(
           'カメラ・マイクにアクセスできません。ブラウザの設定を確認してください。'
         )
       }
-    },
-    []
-  )
-
-  useEffect(() => {
-    navigator.mediaDevices.enumerateDevices().then((list) => {
-      setDevices({
-        cameras: list.filter((d) => d.kind === 'videoinput'),
-        mics: list.filter((d) => d.kind === 'audioinput'),
-      })
     })
 
-    startPreview()
-
     return () => {
+      cancelled = true
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((t) => t.stop())
       }
@@ -105,16 +105,57 @@ export function PreJoinScreen({
         cancelAnimationFrame(animFrameRef.current)
       }
     }
-  }, [startPreview])
+  }, [])
 
   function handleCameraChange(deviceId: string) {
     setSelectedCamera(deviceId)
-    startPreview(deviceId, selectedMic || undefined)
+    // Stop existing and restart
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((t) => t.stop())
+    }
+    if (animFrameRef.current) {
+      cancelAnimationFrame(animFrameRef.current)
+    }
+    initMediaPreview(videoRef.current, deviceId, selectedMic || undefined).then((result) => {
+      if (!result) return
+      streamRef.current = result.stream
+      const dataArray = new Uint8Array(result.analyser.frequencyBinCount)
+      const updateLevel = () => {
+        result.analyser.getByteFrequencyData(dataArray)
+        const avg = dataArray.reduce((sum, v) => sum + v, 0) / dataArray.length
+        setMicLevel(Math.min(avg / 128, 1))
+        animFrameRef.current = requestAnimationFrame(updateLevel)
+      }
+      updateLevel()
+      setMediaError(null)
+    }).catch(() => {
+      setMediaError('カメラ・マイクにアクセスできません。ブラウザの設定を確認してください。')
+    })
   }
 
   function handleMicChange(deviceId: string) {
     setSelectedMic(deviceId)
-    startPreview(selectedCamera || undefined, deviceId)
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((t) => t.stop())
+    }
+    if (animFrameRef.current) {
+      cancelAnimationFrame(animFrameRef.current)
+    }
+    initMediaPreview(videoRef.current, selectedCamera || undefined, deviceId).then((result) => {
+      if (!result) return
+      streamRef.current = result.stream
+      const dataArray = new Uint8Array(result.analyser.frequencyBinCount)
+      const updateLevel = () => {
+        result.analyser.getByteFrequencyData(dataArray)
+        const avg = dataArray.reduce((sum, v) => sum + v, 0) / dataArray.length
+        setMicLevel(Math.min(avg / 128, 1))
+        animFrameRef.current = requestAnimationFrame(updateLevel)
+      }
+      updateLevel()
+      setMediaError(null)
+    }).catch(() => {
+      setMediaError('カメラ・マイクにアクセスできません。ブラウザの設定を確認してください。')
+    })
   }
 
   const formattedTime = new Date(scheduledAt).toLocaleTimeString('ja-JP', {
