@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -40,7 +40,11 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export function Matching({ exercise, locale, onComplete }: MatchingProps) {
   const pairs = exercise.options as MatchPair[]
-  const [shuffledRight, setShuffledRight] = useState<string[]>([])
+  const shuffledRight = useMemo(
+    () => shuffleArray(pairs.map((p) => p.right)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [exercise.id]
+  )
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null)
   const [matches, setMatches] = useState<Map<string, string>>(new Map())
   const [submitted, setSubmitted] = useState(false)
@@ -58,9 +62,7 @@ export function Matching({ exercise, locale, onComplete }: MatchingProps) {
       ? exercise.explanation_ja || exercise.explanation
       : exercise.explanation
 
-  useEffect(() => {
-    setShuffledRight(shuffleArray(pairs.map((p) => p.right)))
-  }, [pairs])
+  const handleSubmitRef = useRef<() => void>(() => {})
 
   // Timer countdown
   useEffect(() => {
@@ -69,6 +71,8 @@ export function Matching({ exercise, locale, onComplete }: MatchingProps) {
       setTimeLeft((prev) => {
         if (prev === null || prev <= 1) {
           clearInterval(interval)
+          // Auto-submit on next tick when timer expires
+          setTimeout(() => handleSubmitRef.current(), 0)
           return 0
         }
         return prev - 1
@@ -78,7 +82,6 @@ export function Matching({ exercise, locale, onComplete }: MatchingProps) {
   }, [timeLeft, submitted])
 
   function getMatchColorIndex(left: string): number {
-    const allLefts = pairs.map((p) => p.left)
     const matchedLefts = Array.from(matches.keys())
     return matchedLefts.indexOf(left) % MATCH_COLORS.length
   }
@@ -174,12 +177,7 @@ export function Matching({ exercise, locale, onComplete }: MatchingProps) {
     onComplete(score)
   }, [submitted, pairs, matches, locale, exercise, timeLeft, onComplete])
 
-  // Re-bind the auto-submit effect to the latest handleSubmit
-  useEffect(() => {
-    if (timeLeft === 0 && !submitted) {
-      handleSubmit()
-    }
-  }, [timeLeft, submitted, handleSubmit])
+  handleSubmitRef.current = handleSubmit
 
   const allMatched = matches.size === pairs.length
 

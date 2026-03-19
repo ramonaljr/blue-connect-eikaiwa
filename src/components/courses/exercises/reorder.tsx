@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -26,7 +26,12 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export function Reorder({ exercise, locale, onComplete }: ReorderProps) {
   const correctOrder = exercise.correct_answer.split('|')
-  const [items, setItems] = useState<string[]>([])
+  const initialItems = useMemo(
+    () => shuffleArray(exercise.options as string[]),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [exercise.id]
+  )
+  const [items, setItems] = useState<string[]>(initialItems)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const [positionResults, setPositionResults] = useState<boolean[]>([])
@@ -43,9 +48,7 @@ export function Reorder({ exercise, locale, onComplete }: ReorderProps) {
       ? exercise.explanation_ja || exercise.explanation
       : exercise.explanation
 
-  useEffect(() => {
-    setItems(shuffleArray(exercise.options as string[]))
-  }, [exercise.options])
+  const handleSubmitRef = useRef<() => void>(() => {})
 
   // Timer countdown
   useEffect(() => {
@@ -54,6 +57,7 @@ export function Reorder({ exercise, locale, onComplete }: ReorderProps) {
       setTimeLeft((prev) => {
         if (prev === null || prev <= 1) {
           clearInterval(interval)
+          setTimeout(() => handleSubmitRef.current(), 0)
           return 0
         }
         return prev - 1
@@ -134,12 +138,7 @@ export function Reorder({ exercise, locale, onComplete }: ReorderProps) {
     onComplete(score)
   }, [submitted, items, correctOrder, locale, exercise, timeLeft, onComplete])
 
-  // Auto-submit when timer expires
-  useEffect(() => {
-    if (timeLeft === 0 && !submitted) {
-      handleSubmit()
-    }
-  }, [timeLeft, submitted, handleSubmit])
+  handleSubmitRef.current = handleSubmit
 
   return (
     <Card>
