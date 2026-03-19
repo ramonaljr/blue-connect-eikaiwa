@@ -10,11 +10,12 @@ import { Send, RotateCcw, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface ChatInterfaceProps {
-  scenario?: string | null
   onBack?: () => void
+  initialScenario?: { key: string | null; customTopic?: string } | null
+  initialConversation?: { id: string; messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }>; scenario?: string } | null
 }
 
-export function ChatInterface({ scenario: scenarioProp, onBack }: ChatInterfaceProps) {
+export function ChatInterface({ onBack, initialScenario, initialConversation }: ChatInterfaceProps) {
   const {
     messages,
     corrections,
@@ -25,6 +26,7 @@ export function ChatInterface({ scenario: scenarioProp, onBack }: ChatInterfaceP
     sendMessage,
     reset,
     startWithScenario,
+    loadConversation,
   } = useAIChat()
   const [input, setInput] = useState('')
   const [dismissedScenario, setDismissedScenario] = useState<string | null>(null)
@@ -33,10 +35,19 @@ export function ChatInterface({ scenario: scenarioProp, onBack }: ChatInterfaceP
 
   // Initialize with scenario prop
   useEffect(() => {
-    if (scenarioProp) {
-      startWithScenario(scenarioProp)
+    if (initialScenario) {
+      startWithScenario(initialScenario.key, initialScenario.customTopic)
     }
-  }, [scenarioProp, startWithScenario])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialScenario])
+
+  // Initialize with conversation prop
+  useEffect(() => {
+    if (initialConversation) {
+      loadConversation(initialConversation)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialConversation])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({

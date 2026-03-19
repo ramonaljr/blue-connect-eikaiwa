@@ -6,6 +6,8 @@ import { FillBlank } from './exercises/fill-blank'
 import { FreeResponse } from './exercises/free-response'
 import { AudioExercise } from './exercises/audio-exercise'
 import { ConversationExercise } from './exercises/conversation-exercise'
+import { Matching } from './exercises/matching'
+import { Reorder } from './exercises/reorder'
 
 interface ExerciseRendererProps {
   exercise: CourseExercise
@@ -25,6 +27,10 @@ export function ExerciseRenderer({ exercise, locale, onComplete }: ExerciseRende
       return <AudioExercise exercise={exercise} locale={locale} onComplete={onComplete} />
     case 'conversation':
       return <ConversationExercise exercise={exercise} locale={locale} onComplete={onComplete} />
+    case 'matching':
+      return <Matching exercise={exercise} locale={locale} onComplete={onComplete} />
+    case 'reorder':
+      return <Reorder exercise={exercise} locale={locale} onComplete={onComplete} />
     default:
       return (
         <div className="rounded-lg border p-6 text-center text-muted-foreground">

@@ -2,7 +2,7 @@ import { requireAuth } from '@/lib/auth/guard'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { UnitContentRenderer } from '@/components/courses/unit-content-renderer'
-import { ExerciseRenderer } from '@/components/courses/exercise-renderer'
+import { UnitExercises } from '@/components/courses/unit-exercises'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -71,22 +71,7 @@ export default async function UnitDetailPage({
 
       {/* Exercises */}
       {exercises && exercises.length > 0 && (
-        <div className="space-y-6">
-          <h2 className="text-xl font-semibold">練習問題</h2>
-          <div className="text-sm text-muted-foreground">
-            {exercises.length}問中 0問完了
-          </div>
-          {exercises.map((exercise) => (
-            <ExerciseRenderer
-              key={exercise.id}
-              exercise={exercise}
-              locale={locale}
-              onComplete={() => {
-                // Will be enhanced in Task 3.5 with server action
-              }}
-            />
-          ))}
-        </div>
+        <UnitExercises exercises={exercises} locale={locale} />
       )}
 
       {/* Prev/Next navigation */}

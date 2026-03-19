@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { MessageSquare, ArrowRight } from 'lucide-react'
 import { ScenarioPicker } from '@/components/ai/scenario-picker'
 import { ChatInterface } from '@/components/ai/chat-interface'
-import { useAIChat } from '@/hooks/use-ai-chat'
 import Link from 'next/link'
 import type { ScenarioKey } from '@/lib/ai/system-prompts'
 
@@ -27,30 +26,39 @@ type View = 'picker' | 'chat'
 
 export function AIChatPageContent({ conversations, usageRemaining, tier }: AIChatPageContentProps) {
   const [view, setView] = useState<View>('picker')
-  const { startWithScenario, loadConversation, scenario } = useAIChat()
+  const [scenarioToLoad, setScenarioToLoad] = useState<{ key: ScenarioKey | null; customTopic?: string } | null>(null)
+  const [conversationToLoad, setConversationToLoad] = useState<{ id: string; messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }>; scenario?: string } | null>(null)
 
   function handleSelectScenario(scenarioKey: ScenarioKey | null, customTopic?: string) {
-    startWithScenario(scenarioKey, customTopic)
+    setScenarioToLoad({ key: scenarioKey, customTopic })
+    setConversationToLoad(null)
     setView('chat')
   }
 
   function handleLoadConversation(conv: Conversation) {
-    loadConversation({
+    setConversationToLoad({
       id: conv.id,
       messages: conv.messages.map(m => ({ ...m, timestamp: m.timestamp ?? '' })),
       scenario: conv.scenario ?? undefined,
     })
+    setScenarioToLoad(null)
     setView('chat')
   }
 
   function handleBack() {
     setView('picker')
+    setScenarioToLoad(null)
+    setConversationToLoad(null)
   }
 
   if (view === 'chat') {
     return (
       <div className="h-full">
-        <ChatInterface scenario={scenario} onBack={handleBack} />
+        <ChatInterface
+          onBack={handleBack}
+          initialScenario={scenarioToLoad}
+          initialConversation={conversationToLoad}
+        />
       </div>
     )
   }
