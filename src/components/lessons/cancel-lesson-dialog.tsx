@@ -58,7 +58,7 @@ export function CancelLessonDialog({
   function handleCancel() {
     setError(null)
     startTransition(async () => {
-      const result = await cancelLesson(lessonId)
+      const result = await cancelLesson(lessonId, reason || undefined)
       if (result.error) {
         setError(result.error)
       } else {

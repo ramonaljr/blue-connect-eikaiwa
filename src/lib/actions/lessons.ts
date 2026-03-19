@@ -93,7 +93,7 @@ export async function bookLesson(formData: {
   return { success: true, lessonId: lesson.id }
 }
 
-export async function cancelLesson(lessonId: string) {
+export async function cancelLesson(lessonId: string, reason?: string) {
   const supabase = await createClient()
   const { data: { user: authUser } } = await supabase.auth.getUser()
 
@@ -115,22 +115,42 @@ export async function cancelLesson(lessonId: string) {
     return { error: 'Unauthorized' }
   }
 
+  if (lesson.status === 'canceled') {
+    return { error: 'このレッスンは既にキャンセルされています' }
+  }
+
   const hoursUntil = (new Date(lesson.scheduled_at).getTime() - Date.now()) / (1000 * 60 * 60)
+
+  // Determine tiered refund amount
+  let creditRefundAmount: number
+  if (hoursUntil >= 24) {
+    creditRefundAmount = 1 // Full refund
+  } else if (hoursUntil >= 2) {
+    creditRefundAmount = 0.5 // 50% refund
+  } else {
+    creditRefundAmount = 0 // No refund
+  }
 
   await supabase
     .from('lessons')
-    .update({ status: 'canceled' })
+    .update({
+      status: 'canceled',
+      cancellation_reason: reason ?? null,
+      canceled_at: new Date().toISOString(),
+      canceled_by: authUser.id,
+      credit_refund_amount: creditRefundAmount,
+    })
     .eq('id', lessonId)
 
-  // Refund credit if > 2 hours before lesson
-  if (hoursUntil >= 2) {
+  // Refund credit based on tiered policy
+  if (creditRefundAmount > 0) {
     const { data: tutor } = await supabase.from('users').select('role').eq('id', lesson.tutor_id).single()
     const creditType = tutor?.role === 'certified_tutor' ? 'lesson_certified' : 'lesson_community'
 
     await supabase.from('credits').insert({
       user_id: lesson.learner_id,
       type: creditType,
-      amount: 1,
+      amount: 1, // Always refund 1 credit (credits are integers)
       source: 'subscription',
       expires_at: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
     })
