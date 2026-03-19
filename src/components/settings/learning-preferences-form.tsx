@@ -50,10 +50,10 @@ interface LearningPreferencesFormProps {
 }
 
 export function LearningPreferencesForm({ user }: LearningPreferencesFormProps) {
-  const [dailyGoal, setDailyGoal] = useState(String(user.daily_goal_minutes))
+  const [dailyGoal, setDailyGoal] = useState(String(user.daily_goal_minutes ?? 15))
   const [selectedTopics, setSelectedTopics] = useState<string[]>(user.preferred_topics ?? [])
-  const [personality, setPersonality] = useState<AIPersonality>(user.ai_personality)
-  const [correctionLevel, setCorrectionLevel] = useState<AICorrectionLevel>(user.ai_correction_level)
+  const [personality, setPersonality] = useState<AIPersonality>(user.ai_personality ?? 'friendly')
+  const [correctionLevel, setCorrectionLevel] = useState<AICorrectionLevel>(user.ai_correction_level ?? 'moderate')
   const [loading, setLoading] = useState(false)
 
   function toggleTopic(topic: string) {

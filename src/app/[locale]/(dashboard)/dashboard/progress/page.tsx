@@ -45,6 +45,7 @@ export default async function ProgressPage() {
   return (
     <ProgressPageContent
       user={{
+        id: user.id,
         xp: user.xp,
         level: user.level,
         streakDays: user.streak_days,

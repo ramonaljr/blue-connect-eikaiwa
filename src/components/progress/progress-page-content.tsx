@@ -9,10 +9,39 @@ import {
 import { StatsRow } from '@/components/progress/stats-row'
 import { ActivityHeatmap } from '@/components/progress/activity-heatmap'
 import { StreakCalendar } from '@/components/progress/streak-calendar'
+import { SkillsRadarChart } from '@/components/progress/skills-radar-chart'
+import type { SkillsRadarChartProps } from '@/components/progress/skills-radar-chart'
+import { ActivityFeed } from '@/components/progress/activity-feed'
+import type { ActivityFeedProps } from '@/components/progress/activity-feed'
+import { WeeklySummaryCard } from '@/components/progress/weekly-summary-card'
+import type { WeeklySummaryCardProps } from '@/components/progress/weekly-summary-card'
+import { AchievementsGrid } from '@/components/progress/achievements-grid'
+import type { AchievementsGridProps } from '@/components/progress/achievements-grid'
+import { GoalsSection } from '@/components/progress/goals-section'
+import type { GoalsSectionProps } from '@/components/progress/goals-section'
+import { Leaderboard } from '@/components/progress/leaderboard'
+import type { LeaderboardProps } from '@/components/progress/leaderboard'
 import type { CEFRLevel } from '@/lib/types/database'
+
+const DEFAULT_SKILLS: SkillsRadarChartProps['current'] = {
+  grammar: 0,
+  vocabulary: 0,
+  listening: 0,
+  pronunciation: 0,
+  fluency: 0,
+}
+
+const DEFAULT_WEEK_STATS: WeeklySummaryCardProps['thisWeek'] = {
+  totalXP: 0,
+  exercises: 0,
+  aiSessions: 0,
+  lessons: 0,
+  studyDays: 0,
+}
 
 interface ProgressPageContentProps {
   user: {
+    id: string
     xp: number
     level: number
     streakDays: number
@@ -22,12 +51,28 @@ interface ProgressPageContentProps {
   }
   heatmapData: Array<{ date: string; value: number }>
   monthlyXpEntries: number
+  skillScores?: SkillsRadarChartProps['current']
+  previousSkillScores?: SkillsRadarChartProps['current']
+  activities?: ActivityFeedProps['activities']
+  thisWeek?: WeeklySummaryCardProps['thisWeek']
+  lastWeek?: WeeklySummaryCardProps['lastWeek']
+  achievements?: AchievementsGridProps['achievements']
+  initialGoals?: GoalsSectionProps['initialGoals']
+  leaderboardOptedIn?: LeaderboardProps['optedIn']
 }
 
 export function ProgressPageContent({
   user,
   heatmapData,
   monthlyXpEntries,
+  skillScores = DEFAULT_SKILLS,
+  previousSkillScores,
+  activities = [],
+  thisWeek = DEFAULT_WEEK_STATS,
+  lastWeek = DEFAULT_WEEK_STATS,
+  achievements = [],
+  initialGoals = [],
+  leaderboardOptedIn = false,
 }: ProgressPageContentProps) {
   return (
     <div className="space-y-6">
@@ -65,26 +110,26 @@ export function ProgressPageContent({
         </TabsContent>
 
         <TabsContent value="skills">
-          <div className="flex min-h-[200px] items-center justify-center rounded-lg border border-dashed p-8">
-            <p className="text-muted-foreground">スキル分析は準備中です</p>
+          <div className="space-y-6">
+            <SkillsRadarChart current={skillScores} previous={previousSkillScores} />
           </div>
         </TabsContent>
 
         <TabsContent value="activity">
-          <div className="flex min-h-[200px] items-center justify-center rounded-lg border border-dashed p-8">
-            <p className="text-muted-foreground">アクティビティ詳細は準備中です</p>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <ActivityFeed activities={activities} />
+            <WeeklySummaryCard thisWeek={thisWeek} lastWeek={lastWeek} />
           </div>
         </TabsContent>
 
         <TabsContent value="achievements">
-          <div className="flex min-h-[200px] items-center justify-center rounded-lg border border-dashed p-8">
-            <p className="text-muted-foreground">実績は準備中です</p>
-          </div>
+          <AchievementsGrid achievements={achievements} />
         </TabsContent>
 
         <TabsContent value="goals">
-          <div className="flex min-h-[200px] items-center justify-center rounded-lg border border-dashed p-8">
-            <p className="text-muted-foreground">目標は準備中です</p>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <GoalsSection userId={user.id} initialGoals={initialGoals} />
+            <Leaderboard userId={user.id} optedIn={leaderboardOptedIn} />
           </div>
         </TabsContent>
       </Tabs>

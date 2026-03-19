@@ -49,6 +49,8 @@ export function StatsRow({
   englishLevel,
   monthlyXpEntries,
 }: StatsRowProps) {
+  const safeLevel = level || 1
+  const safeLongestStreak = longestStreak ?? 0
   const animatedXp = useCountUp(xp, 1200)
   const animatedStreak = useCountUp(streakDays, 800)
   const isStreakActive = streakDays > 0
@@ -81,7 +83,7 @@ export function StatsRow({
                 <span className="ml-1 text-sm font-normal text-muted-foreground">XP</span>
               </div>
               <Badge variant="secondary" className="mt-0.5 text-xs">
-                Level {level}
+                Level {safeLevel}
               </Badge>
             </div>
           </CardContent>
@@ -124,7 +126,7 @@ export function StatsRow({
                 <span className="ml-1 text-sm font-normal text-muted-foreground">日連続</span>
               </div>
               <p className="text-xs text-muted-foreground">
-                最長: {longestStreak}日
+                最長: {safeLongestStreak}日
               </p>
             </div>
           </CardContent>
