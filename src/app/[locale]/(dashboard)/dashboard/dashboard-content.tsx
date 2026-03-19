@@ -38,7 +38,7 @@ export function DashboardContent({ userName }: { userName: string }) {
     <div className="space-y-6">
       {/* Welcome + Daily Goal */}
       <SectionReveal>
-        <div className="rounded-2xl bg-gradient-to-r from-primary/5 to-accent/5 p-6">
+        <div className="rounded-2xl bg-gradient-to-r from-primary/8 via-primary/3 to-accent/8 p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold md:text-3xl">
@@ -46,6 +46,9 @@ export function DashboardContent({ userName }: { userName: string }) {
               <span className="text-primary">、{userName}</span>
               さん
             </h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {t(`welcome.${getGreetingKey()}Motivation`)}
+            </p>
           </div>
           <div className="flex items-center gap-4">
             <ProgressRing progress={60} size={64} strokeWidth={5}>
@@ -100,6 +103,7 @@ export function DashboardContent({ userName }: { userName: string }) {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium">{t(`quickActions.${key}`)}</p>
+                    <p className="text-xs text-muted-foreground">{t(`quickActionDescriptions.${key}`)}</p>
                   </div>
                   <ArrowRight className="size-4 text-muted-foreground" />
                 </CardContent>
@@ -132,13 +136,18 @@ export function DashboardContent({ userName }: { userName: string }) {
       <SectionReveal>
         <h2 className="mb-3 text-lg font-semibold">{t('sections.recentActivity')}</h2>
         <Card>
-          <CardContent className="divide-y">
+          <CardContent className="relative pl-6 pt-4 pb-4">
+            {/* Timeline line */}
+            <div className="absolute left-[19px] top-4 bottom-4 w-px bg-border" />
+
             {[
-              { icon: MessageSquare, textKey: 'activity.aiPractice', timeKey: 'activity.timeAgo2h', color: 'text-primary' },
-              { icon: BookOpen, textKey: 'activity.courseFinished', timeKey: 'activity.timeAgo1d', color: 'text-[oklch(0.65_0.18_155)]' },
-              { icon: GraduationCap, textKey: 'activity.badgeEarned', timeKey: 'activity.timeAgo2d', color: 'text-accent' },
+              { icon: MessageSquare, textKey: 'activity.aiPractice', timeKey: 'activity.timeAgo2h', color: 'text-primary', dotColor: 'bg-primary' },
+              { icon: BookOpen, textKey: 'activity.courseFinished', timeKey: 'activity.timeAgo1d', color: 'text-[oklch(0.65_0.18_155)]', dotColor: 'bg-[oklch(0.65_0.18_155)]' },
+              { icon: GraduationCap, textKey: 'activity.badgeEarned', timeKey: 'activity.timeAgo2d', color: 'text-accent', dotColor: 'bg-accent' },
             ].map((activity, i) => (
-              <div key={i} className="flex items-center gap-3 py-3 first:pt-4 last:pb-4">
+              <div key={i} className="relative flex items-center gap-3 pb-4 last:pb-0">
+                {/* Timeline dot */}
+                <div className={cn('absolute -left-[17px] top-2 size-2.5 rounded-full ring-2 ring-background', activity.dotColor)} />
                 <div className={cn('flex size-8 items-center justify-center rounded-lg bg-muted', activity.color)}>
                   <activity.icon className="size-4" />
                 </div>
