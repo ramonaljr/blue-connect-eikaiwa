@@ -4,6 +4,8 @@ import { ProfileForm } from '@/components/settings/profile-form'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
 import { LearningPreferencesForm } from '@/components/settings/learning-preferences-form'
 import { SubscriptionSection } from '@/components/settings/subscription-section'
+import { ConnectedAccountsSection } from '@/components/settings/connected-accounts-section'
+import { AccountManagementSection } from '@/components/settings/account-management-section'
 
 export default async function SettingsPage() {
   const user = await requireAuth()
@@ -31,10 +33,10 @@ export default async function SettingsPage() {
           <SubscriptionSection user={user} />
         </TabsContent>
         <TabsContent value="connected">
-          <p className="text-muted-foreground py-8 text-center">Coming soon</p>
+          <ConnectedAccountsSection user={user} />
         </TabsContent>
         <TabsContent value="account">
-          <p className="text-muted-foreground py-8 text-center">Coming soon</p>
+          <AccountManagementSection user={user} />
         </TabsContent>
       </Tabs>
     </div>
