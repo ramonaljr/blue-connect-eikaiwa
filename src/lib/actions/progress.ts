@@ -93,10 +93,10 @@ export async function awardXP(
   await checkAchievements(userId, source, newStreak, newLevel)
 }
 
-export function getXPForActivity(
+export async function getXPForActivity(
   activity: string,
   difficulty?: number
-): number {
+): Promise<number> {
   const value = XP_VALUES[activity]
   if (!value) return 0
   if (typeof value === 'number') return value

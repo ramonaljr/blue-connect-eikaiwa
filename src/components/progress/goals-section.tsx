@@ -112,7 +112,7 @@ export function GoalsSection({ userId, initialGoals }: GoalsSectionProps) {
           目標
         </CardTitle>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
+          <DialogTrigger>
             <Button size="sm" variant="outline" className="gap-1.5">
               <Plus className="h-4 w-4" />
               目標を追加
@@ -174,7 +174,7 @@ export function GoalsSection({ userId, initialGoals }: GoalsSectionProps) {
                 </div>
                 <div className="space-y-2">
                   <Label>種類</Label>
-                  <Select value={customType} onValueChange={setCustomType}>
+                  <Select value={customType} onValueChange={(v) => v && setCustomType(v)}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
