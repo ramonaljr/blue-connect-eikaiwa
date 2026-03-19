@@ -19,6 +19,12 @@ vi.mock('@/components/courses/exercises/audio-exercise', () => ({
 vi.mock('@/components/courses/exercises/conversation-exercise', () => ({
   ConversationExercise: () => <div data-testid="conversation">Conv</div>,
 }))
+vi.mock('@/components/courses/exercises/matching', () => ({
+  Matching: () => <div data-testid="matching">Match</div>,
+}))
+vi.mock('@/components/courses/exercises/reorder', () => ({
+  Reorder: () => <div data-testid="reorder">Reorder</div>,
+}))
 
 const baseExercise: CourseExercise = {
   id: '1',
@@ -64,14 +70,14 @@ describe('ExerciseRenderer', () => {
     expect(screen.getByTestId('conversation')).toBeTruthy()
   })
 
-  it('shows placeholder for matching type (not yet implemented)', () => {
+  it('routes to Matching for matching type', () => {
     render(<ExerciseRenderer exercise={{ ...baseExercise, type: 'matching' }} locale="ja" onComplete={vi.fn()} />)
-    expect(screen.getByText(/近日公開予定/)).toBeTruthy()
+    expect(screen.getByTestId('matching')).toBeTruthy()
   })
 
-  it('shows placeholder for reorder type (not yet implemented)', () => {
+  it('routes to Reorder for reorder type', () => {
     render(<ExerciseRenderer exercise={{ ...baseExercise, type: 'reorder' }} locale="ja" onComplete={vi.fn()} />)
-    expect(screen.getByText(/近日公開予定/)).toBeTruthy()
+    expect(screen.getByTestId('reorder')).toBeTruthy()
   })
 
   it('shows placeholder for unknown type', () => {
