@@ -46,9 +46,9 @@ export default async function AIVoicePage() {
           </Card>
         </div>
 
-        <Button asChild size="lg">
-          <Link href="/dashboard/settings">プランをアップグレード</Link>
-        </Button>
+        <Link href="/dashboard/settings">
+          <Button size="lg">プランをアップグレード</Button>
+        </Link>
       </div>
     )
   }

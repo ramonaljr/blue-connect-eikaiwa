@@ -2,6 +2,7 @@ import { requireAuth } from '@/lib/auth/guard'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { TestPrepMode } from '@/components/courses/test-prep-mode'
+import type { CourseExercise } from '@/lib/types/database'
 
 export default async function TestPrepPage({
   params,
@@ -21,7 +22,7 @@ export default async function TestPrepPage({
   if (!course) notFound()
 
   const allExercises = (course.units ?? [])
-    .flatMap((u: { exercises: unknown[] }) => u.exercises ?? [])
+    .flatMap((u: { exercises: CourseExercise[] }) => u.exercises ?? []) as CourseExercise[]
 
   return (
     <TestPrepMode

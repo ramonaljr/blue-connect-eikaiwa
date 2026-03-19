@@ -36,11 +36,11 @@ export function RecordingPlayer({ recordingUrl, lessonDate, tutorName }: Recordi
         </div>
         <div className="flex items-center justify-between text-sm text-muted-foreground">
           <span>{tutorName}とのレッスン — {new Date(lessonDate).toLocaleDateString('ja-JP')}</span>
-          <Button variant="outline" size="sm" asChild>
-            <a href={recordingUrl} download>
+          <a href={recordingUrl} download>
+            <Button variant="outline" size="sm">
               <Download className="mr-1 h-3 w-3" /> ダウンロード
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </CardContent>
     </Card>

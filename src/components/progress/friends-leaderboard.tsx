@@ -17,8 +17,8 @@ export function FriendsLeaderboard({ userId }: { userId: string }) {
   useEffect(() => {
     startTransition(async () => {
       const [friendsResult, pendingResult] = await Promise.all([getFriends(), getPendingRequests()])
-      if ('data' in friendsResult) setFriends(friendsResult.data)
-      if ('data' in pendingResult) setPending(pendingResult.data)
+      if ('data' in friendsResult && friendsResult.data) setFriends(friendsResult.data)
+      if ('data' in pendingResult && pendingResult.data) setPending(pendingResult.data)
     })
   }, [userId])
 
@@ -37,7 +37,7 @@ export function FriendsLeaderboard({ userId }: { userId: string }) {
       setPending(prev => prev.filter(p => p.id !== id))
       if (accept) {
         const result = await getFriends()
-        if ('data' in result) setFriends(result.data)
+        if ('data' in result && result.data) setFriends(result.data)
       }
     })
   }

@@ -56,16 +56,16 @@ export function TutorHandoffPanel({ conversationId, correctionCount }: TutorHand
           ))}
         </div>
         <div className="flex gap-2">
-          <Button asChild size="sm">
-            <Link href="/dashboard/tutors">
+          <Link href="/dashboard/tutors">
+            <Button size="sm">
               講師を探す <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/dashboard/courses">
+            </Button>
+          </Link>
+          <Link href="/dashboard/courses">
+            <Button variant="outline" size="sm">
               <BookOpen className="mr-1 h-4 w-4" /> 関連コースを見る
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
