@@ -65,6 +65,50 @@ wss.on('connection', async (ws, req) => {
           if (session) {
             const summary = generateSessionSummary(session)
             ws.send(JSON.stringify({ type: 'session_end', summary }))
+
+            // Award XP via direct Supabase insert
+            try {
+              const { createClient } = await import('@supabase/supabase-js')
+              const supabase = createClient(
+                process.env.SUPABASE_URL!,
+                process.env.SUPABASE_SERVICE_ROLE_KEY!
+              )
+
+              // Insert XP ledger entry
+              const xpAmount = session.mode === 'pronunciation_practice' ? 30 : 50
+              await supabase.from('xp_ledger').insert({
+                user_id: session.userId,
+                amount: xpAmount,
+                source: session.mode === 'pronunciation_practice' ? 'pronunciation_drill' : 'ai_voice',
+              })
+
+              // Update user XP
+              const { data: user } = await supabase
+                .from('users')
+                .select('xp, level, streak_days, last_activity_date')
+                .eq('id', session.userId)
+                .single()
+
+              if (user) {
+                const newXP = user.xp + xpAmount
+                const today = new Date().toISOString().split('T')[0]
+                const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0]
+
+                let newStreak = user.streak_days
+                if (user.last_activity_date !== today) {
+                  newStreak = user.last_activity_date === yesterday ? user.streak_days + 1 : 1
+                }
+
+                await supabase.from('users').update({
+                  xp: newXP,
+                  level: Math.floor(newXP / 1000) + 1,
+                  streak_days: newStreak,
+                  last_activity_date: today,
+                }).eq('id', session.userId)
+              }
+            } catch (err) {
+              console.error('Failed to award XP:', err)
+            }
           }
           sessions.delete(ws)
           return

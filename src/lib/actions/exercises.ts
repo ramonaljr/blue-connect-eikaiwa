@@ -51,6 +51,23 @@ export async function submitExerciseAttempt(data: {
     await updateSkillProfile(user.id)
   }
 
+  // Award XP for exercise completion
+  const { awardXP, getXPForActivity } = await import('./progress')
+  const { updateGoalProgress } = await import('./goals')
+
+  const { data: exercise } = await supabase
+    .from('course_exercises')
+    .select('difficulty')
+    .eq('id', data.exerciseId)
+    .single()
+
+  const xpAmount = typeof getXPForActivity === 'function'
+    ? await getXPForActivity('exercise', exercise?.difficulty ?? 1)
+    : 20
+
+  await awardXP(user.id, xpAmount, 'exercise', data.exerciseId)
+  await updateGoalProgress(user.id, 'exercises', 1)
+
   return { success: true }
 }
 

@@ -33,6 +33,13 @@ export async function submitLessonReview(data: {
     .eq('id', data.lessonId)
 
   if (error) return { error: error.message }
+
+  // Award XP for completed lesson
+  const { awardXP } = await import('./progress')
+  const { updateGoalProgress } = await import('./goals')
+  await awardXP(user.id, 100, 'lesson', data.lessonId)
+  await updateGoalProgress(user.id, 'lessons', 1)
+
   revalidatePath('/dashboard/lessons')
   return { success: true }
 }

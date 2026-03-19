@@ -90,6 +90,7 @@ export async function POST(request: NextRequest) {
           { role: 'assistant' as const, content: assistantContent, timestamp: new Date().toISOString() },
         ]
 
+        let newConversationId: string | undefined
         if (conversationId) {
           await supabase
             .from('ai_conversations')
@@ -108,9 +109,19 @@ export async function POST(request: NextRequest) {
             .select('id')
             .single()
 
+          newConversationId = conv?.id
           controller.enqueue(
             encoder.encode(`data: ${JSON.stringify({ conversationId: conv?.id })}\n\n`)
           )
+        }
+
+        // Award XP if conversation has 5+ user messages
+        const messageCount = allMessages.filter(m => m.role === 'user').length
+        if (messageCount >= 5) {
+          const { awardXP } = await import('@/lib/actions/progress')
+          const { updateGoalProgress } = await import('@/lib/actions/goals')
+          await awardXP(user.id, 30, 'ai_chat', conversationId ?? newConversationId)
+          await updateGoalProgress(user.id, 'ai_chats', 1)
         }
 
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))
