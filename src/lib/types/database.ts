@@ -10,6 +10,7 @@ export type AIMode = 'text_chat' | 'voice_chat' | 'voice_immersive'
 export type CreditType = 'lesson_certified' | 'lesson_community' | 'ai_voice'
 export type CreditSource = 'subscription' | 'purchase'
 export type NotificationType = 'lesson_reminder' | 'review_request' | 'subscription' | 'system'
+export type FriendshipStatus = 'pending' | 'accepted' | 'declined'
 export type AIPersonality = 'friendly' | 'strict' | 'balanced'
 export type AICorrectionLevel = 'gentle' | 'moderate' | 'thorough'
 
@@ -338,4 +339,13 @@ export interface Notification {
   is_read: boolean
   action_url: string | null
   created_at: string
+}
+
+export interface Friendship {
+  id: string
+  requester_id: string
+  addressee_id: string
+  status: FriendshipStatus
+  created_at: string
+  updated_at: string
 }
