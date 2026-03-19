@@ -4,6 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { VocabularyPopup } from './vocabulary-popup'
 import { BookOpen } from 'lucide-react'
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 interface ContentBlock {
   type: string
   content?: string
@@ -51,7 +60,7 @@ export function UnitContentRenderer({
                   <p
                     key={j}
                     dangerouslySetInnerHTML={{
-                      __html: para.replace(
+                      __html: escapeHtml(para).replace(
                         /\*\*(.*?)\*\*/g,
                         '<strong>$1</strong>'
                       ),

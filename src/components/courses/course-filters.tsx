@@ -29,13 +29,13 @@ const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 const CATEGORIES = [
   { value: 'all', label: 'すべて' },
-  { value: 'Foundations', label: 'Foundations' },
-  { value: 'Daily Conversation', label: 'Daily Conversation' },
-  { value: 'Business English', label: 'Business English' },
-  { value: 'TOEIC Prep', label: 'TOEIC Prep' },
-  { value: 'EIKEN Prep', label: 'EIKEN Prep' },
-  { value: 'Travel English', label: 'Travel English' },
-  { value: 'Advanced Discussion', label: 'Advanced Discussion' },
+  { value: 'Foundations', label: '基礎' },
+  { value: 'Daily Conversation', label: '日常会話' },
+  { value: 'Business English', label: 'ビジネス英語' },
+  { value: 'TOEIC Prep', label: 'TOEIC対策' },
+  { value: 'EIKEN Prep', label: '英検対策' },
+  { value: 'Travel English', label: '旅行英語' },
+  { value: 'Advanced Discussion', label: '上級ディスカッション' },
 ]
 
 const STATUSES = [

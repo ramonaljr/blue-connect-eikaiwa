@@ -38,7 +38,11 @@ const navGroups = [
   },
 ]
 
-export function DashboardSidebar() {
+interface DashboardSidebarProps {
+  streakDays?: number
+}
+
+export function DashboardSidebar({ streakDays = 0 }: DashboardSidebarProps) {
   const pathname = usePathname()
   const t = useTranslations('nav')
   const tg = useTranslations('nav.sidebarGroups')
@@ -123,7 +127,7 @@ export function DashboardSidebar() {
           <div className="flex items-center gap-2 rounded-lg bg-accent/10 px-3 py-2">
             <Flame className="size-5 text-accent" />
             <div>
-              <p className="text-sm font-semibold text-accent">7</p>
+              <p className="text-sm font-semibold text-accent">{streakDays}</p>
               <p className="text-xs text-muted-foreground">{td('streak')}</p>
             </div>
           </div>
@@ -131,7 +135,7 @@ export function DashboardSidebar() {
       )}
       {collapsed && (
         <div className="border-t p-2">
-          <div className="flex items-center justify-center rounded-lg bg-accent/10 p-2" title={"7 " + td('streak')}>
+          <div className="flex items-center justify-center rounded-lg bg-accent/10 p-2" title={streakDays + " " + td('streak')}>
             <Flame className="size-5 text-accent" />
           </div>
         </div>

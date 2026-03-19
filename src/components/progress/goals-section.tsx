@@ -112,11 +112,9 @@ export function GoalsSection({ userId, initialGoals }: GoalsSectionProps) {
           目標
         </CardTitle>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger>
-            <Button size="sm" variant="outline" className="gap-1.5">
-              <Plus className="h-4 w-4" />
-              目標を追加
-            </Button>
+          <DialogTrigger className="inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground gap-1.5">
+            <Plus className="h-4 w-4" />
+            目標を追加
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>

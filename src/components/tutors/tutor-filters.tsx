@@ -25,13 +25,13 @@ interface TutorFiltersProps {
 
 const SPECIALTIES = [
   { value: 'all', label: 'すべて' },
-  { value: 'Conversation', label: 'Conversation' },
-  { value: 'Business', label: 'Business' },
+  { value: 'Conversation', label: '会話' },
+  { value: 'Business', label: 'ビジネス' },
   { value: 'TOEIC', label: 'TOEIC' },
-  { value: 'EIKEN', label: 'EIKEN' },
-  { value: 'Pronunciation', label: 'Pronunciation' },
-  { value: 'Grammar', label: 'Grammar' },
-  { value: 'Travel', label: 'Travel' },
+  { value: 'EIKEN', label: '英検' },
+  { value: 'Pronunciation', label: '発音' },
+  { value: 'Grammar', label: '文法' },
+  { value: 'Travel', label: '旅行' },
 ]
 
 const RATING_OPTIONS = [
