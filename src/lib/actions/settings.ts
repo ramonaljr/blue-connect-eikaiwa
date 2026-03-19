@@ -25,7 +25,6 @@ export async function updateProfile(data: {
         full_name: data.full_name,
         english_level: data.english_level,
         timezone: data.timezone,
-        updated_at: new Date().toISOString(),
       })
       .eq('id', user.id)
 
@@ -74,7 +73,6 @@ export async function updateAvatar(formData: FormData) {
       .from('users')
       .update({
         avatar_url: publicUrl,
-        updated_at: new Date().toISOString(),
       })
       .eq('id', user.id)
 
@@ -110,7 +108,6 @@ export async function updateLearningPreferences(data: {
         preferred_topics: data.preferred_topics,
         ai_personality: data.ai_personality,
         ai_correction_level: data.ai_correction_level,
-        updated_at: new Date().toISOString(),
       })
       .eq('id', user.id)
 
@@ -214,12 +211,8 @@ export async function requestAccountDeletion() {
     const { error } = await supabase.from('notifications').insert({
       user_id: user.id,
       type: 'system',
-      title: 'Account Deletion Requested',
-      title_ja: 'アカウント削除リクエスト',
-      message:
-        'Your account has been scheduled for deletion in 30 days. Contact support to cancel.',
-      message_ja:
-        'アカウントは30日後に削除される予定です。キャンセルするにはサポートにお問い合わせください。',
+      title: 'アカウント削除リクエスト',
+      body: 'アカウントは30日後に削除される予定です。キャンセルするには設定ページをご確認ください。',
     })
 
     if (error) {

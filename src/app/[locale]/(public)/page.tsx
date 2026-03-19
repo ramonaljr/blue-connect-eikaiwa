@@ -3,11 +3,11 @@
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import {
-  MessageSquare, BookOpen, Users, UserPlus, ClipboardCheck, Rocket, TrendingUp,
+  BookOpen, UserPlus, ClipboardCheck, Rocket, TrendingUp,
   Wallet, Clock, ShieldCheck, Sparkles, Video, Star, ArrowRight, Quote,
 } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import {
   SectionReveal, StaggerContainer, StaggerItem, AnimatedCounter, FloatingElement,
@@ -44,7 +44,6 @@ const testimonials = ['1', '2', '3'] as const
 
 export default function HomePage() {
   const t = useTranslations('landing')
-  const tc = useTranslations('common')
   const [activeTestimonial, setActiveTestimonial] = useState(0)
 
   useEffect(() => {
