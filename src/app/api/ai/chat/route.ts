@@ -51,6 +51,8 @@ export async function POST(request: NextRequest) {
     level: user.english_level,
     mode: scenario ? 'roleplay' : 'text_chat',
     scenario,
+    personality: user.ai_personality,
+    correctionLevel: user.ai_correction_level,
   })
 
   const anthropic = getAnthropic()
@@ -100,6 +102,7 @@ export async function POST(request: NextRequest) {
               user_id: user.id,
               mode: 'text_chat',
               scenario: scenario ?? null,
+              scenario_key: scenario ?? null,
               messages: allMessages,
             })
             .select('id')
