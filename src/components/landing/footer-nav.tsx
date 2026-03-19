@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { LanguageToggle } from '@/components/layout/language-toggle'
+import { Button } from '@/components/ui/button'
 
 export function FooterNav() {
   const t = useTranslations('landing')
@@ -49,6 +50,17 @@ export function FooterNav() {
             <p className="mt-2 text-sm text-muted-foreground">
               {t('footerNav.tagline')}
             </p>
+            {/* Social icons */}
+            <div className="mt-4 flex gap-3">
+              {['X', 'IG', 'YT', 'LINE'].map((icon) => (
+                <div
+                  key={icon}
+                  className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-bold text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                >
+                  {icon}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Link columns */}
@@ -66,6 +78,23 @@ export function FooterNav() {
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Newsletter */}
+        <div className="mt-8 border-t pt-8">
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <span className="text-sm font-medium">{t('footerNav.newsletter')}</span>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder={t('footerNav.emailPlaceholder')}
+                className="h-9 rounded-lg border border-border bg-background px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
+              <Button size="sm" className="bg-primary text-primary-foreground">
+                OK
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 

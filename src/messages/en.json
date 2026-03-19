@@ -181,7 +181,9 @@
         "faq": "FAQ",
         "terms": "Terms of Service",
         "privacy": "Privacy Policy"
-      }
+      },
+      "newsletter": "Get updates",
+      "emailPlaceholder": "Your email"
     }
   },
   "pricing": {

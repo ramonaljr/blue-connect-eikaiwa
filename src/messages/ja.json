@@ -181,7 +181,9 @@
         "faq": "よくある質問",
         "terms": "利用規約",
         "privacy": "プライバシーポリシー"
-      }
+      },
+      "newsletter": "最新情報を受け取る",
+      "emailPlaceholder": "メールアドレス"
     }
   },
   "pricing": {
