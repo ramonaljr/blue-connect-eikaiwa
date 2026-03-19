@@ -40,6 +40,8 @@ export interface User {
   ai_personality: AIPersonality
   ai_correction_level: AICorrectionLevel
   timezone: string
+  onboarding_completed: boolean
+  onboarding_completed_at: string | null
 }
 
 export interface Achievement {
