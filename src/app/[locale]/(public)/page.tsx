@@ -35,6 +35,8 @@ const testimonials = ['1', '2', '3'] as const
 export default function HomePage() {
   const t = useTranslations('landing')
 
+  const accentColors = ['border-l-primary', 'border-l-accent', 'border-l-[oklch(0.65_0.18_155)]']
+
   return (
     <main className="flex flex-col overflow-x-hidden">
       {/* Hero — Split Layout */}
@@ -43,7 +45,7 @@ export default function HomePage() {
         <div className="container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
           <div className="flex-1 text-center md:text-left">
             <SectionReveal>
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+              <h1 className="text-5xl font-black tracking-tighter md:text-6xl lg:text-7xl">
                 {t('hero.title').split('AI').map((part, i, arr) =>
                   i < arr.length - 1 ? (
                     <span key={i}>
@@ -57,7 +59,7 @@ export default function HomePage() {
               </h1>
             </SectionReveal>
             <SectionReveal delay={0.15}>
-              <p className="mt-4 max-w-lg text-lg text-muted-foreground md:text-xl">
+              <p className="mt-4 max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed">
                 {t('hero.subtitle')}
               </p>
             </SectionReveal>
@@ -73,13 +75,14 @@ export default function HomePage() {
                   {t('hero.cta')}
                   <ArrowRight className="ml-1 size-4" />
                 </Link>
-                <Link href="/pricing" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
-                  {t('footer.cta')}
+                <Link href="#features" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
+                  {t('hero.secondaryCta')}
                 </Link>
               </div>
+              <p className="mt-4 text-sm text-muted-foreground">{t('hero.socialProof')}</p>
             </SectionReveal>
           </div>
-          <SectionReveal delay={0.2} direction="right" className="w-full max-w-md flex-1">
+          <SectionReveal delay={0.2} direction="right" className="w-full max-w-lg flex-1">
             <ChatMockup />
           </SectionReveal>
         </div>
@@ -89,7 +92,7 @@ export default function HomePage() {
       <section className="relative z-10 -mt-8 px-4">
         <SectionReveal>
           <div className="container mx-auto max-w-3xl">
-            <div className="glass flex flex-wrap items-center justify-center gap-8 rounded-2xl px-8 py-6 shadow-elevated md:gap-16">
+            <div className="glass flex flex-wrap items-center justify-center gap-8 rounded-2xl border border-white/30 px-8 py-6 shadow-elevated md:gap-16">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">
                   <AnimatedCounter target={5000} suffix="+" />
@@ -117,7 +120,7 @@ export default function HomePage() {
       <section className="px-4 py-20 md:py-28">
         <div className="container mx-auto max-w-5xl">
           <SectionReveal>
-            <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">
+            <h2 className="mb-4 text-center text-3xl font-bold md:text-5xl">
               {t('transform.title')}
             </h2>
             <p className="mb-12 text-center text-lg text-muted-foreground">
@@ -129,7 +132,7 @@ export default function HomePage() {
               <StaggerItem key={key}>
                 <div className="flex flex-col items-center gap-3">
                   {/* Problem card */}
-                  <Card className="w-full border-none bg-destructive/5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                  <Card className="w-full border-none bg-gradient-to-b from-destructive/8 to-destructive/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-destructive/10">
                         <Icon className="size-5 text-destructive" />
@@ -143,7 +146,7 @@ export default function HomePage() {
                   <ArrowDown className="size-5 text-primary/40" />
 
                   {/* Solution card */}
-                  <Card className="w-full border-none bg-primary/5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                  <Card className="w-full border-none bg-gradient-to-b from-primary/8 to-primary/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-primary/10">
                         <Check className="size-5 text-primary" />
@@ -170,13 +173,13 @@ export default function HomePage() {
       <section className="px-4 py-20 md:py-28">
         <div className="container mx-auto max-w-5xl">
           <SectionReveal>
-            <h2 className="mb-16 text-center text-3xl font-bold md:text-4xl">
+            <h2 className="mb-16 text-center text-3xl font-bold md:text-5xl">
               {t('howItWorks.title')}
             </h2>
           </SectionReveal>
           <div className="relative">
             {/* Connecting line */}
-            <div className="absolute left-1/2 top-8 hidden h-px w-[60%] -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/20 to-transparent md:block" />
+            <div className="absolute left-1/2 top-8 hidden h-0.5 w-[60%] -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent md:block" />
             <StaggerContainer className="grid gap-8 md:grid-cols-4" staggerDelay={0.15}>
               {steps.map(({ key, icon: Icon, step }) => (
                 <StaggerItem key={key}>
@@ -202,14 +205,17 @@ export default function HomePage() {
       <section className="bg-gradient-section px-4 py-20 md:py-28">
         <div className="container mx-auto max-w-5xl">
           <SectionReveal>
-            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">
+            <h2 className="text-center text-3xl font-bold md:text-5xl">
               {t('testimonials.title')}
             </h2>
+            <p className="mt-3 mb-12 text-center text-lg text-muted-foreground">
+              {t('testimonials.subtitle')}
+            </p>
           </SectionReveal>
           <StaggerContainer className="grid gap-6 md:grid-cols-3" staggerDelay={0.12}>
-            {testimonials.map((id) => (
+            {testimonials.map((id, idx) => (
               <StaggerItem key={id}>
-                <Card className="glass border-none shadow-elevated transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                <Card className={cn('glass border-l-[3px] shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:shadow-xl', accentColors[idx])}>
                   <CardHeader>
                     <div className="mb-3 flex items-center gap-1">
                       {[...Array(5)].map((_, j) => (
@@ -240,7 +246,7 @@ export default function HomePage() {
       <section className="relative px-4 py-24 text-center md:py-32">
         <div className="bg-gradient-mesh absolute inset-0 -z-10" />
         <SectionReveal>
-          <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold md:text-5xl lg:text-5xl">
             {t('finalCta.title')}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
@@ -257,6 +263,7 @@ export default function HomePage() {
               {t('finalCta.cta')}
               <ArrowRight className="ml-2 size-5" />
             </Link>
+            <p className="mt-4 text-sm text-muted-foreground">{t('finalCta.trustLine')}</p>
           </div>
         </SectionReveal>
       </section>
