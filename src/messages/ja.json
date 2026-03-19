@@ -214,11 +214,55 @@
     "quickActions": {
       "aiChat": "AI英会話を始める",
       "findTutor": "講師を探す",
-      "browseCourses": "コースを見る"
+      "browseCourses": "コースを見る",
+      "aiVoice": "音声で練習する",
+      "courses": "コースを見る",
+      "tutors": "講師を探す"
     },
     "noUpcoming": "予定されたレッスンはありません",
     "joinLesson": "参加",
-    "viewAll": "すべて見る"
+    "viewAll": "すべて見る",
+    "tip": {
+      "loading": "今日のヒントを読み込み中..."
+    },
+    "progress": {
+      "xp": "XP",
+      "level": "レベル {level}",
+      "streak": "日連続",
+      "goal": "今日の目標",
+      "goalProgress": "{current}/{target}分"
+    },
+    "continueLearning": {
+      "title": "学習を続ける",
+      "aiConversation": "AI会話",
+      "course": "コース",
+      "continue": "続ける",
+      "empty": "まだ学習を始めていません。AI英会話から始めてみましょう！",
+      "startNow": "始める"
+    },
+    "upcomingLesson": {
+      "title": "次のレッスン",
+      "in": "あと",
+      "hours": "時間",
+      "minutes": "分",
+      "join": "参加する",
+      "prepare": "準備する",
+      "duration": "{minutes}分"
+    },
+    "weakAreas": {
+      "title": "おすすめ"
+    },
+    "notifications": {
+      "title": "通知",
+      "viewAll": "すべて見る",
+      "empty": "新しい通知はありません",
+      "minutesAgo": "{count}分前",
+      "hoursAgo": "{count}時間前",
+      "daysAgo": "{count}日前"
+    },
+    "newContent": {
+      "title": "新着コース"
+    }
   },
   "settings": {
     "title": "設定",

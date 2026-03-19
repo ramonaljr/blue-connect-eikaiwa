@@ -214,11 +214,55 @@
     "quickActions": {
       "aiChat": "Start AI Chat",
       "findTutor": "Find a Tutor",
-      "browseCourses": "Browse Courses"
+      "browseCourses": "Browse Courses",
+      "aiVoice": "Practice Speaking",
+      "courses": "Browse Courses",
+      "tutors": "Find Tutors"
     },
     "noUpcoming": "No upcoming lessons",
     "joinLesson": "Join",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "tip": {
+      "loading": "Loading today's tip..."
+    },
+    "progress": {
+      "xp": "XP",
+      "level": "Level {level}",
+      "streak": "day streak",
+      "goal": "Today's goal",
+      "goalProgress": "{current}/{target} min"
+    },
+    "continueLearning": {
+      "title": "Continue Learning",
+      "aiConversation": "AI Conversation",
+      "course": "Course",
+      "continue": "Continue",
+      "empty": "You haven't started learning yet. Try starting with AI Chat!",
+      "startNow": "Start"
+    },
+    "upcomingLesson": {
+      "title": "Next Lesson",
+      "in": "in",
+      "hours": "hours",
+      "minutes": "minutes",
+      "join": "Join",
+      "prepare": "Prepare",
+      "duration": "{minutes} min"
+    },
+    "weakAreas": {
+      "title": "Recommended"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "viewAll": "View all",
+      "empty": "No new notifications",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago"
+    },
+    "newContent": {
+      "title": "New Courses"
+    }
   },
   "settings": {
     "title": "Settings",
