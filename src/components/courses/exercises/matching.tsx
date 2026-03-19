@@ -12,6 +12,7 @@ import type { CourseExercise } from '@/lib/types/database'
 interface MatchingProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
@@ -38,7 +39,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-export function Matching({ exercise, locale, onComplete }: MatchingProps) {
+export function Matching({ exercise, locale, testMode: _testMode, onComplete }: MatchingProps) {
   const pairs = exercise.options as MatchPair[]
   const shuffledRight = useMemo(
     () => shuffleArray(pairs.map((p) => p.right)),

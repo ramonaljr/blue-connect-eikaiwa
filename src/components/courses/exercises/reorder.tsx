@@ -12,6 +12,7 @@ import type { CourseExercise } from '@/lib/types/database'
 interface ReorderProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
@@ -24,7 +25,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-export function Reorder({ exercise, locale, onComplete }: ReorderProps) {
+export function Reorder({ exercise, locale, testMode: _testMode, onComplete }: ReorderProps) {
   const correctOrder = exercise.correct_answer.split('|')
   const initialItems = useMemo(
     () => shuffleArray(exercise.options as string[]),

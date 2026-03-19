@@ -14,10 +14,11 @@ import type { CourseExercise } from '@/lib/types/database'
 interface FillBlankProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
-export function FillBlank({ exercise, locale, onComplete }: FillBlankProps) {
+export function FillBlank({ exercise, locale, testMode: _testMode, onComplete }: FillBlankProps) {
   const question =
     locale === 'ja' ? exercise.question_ja || exercise.question : exercise.question
   const explanation =

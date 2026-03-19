@@ -13,10 +13,11 @@ import type { CourseExercise } from '@/lib/types/database'
 interface MultipleChoiceProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
-export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceProps) {
+export function MultipleChoice({ exercise, locale, testMode, onComplete }: MultipleChoiceProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
@@ -105,6 +106,9 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining])
 
+  const maxAttempts = testMode ? 1 : 2
+  const maxHints = testMode ? 0 : 2
+
   function handleSubmit() {
     const correct =
       selectedAnswer?.toLowerCase() === exercise.correct_answer.toLowerCase()
@@ -115,7 +119,7 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
 
     if (correct) {
       toast.success('正解!')
-    } else if (attemptCount < 2) {
+    } else if (attemptCount < maxAttempts) {
       toast.error('不正解')
     } else {
       toast.error('不正解')
@@ -135,7 +139,7 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
   }
 
   function handleHint() {
-    if (hintsUsed >= 2) return
+    if (hintsUsed >= maxHints) return
 
     const wrongOptions = options.filter(
       (opt) =>
@@ -182,10 +186,10 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
               ))}
           </div>
           <div className="flex items-center gap-2">
-            {!submitted && !completed && hintsUsed < 2 && (
+            {!submitted && !completed && maxHints > 0 && hintsUsed < maxHints && (
               <Button variant="ghost" size="sm" onClick={handleHint}>
                 <Lightbulb className="mr-1 h-4 w-4" />
-                ヒントを見る ({2 - hintsUsed})
+                ヒントを見る ({maxHints - hintsUsed})
               </Button>
             )}
             {timeRemaining !== null && (
@@ -249,7 +253,7 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
             </Button>
           )}
 
-          {submitted && !isCorrect && !completed && attemptCount < 2 && (
+          {submitted && !isCorrect && !completed && attemptCount < maxAttempts && (
             <Button variant="outline" onClick={handleRetry}>
               <RotateCcw className="mr-1 h-4 w-4" />
               もう一度
@@ -257,7 +261,7 @@ export function MultipleChoice({ exercise, locale, onComplete }: MultipleChoiceP
           )}
         </div>
 
-        {submitted && explanation && (
+        {submitted && explanation && !testMode && (
           <div className="rounded-lg bg-muted p-4 text-sm">
             <p className="font-medium">解説:</p>
             <p>{explanation}</p>

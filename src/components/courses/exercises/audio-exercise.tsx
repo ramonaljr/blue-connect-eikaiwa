@@ -14,6 +14,7 @@ import type { CourseExercise } from '@/lib/types/database'
 interface AudioExerciseProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
@@ -61,7 +62,7 @@ function computeWordDiff(userText: string, correctText: string): { diffs: WordDi
   return { diffs, score }
 }
 
-export function AudioExercise({ exercise, locale, onComplete }: AudioExerciseProps) {
+export function AudioExercise({ exercise, locale, testMode: _testMode, onComplete }: AudioExerciseProps) {
   const subType = determineSubType(exercise)
 
   const [isPlaying, setIsPlaying] = useState(false)

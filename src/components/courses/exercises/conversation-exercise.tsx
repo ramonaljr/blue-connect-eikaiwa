@@ -14,6 +14,7 @@ import type { CourseExercise } from '@/lib/types/database'
 interface ConversationExerciseProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
@@ -105,6 +106,7 @@ function evaluateVocabularyUsage(
 export function ConversationExercise({
   exercise,
   locale,
+  testMode: _testMode,
   onComplete,
 }: ConversationExerciseProps) {
   const { targetVocabulary = [], maxExchanges = 5 } = parseOptions(exercise)

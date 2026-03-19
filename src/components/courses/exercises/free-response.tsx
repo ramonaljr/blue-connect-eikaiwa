@@ -13,6 +13,7 @@ import type { CourseExercise } from '@/lib/types/database'
 interface FreeResponseProps {
   exercise: CourseExercise
   locale: string
+  testMode?: boolean
   onComplete: (score: number) => void
 }
 
@@ -65,7 +66,7 @@ function renderStars(score: number) {
   ))
 }
 
-export function FreeResponse({ exercise, locale, onComplete }: FreeResponseProps) {
+export function FreeResponse({ exercise, locale, testMode: _testMode, onComplete }: FreeResponseProps) {
   const question =
     locale === 'ja' ? exercise.question_ja || exercise.question : exercise.question
   const explanation =
