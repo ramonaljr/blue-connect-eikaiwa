@@ -85,6 +85,40 @@ export interface Lesson {
   learner_rating: number | null
   learner_review: string | null
   created_at: string
+  learner_review_categories: Record<string, number> | null
+  cancellation_reason: string | null
+  canceled_at: string | null
+  canceled_by: string | null
+  credit_refund_amount: number | null
+}
+
+export interface LessonPreparation {
+  id: string
+  lesson_id: string
+  topics: string
+  vocabulary: string[]
+  goals: string[]
+  created_at: string
+  updated_at: string
+}
+
+export interface LessonNote {
+  id: string
+  lesson_id: string
+  shared_notes: string
+  tutor_private_notes: string
+  ai_summary: string
+  transcript_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface LessonChat {
+  id: string
+  lesson_id: string
+  user_id: string
+  message: string
+  created_at: string
 }
 
 export interface Course {
