@@ -2,6 +2,7 @@ import { requireAuth } from '@/lib/auth/guard'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { LessonRoom } from '@/components/lessons/lesson-room'
+import { RecordingPlayer } from '@/components/lessons/recording-player'
 import { Badge } from '@/components/ui/badge'
 
 export default async function LessonDetailPage({
@@ -57,6 +58,14 @@ export default async function LessonDetailPage({
         durationMinutes={lesson.duration_minutes}
         prepNotes={lesson.prep_notes ?? null}
       />
+
+      {lesson.status === 'completed' && lesson.recording_url && (
+        <RecordingPlayer
+          recordingUrl={lesson.recording_url}
+          lessonDate={lesson.scheduled_at}
+          tutorName={(lesson.tutor as { display_name: string } | null)?.display_name ?? '講師'}
+        />
+      )}
     </div>
   )
 }
