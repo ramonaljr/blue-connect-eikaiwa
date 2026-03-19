@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ProfileForm } from '@/components/settings/profile-form'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
 import { LearningPreferencesForm } from '@/components/settings/learning-preferences-form'
+import { SubscriptionSection } from '@/components/settings/subscription-section'
 
 export default async function SettingsPage() {
   const user = await requireAuth()
@@ -27,7 +28,7 @@ export default async function SettingsPage() {
           <LearningPreferencesForm user={user} />
         </TabsContent>
         <TabsContent value="subscription">
-          <p className="text-muted-foreground py-8 text-center">Coming soon</p>
+          <SubscriptionSection user={user} />
         </TabsContent>
         <TabsContent value="connected">
           <p className="text-muted-foreground py-8 text-center">Coming soon</p>
