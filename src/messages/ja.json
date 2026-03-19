@@ -219,5 +219,69 @@
     "noUpcoming": "予定されたレッスンはありません",
     "joinLesson": "参加",
     "viewAll": "すべて見る"
+  },
+  "settings": {
+    "title": "設定",
+    "tabs": {
+      "profile": "プロフィール",
+      "learning": "学習設定",
+      "subscription": "サブスクリプション",
+      "connected": "アカウント連携",
+      "account": "アカウント管理"
+    },
+    "profile": {
+      "title": "プロフィール情報",
+      "avatar": "プロフィール画像",
+      "avatarHint": "クリックして画像を変更",
+      "displayName": "表示名",
+      "fullName": "氏名",
+      "englishLevel": "英語レベル",
+      "timezone": "タイムゾーン",
+      "save": "保存",
+      "saving": "保存中...",
+      "saved": "プロフィールを更新しました",
+      "error": "プロフィールの更新に失敗しました"
+    },
+    "learning": {
+      "title": "学習設定",
+      "dailyGoal": "日々の学習目標",
+      "topics": "興味のあるトピック",
+      "personality": "AIチューターの性格",
+      "correctionLevel": "添削レベル",
+      "saved": "学習設定を更新しました",
+      "error": "学習設定の更新に失敗しました"
+    },
+    "subscription": {
+      "title": "サブスクリプション",
+      "currentPlan": "現在のプラン",
+      "upgrade": "アップグレード",
+      "managePlan": "プランを管理",
+      "purchaseCredits": "クレジットを購入",
+      "purchase": "購入"
+    },
+    "connected": {
+      "title": "アカウント連携",
+      "connected": "接続済み",
+      "notConnected": "未接続",
+      "connect": "連携する",
+      "disconnect": "連携解除",
+      "comingSoon": "近日公開"
+    },
+    "account": {
+      "title": "アカウント管理",
+      "changePassword": "パスワード変更",
+      "newPassword": "新しいパスワード",
+      "confirmPassword": "パスワード確認",
+      "passwordMismatch": "パスワードが一致しません",
+      "passwordChanged": "パスワードを変更しました",
+      "exportData": "データエクスポート",
+      "exportDescription": "すべての学習データをJSON形式でダウンロードできます",
+      "exportButton": "データをエクスポート",
+      "exporting": "エクスポート中...",
+      "deleteAccount": "アカウント削除",
+      "deleteWarning": "アカウントを削除すると、30日後にすべてのデータが完全に削除されます。この操作は取り消せません。",
+      "deleteConfirm": "確認のため「DELETE」と入力してください",
+      "deleteButton": "アカウントを削除"
+    }
   }
 }

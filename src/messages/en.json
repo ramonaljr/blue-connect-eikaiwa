@@ -219,5 +219,69 @@
     "noUpcoming": "No upcoming lessons",
     "joinLesson": "Join",
     "viewAll": "View All"
+  },
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "profile": "Profile",
+      "learning": "Learning",
+      "subscription": "Subscription",
+      "connected": "Connected Accounts",
+      "account": "Account"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "avatar": "Profile Photo",
+      "avatarHint": "Click to change photo",
+      "displayName": "Display Name",
+      "fullName": "Full Name",
+      "englishLevel": "English Level",
+      "timezone": "Timezone",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Profile updated successfully",
+      "error": "Failed to update profile"
+    },
+    "learning": {
+      "title": "Learning Preferences",
+      "dailyGoal": "Daily Learning Goal",
+      "topics": "Topics of Interest",
+      "personality": "AI Tutor Personality",
+      "correctionLevel": "Correction Level",
+      "saved": "Learning preferences updated successfully",
+      "error": "Failed to update learning preferences"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "currentPlan": "Current Plan",
+      "upgrade": "Upgrade",
+      "managePlan": "Manage Plan",
+      "purchaseCredits": "Purchase Credits",
+      "purchase": "Purchase"
+    },
+    "connected": {
+      "title": "Connected Accounts",
+      "connected": "Connected",
+      "notConnected": "Not Connected",
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "comingSoon": "Coming Soon"
+    },
+    "account": {
+      "title": "Account Management",
+      "changePassword": "Change Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "passwordMismatch": "Passwords do not match",
+      "passwordChanged": "Password changed successfully",
+      "exportData": "Export Data",
+      "exportDescription": "Download all your learning data in JSON format",
+      "exportButton": "Export Data",
+      "exporting": "Exporting...",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "Deleting your account will permanently remove all data after 30 days. This action cannot be undone.",
+      "deleteConfirm": "Type \"DELETE\" to confirm",
+      "deleteButton": "Delete Account"
+    }
   }
 }
