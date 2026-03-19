@@ -100,8 +100,6 @@
       }
     },
     "testimonials": {
-      "title": "学習者の声",
-      "subtitle": "Blue Connectで英語力を伸ばした学習者の声をご紹介します",
       "1": {
         "name": "田中 ゆき",
         "role": "会社員・東京",
@@ -116,7 +114,9 @@
         "name": "花田 さくら",
         "role": "フリーランス・福岡",
         "quote": "夜2時にインスピレーションが湧いた時も練習できるのが嬉しい。AIは間違いを絶対に笑わない。"
-      }
+      },
+      "title": "学習者の声",
+      "subtitle": "Blue Connectで英語力を伸ばした学習者の声をご紹介します"
     },
     "finalCta": {
       "title": "あなたの英語の旅、今日から始めませんか？",
@@ -125,10 +125,10 @@
       "trustLine": "クレジットカード不要 ・ いつでもキャンセルOK"
     },
     "chatMockup": {
+      "badge": "AI搭載",
       "header": "AI英会話チャット",
-      "userMessage": "ビジネス会議での自己紹介の仕方を教えてください",
-      "aiMessage": "いい質問ですね！自然な言い方はこちらです：「Hello, I'm [名前] from [会社名]. It's a pleasure to meet you.」",
-      "badge": "24時間対応"
+      "userMessage": "ビジネスミーティングでの自己紹介はどうすればいいですか？",
+      "aiMessage": "いい質問ですね！自然な表現はこちらです：「Hello, I'm [名前] from [会社名]. It's a pleasure to meet you.」"
     },
     "transform": {
       "title": "こんな経験、ありませんか？",
