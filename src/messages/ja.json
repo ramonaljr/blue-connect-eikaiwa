@@ -33,6 +33,71 @@
         "title": "ライブレッスン",
         "description": "認定講師やコミュニティ講師とのマンツーマンレッスン"
       }
+    },
+    "howItWorks": {
+      "title": "使い方",
+      "step1": {
+        "title": "無料アカウント作成",
+        "description": "メールアドレスまたはSNSで簡単登録"
+      },
+      "step2": {
+        "title": "レベルチェック",
+        "description": "AIがあなたの英語レベルを判定"
+      },
+      "step3": {
+        "title": "学習開始",
+        "description": "AI練習・コース・ライブレッスンを自由に組み合わせ"
+      },
+      "step4": {
+        "title": "上達を実感",
+        "description": "進捗トラッキングで成長を可視化"
+      }
+    },
+    "footer": {
+      "cta": "今すぐ始めよう",
+      "ctaDescription": "無料プランで今日から英語学習をスタート",
+      "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    }
+  },
+  "pricing": {
+    "title": "料金プラン",
+    "subtitle": "あなたに合ったプランを選びましょう",
+    "recommended": "おすすめ",
+    "cta": "無料で始める",
+    "ctaPro": "Proを始める",
+    "ctaPremium": "Premiumを始める",
+    "monthly": "/月",
+    "free": {
+      "name": "Free",
+      "price": "¥0",
+      "features": {
+        "1": "AI英会話 1日5回まで",
+        "2": "無料コース3つ",
+        "3": "コミュニティフォーラム"
+      }
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "¥2,980",
+      "features": {
+        "1": "AI英会話 無制限",
+        "2": "全コースアクセス",
+        "3": "月4回ライブレッスン",
+        "4": "進捗レポート",
+        "5": "優先サポート"
+      }
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "¥6,980",
+      "features": {
+        "1": "Proの全機能",
+        "2": "月12回ライブレッスン",
+        "3": "認定講師の指名予約",
+        "4": "AI音声レッスン",
+        "5": "学習プラン作成",
+        "6": "1対1コーチング"
+      }
     }
   },
   "auth": {

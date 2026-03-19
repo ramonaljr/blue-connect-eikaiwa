@@ -33,6 +33,71 @@
         "title": "Live Lessons",
         "description": "One-on-one lessons with certified and community tutors"
       }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Create a Free Account",
+        "description": "Sign up with email or social login"
+      },
+      "step2": {
+        "title": "Level Check",
+        "description": "AI assesses your English level"
+      },
+      "step3": {
+        "title": "Start Learning",
+        "description": "Mix AI practice, courses, and live lessons"
+      },
+      "step4": {
+        "title": "Track Your Progress",
+        "description": "Visualize your growth with progress tracking"
+      }
+    },
+    "footer": {
+      "cta": "Get Started Today",
+      "ctaDescription": "Start learning English today with our free plan",
+      "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    }
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "subtitle": "Choose the plan that fits you",
+    "recommended": "Recommended",
+    "cta": "Get Started Free",
+    "ctaPro": "Start Pro",
+    "ctaPremium": "Start Premium",
+    "monthly": "/mo",
+    "free": {
+      "name": "Free",
+      "price": "¥0",
+      "features": {
+        "1": "AI chat up to 5 times/day",
+        "2": "3 free courses",
+        "3": "Community forum access"
+      }
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "¥2,980",
+      "features": {
+        "1": "Unlimited AI chat",
+        "2": "All courses access",
+        "3": "4 live lessons/month",
+        "4": "Progress reports",
+        "5": "Priority support"
+      }
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "¥6,980",
+      "features": {
+        "1": "All Pro features",
+        "2": "12 live lessons/month",
+        "3": "Book certified tutors",
+        "4": "AI voice lessons",
+        "5": "Custom learning plan",
+        "6": "1-on-1 coaching"
+      }
     }
   },
   "auth": {
