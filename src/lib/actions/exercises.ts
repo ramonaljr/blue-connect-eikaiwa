@@ -45,5 +45,11 @@ export async function submitExerciseAttempt(data: {
     })
   }
 
+  // Recalculate skill profile every 5 exercises
+  if (profile && profile.exercises_completed % 5 === 0) {
+    const { updateSkillProfile } = await import('@/lib/adaptive-difficulty')
+    await updateSkillProfile(user.id)
+  }
+
   return { success: true }
 }
