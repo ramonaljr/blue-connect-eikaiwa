@@ -21,6 +21,7 @@ import { GoalsSection } from '@/components/progress/goals-section'
 import type { GoalsSectionProps } from '@/components/progress/goals-section'
 import { Leaderboard } from '@/components/progress/leaderboard'
 import type { LeaderboardProps } from '@/components/progress/leaderboard'
+import { PronunciationTab } from '@/components/progress/pronunciation-tab'
 import type { CEFRLevel } from '@/lib/types/database'
 
 const DEFAULT_SKILLS: SkillsRadarChartProps['current'] = {
@@ -85,6 +86,7 @@ export function ProgressPageContent({
           <TabsTrigger value="activity">アクティビティ</TabsTrigger>
           <TabsTrigger value="achievements">実績</TabsTrigger>
           <TabsTrigger value="goals">目標</TabsTrigger>
+          <TabsTrigger value="pronunciation">発音</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview">
@@ -131,6 +133,10 @@ export function ProgressPageContent({
             <GoalsSection userId={user.id} initialGoals={initialGoals} />
             <Leaderboard userId={user.id} optedIn={leaderboardOptedIn} />
           </div>
+        </TabsContent>
+
+        <TabsContent value="pronunciation">
+          <PronunciationTab userId={user.id} />
         </TabsContent>
       </Tabs>
     </div>
