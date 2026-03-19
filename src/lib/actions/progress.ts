@@ -222,6 +222,65 @@ async function checkAchievements(
   )
 }
 
+export async function getWeeklyLeaderboard(userId: string) {
+  const supabase = await createClient()
+  const mondayOfWeek = new Date()
+  mondayOfWeek.setDate(mondayOfWeek.getDate() - ((mondayOfWeek.getDay() + 6) % 7))
+  mondayOfWeek.setHours(0, 0, 0, 0)
+
+  const { data: entries } = await supabase
+    .from('xp_ledger')
+    .select('user_id, amount')
+    .gte('created_at', mondayOfWeek.toISOString())
+    .limit(1000)
+
+  if (!entries) return { rankings: [], userRank: 0 }
+
+  // Group by user
+  const totals = new Map<string, number>()
+  for (const e of entries) {
+    totals.set(e.user_id, (totals.get(e.user_id) ?? 0) + e.amount)
+  }
+
+  // Sort and rank
+  const sorted = [...totals.entries()].sort((a, b) => b[1] - a[1]).slice(0, 50)
+
+  // Get display names for top users
+  const topUserIds = sorted.map(([id]) => id)
+  if (topUserIds.length === 0) return { rankings: [], userRank: 0 }
+
+  const { data: users } = await supabase
+    .from('users')
+    .select('id, display_name, avatar_url, leaderboard_opt_in')
+    .in('id', topUserIds)
+
+  const userMap = new Map(users?.map((u) => [u.id, u]) ?? [])
+
+  const rankings = sorted.map(([id, xp], i) => {
+    const user = userMap.get(id)
+    return {
+      rank: i + 1,
+      userId: id,
+      displayName: user?.leaderboard_opt_in ? (user?.display_name ?? '匿名') : '匿名',
+      avatarUrl: user?.leaderboard_opt_in ? user?.avatar_url : null,
+      xp,
+      isCurrentUser: id === userId,
+    }
+  })
+
+  const userRank = rankings.findIndex((r) => r.isCurrentUser) + 1
+
+  return { rankings, userRank }
+}
+
+export async function toggleLeaderboardOptIn(optIn: boolean) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Unauthorized' }
+  await supabase.from('users').update({ leaderboard_opt_in: optIn }).eq('id', user.id)
+  return { success: true }
+}
+
 // Helper for updating streak without awarding XP (for daily check)
 export async function updateStreak(userId: string) {
   // Same streak logic as in awardXP but without XP change
