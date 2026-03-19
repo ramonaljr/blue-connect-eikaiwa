@@ -1,4 +1,5 @@
 import { requireAuth } from '@/lib/auth/guard'
+import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { DailyProgress } from '@/components/dashboard/daily-progress'
 import { QuickActions } from '@/components/dashboard/quick-actions'
@@ -11,6 +12,11 @@ import { DailyTip } from '@/components/dashboard/daily-tip'
 
 export default async function DashboardPage() {
   const user = await requireAuth()
+
+  if (!user.onboarding_completed) {
+    redirect('/dashboard/onboarding')
+  }
+
   const supabase = await createClient()
 
   // Fetch all dashboard data in parallel
