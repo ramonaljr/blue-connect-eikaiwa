@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { ChatMessage } from './chat-message'
+import { TutorHandoffPanel } from './tutor-handoff-panel'
 import { useAIChat } from '@/hooks/use-ai-chat'
 import { savePhrase } from '@/lib/actions/phrases'
 import { Send, RotateCcw, X } from 'lucide-react'
@@ -136,6 +137,13 @@ export function ChatInterface({ onBack, initialScenario, initialConversation }: 
           </div>
         )}
       </div>
+
+      {!isStreaming && messages.length > 4 && (
+        <TutorHandoffPanel
+          conversationId={conversationId}
+          correctionCount={corrections.size}
+        />
+      )}
 
       <div className="border-t pt-4">
         <div className="flex gap-2">
