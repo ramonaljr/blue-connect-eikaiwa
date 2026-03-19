@@ -10,6 +10,8 @@ export type AIMode = 'text_chat' | 'voice_chat' | 'voice_immersive'
 export type CreditType = 'lesson_certified' | 'lesson_community' | 'ai_voice'
 export type CreditSource = 'subscription' | 'purchase'
 export type NotificationType = 'lesson_reminder' | 'review_request' | 'subscription' | 'system'
+export type AIPersonality = 'friendly' | 'strict' | 'balanced'
+export type AICorrectionLevel = 'gentle' | 'moderate' | 'thorough'
 
 export interface User {
   id: string
@@ -28,6 +30,19 @@ export interface User {
   last_activity_date: string | null
   created_at: string
   updated_at: string
+  daily_goal_minutes: number
+  preferred_topics: string[]
+  ai_personality: AIPersonality
+  ai_correction_level: AICorrectionLevel
+  timezone: string
+}
+
+export interface DailyTip {
+  id: string
+  user_id: string
+  tip_text: string
+  generated_for: string
+  created_at: string
 }
 
 export interface TutorProfile {
