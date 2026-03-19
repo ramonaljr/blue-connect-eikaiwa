@@ -123,6 +123,7 @@ export default async function DashboardPage() {
 
         {/* Right column */}
         <div className="space-y-6">
+          <RecommendedPath />
           <WeakAreas englishLevel={user.english_level} />
           <RecentNotifications notifications={notifications ?? []} />
         </div>
