@@ -60,13 +60,13 @@ export default function PricingPage() {
                 className={cn(
                   'relative flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-xl',
                   highlighted
-                    ? 'border-primary shadow-elevated ring-2 ring-primary'
+                    ? 'overflow-visible border-primary shadow-elevated ring-2 ring-primary'
                     : 'shadow-card hover:shadow-elevated'
                 )}
               >
                 {highlighted && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-accent text-accent-foreground shadow-sm">{t('popular')}</Badge>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-accent text-accent-foreground shadow-sm px-3 py-1">{t('popular')}</Badge>
                   </div>
                 )}
                 <CardHeader className="items-center text-center">

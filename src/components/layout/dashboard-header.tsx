@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { LanguageToggle } from './language-toggle'
+import { ThemeToggle } from './theme-toggle'
 import { signOut } from '@/lib/actions/auth'
 import { Bell, LogOut } from 'lucide-react'
 
@@ -16,6 +17,7 @@ export async function DashboardHeader() {
         <span className="font-medium text-foreground">{tc('dashboard')}</span>
       </div>
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         <LanguageToggle />
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="size-4" />

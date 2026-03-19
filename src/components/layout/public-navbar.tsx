@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { LanguageToggle } from './language-toggle'
+import { ThemeToggle } from './theme-toggle'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -55,6 +56,7 @@ export function PublicNavbar() {
             </nav>
           </div>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LanguageToggle />
             <Link href="/login" className={cn(buttonVariants({ variant: 'ghost' }), 'hidden md:inline-flex')}>
               {tc('login')}

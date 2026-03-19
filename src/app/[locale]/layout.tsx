@@ -40,8 +40,14 @@ export default async function RootLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={notoSansJP.variable}>
+    <html lang={locale} className={notoSansJP.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') document.documentElement.classList.add('dark');
+          } catch(e) {}
+        ` }} />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
