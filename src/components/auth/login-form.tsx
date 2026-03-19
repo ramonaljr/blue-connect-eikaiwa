@@ -64,7 +64,7 @@ export function LoginForm() {
             </div>
             <Input id="password" name="password" type="password" required className="h-10" />
           </div>
-          <Button type="submit" className="w-full h-10 bg-accent text-accent-foreground hover:bg-accent/90" disabled={loading}>
+          <Button type="submit" className="w-full h-10 bg-primary text-primary-foreground hover:bg-primary/90" disabled={loading}>
             {tc('login')}
           </Button>
         </form>

@@ -116,7 +116,7 @@ export function AnimatedCounter({
 
   return (
     <span ref={ref} className={className}>
-      {isInView ? count.toLocaleString() : '0'}
+      {isInView ? count.toLocaleString() : target.toLocaleString()}
       {suffix}
     </span>
   )

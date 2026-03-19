@@ -92,7 +92,7 @@ export function SignupForm() {
             <Input id="password" name="password" type="password" minLength={8} required className="h-10" />
             <p className="text-xs text-muted-foreground">{t('passwordHint')}</p>
           </div>
-          <Button type="submit" className="w-full h-10 bg-accent text-accent-foreground hover:bg-accent/90" disabled={loading}>
+          <Button type="submit" className="w-full h-10 bg-primary text-primary-foreground hover:bg-primary/90" disabled={loading}>
             {tc('signup')}
           </Button>
         </form>
