@@ -1,33 +1,75 @@
 import { NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@/lib/supabase/server'
 
-let _anthropic: Anthropic | null = null
+// Static tips by day of week — used as fallback when AI is unavailable
+const STATIC_TIPS = [
+  '毎日少しずつ練習することが上達の秘訣です！',
+  '英語で独り言を言ってみましょう。スピーキング力がアップします！',
+  '好きな英語の歌を聴いて、歌詞を読んでみましょう。',
+  '英語の映画やドラマを字幕なしで観てみましょう。',
+  '新しい単語を覚えたら、すぐに文を作って使ってみましょう。',
+  'AIチャットで今日学んだ表現を使ってみましょう！',
+  '発音は完璧でなくても大丈夫。大切なのは伝えようとする気持ちです。',
+]
 
-function getAnthropic(): Anthropic {
-  if (!_anthropic) {
-    _anthropic = new Anthropic()
+function getStaticTip(): string {
+  return STATIC_TIPS[new Date().getDay()]
+}
+
+async function generateAITip(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  userId: string,
+  englishLevel: string | null,
+  preferredTopics: string[] | string | null,
+  streakDays: number | null,
+): Promise<string | null> {
+  try {
+    // Only attempt AI generation if the API key is configured
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return null
+    }
+
+    const { default: Anthropic } = await import('@anthropic-ai/sdk')
+    const anthropic = new Anthropic()
+
+    const level = englishLevel || 'intermediate'
+    const topics = Array.isArray(preferredTopics)
+      ? preferredTopics.join(', ')
+      : preferredTopics || 'general English'
+    const streak = streakDays || 0
+
+    const message = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 256,
+      system:
+        'You are an English learning advisor for Japanese learners. Generate a single concise study tip in Japanese (2-3 sentences max). Be encouraging and specific.',
+      messages: [
+        {
+          role: 'user',
+          content: `Generate a daily English study tip for a ${level} level learner. Topics they like: ${topics}. Current streak: ${streak} days.`,
+        },
+      ],
+    })
+
+    return message.content
+      .filter((block) => block.type === 'text')
+      .map((block) => block.text)
+      .join('')
+  } catch (error) {
+    console.error('AI tip generation failed, using static fallback:', error)
+    return null
   }
-  return _anthropic
 }
 
 export async function GET() {
   try {
     const supabase = await createClient()
-    const { data: { user: authUser } } = await supabase.auth.getUser()
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser()
 
     if (!authUser) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    const { data: user } = await supabase
-      .from('users')
-      .select('id, english_level, preferred_topics, streak_days')
-      .eq('id', authUser.id)
-      .single()
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
     const today = new Date().toISOString().split('T')[0]
@@ -36,7 +78,7 @@ export async function GET() {
     const { data: existing } = await supabase
       .from('daily_tips')
       .select('tip_text')
-      .eq('user_id', user.id)
+      .eq('user_id', authUser.id)
       .eq('generated_for', today)
       .single()
 
@@ -44,46 +86,39 @@ export async function GET() {
       return NextResponse.json({ tip: existing.tip_text })
     }
 
-    // Generate new tip via Claude
-    const anthropic = getAnthropic()
-    const level = user.english_level || 'intermediate'
-    const topics = Array.isArray(user.preferred_topics)
-      ? user.preferred_topics.join(', ')
-      : user.preferred_topics || 'general English'
-    const streakDays = user.streak_days || 0
+    // Fetch user profile for AI personalization (non-critical)
+    const { data: user } = await supabase
+      .from('users')
+      .select('english_level, preferred_topics, streak_days')
+      .eq('id', authUser.id)
+      .single()
 
-    const message = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 256,
-      system: 'You are an English learning advisor for Japanese learners. Generate a single concise study tip in Japanese (2-3 sentences max). Be encouraging and specific.',
-      messages: [
-        {
-          role: 'user',
-          content: `Generate a daily English study tip for a ${level} level learner. Topics they like: ${topics}. Current streak: ${streakDays} days.`,
-        },
-      ],
-    })
+    // Try AI generation, fall back to static tip
+    const aiTip = await generateAITip(
+      supabase,
+      authUser.id,
+      user?.english_level ?? null,
+      user?.preferred_topics ?? null,
+      user?.streak_days ?? null,
+    )
+    const tipText = aiTip || getStaticTip()
 
-    const tipText = message.content
-      .filter((block) => block.type === 'text')
-      .map((block) => block.text)
-      .join('')
-
-    // Cache the tip
+    // Cache the tip (non-blocking — don't fail if insert errors)
     await supabase
       .from('daily_tips')
       .insert({
-        user_id: user.id,
+        user_id: authUser.id,
         tip_text: tipText,
         generated_for: today,
+      })
+      .then(({ error }) => {
+        if (error) console.error('Failed to cache daily tip:', error)
       })
 
     return NextResponse.json({ tip: tipText })
   } catch (error) {
-    console.error('Daily tip generation error:', error)
-    return NextResponse.json(
-      { error: 'Failed to generate daily tip' },
-      { status: 500 }
-    )
+    console.error('Daily tip error:', error)
+    // Always return a tip, even on unexpected errors
+    return NextResponse.json({ tip: getStaticTip() })
   }
 }
