@@ -64,13 +64,16 @@ export default async function DashboardPage() {
       .eq('is_published', true)
       .order('created_at', { ascending: false })
       .limit(5),
-    // Today's XP (placeholder - will be enhanced in Slice 5 with xp_ledger)
-    // For now, just return null
-    Promise.resolve({ data: null }),
+    // Today's XP from xp_ledger
+    supabase
+      .from('xp_ledger')
+      .select('amount')
+      .eq('user_id', user.id)
+      .gte('created_at', new Date(new Date().setHours(0, 0, 0, 0)).toISOString()),
   ])
 
-  // Suppress unused variable warning — todayXP will be used in Slice 5
-  void todayXP
+  const todayXPTotal = (todayXP ?? []).reduce((sum: number, e: { amount: number }) => sum + e.amount, 0)
+  const todayMinutesEstimate = (todayXP ?? []).length * 3
 
   // Determine time-based greeting
   const hour = new Date().getHours()
@@ -88,7 +91,7 @@ export default async function DashboardPage() {
           xp={user.xp}
           streakDays={user.streak_days}
           dailyGoalMinutes={user.daily_goal_minutes}
-          todayMinutes={0} // Will be calculated from activity in Slice 5
+          todayMinutes={todayMinutesEstimate}
         />
       </div>
 
