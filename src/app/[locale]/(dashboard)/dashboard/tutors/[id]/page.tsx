@@ -74,7 +74,7 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
         </TabsContent>
 
         <TabsContent value="reviews">
-          <TutorReviews reviews={reviews ?? []} />
+          <TutorReviews reviews={(reviews ?? []).map((r: any) => ({ ...r, learner: Array.isArray(r.learner) ? r.learner[0] : r.learner }))} />
         </TabsContent>
       </Tabs>
     </div>
