@@ -147,6 +147,10 @@ export interface AIConversation {
   duration_seconds: number
   pronunciation_score: number | null
   created_at: string
+  scenario_key: string | null
+  title: string | null
+  recording_url: string | null
+  summary: Record<string, unknown> | null
 }
 
 export interface AIMessage {
@@ -161,6 +165,32 @@ export interface AICorrection {
   explanation: string
   explanation_ja: string
   type: 'grammar' | 'vocabulary' | 'pronunciation' | 'usage'
+}
+
+export interface SavedPhrase {
+  id: string
+  user_id: string
+  phrase: string
+  translation: string
+  context: string
+  source_conversation_id: string | null
+  created_at: string
+}
+
+export interface PronunciationScore {
+  id: string
+  user_id: string
+  conversation_id: string | null
+  utterance_text: string
+  overall_score: number
+  phoneme_scores: PhonemeScore[]
+  created_at: string
+}
+
+export interface PhonemeScore {
+  phoneme: string
+  score: number
+  offset: number
 }
 
 export interface Credit {
