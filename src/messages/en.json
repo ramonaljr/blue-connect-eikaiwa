@@ -225,6 +225,25 @@
         "5": "Custom learning plan",
         "6": "1-on-1 coaching"
       }
+    },
+    "heroSubtitle": "Start free, upgrade when you're ready. Cancel anytime.",
+    "trustLine": "No credit card required for free plan",
+    "popular": "Most Popular",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "Can I switch plans anytime?",
+      "a1": "Yes! Upgrade, downgrade, or cancel at any time. Changes take effect at your next billing cycle.",
+      "q2": "Is there a refund policy?",
+      "a2": "Yes, we offer a 14-day money-back guarantee on all paid plans. No questions asked.",
+      "q3": "What payment methods do you accept?",
+      "a3": "We accept all major credit cards, debit cards, and convenience store payments (コンビニ払い).",
+      "q4": "Can I try tutoring before subscribing?",
+      "a4": "Pro and Premium plans include live tutor lessons. Start with Pro to try it out!"
+    },
+    "ctaSection": {
+      "title": "Start your English journey today",
+      "subtitle": "Join 5,000+ learners building real English confidence.",
+      "cta": "Get Started Free"
     }
   },
   "auth": {
@@ -458,6 +477,61 @@
     "phrases": {
       "saved": "Phrase saved",
       "saveFailed": "Failed to save phrase"
+    }
+  },
+  "coursesPage": {
+    "title": "Structured English Courses",
+    "subtitle": "From beginner to advanced — CEFR-aligned curriculum that takes you from \"Hello\" to fluent, step by step.",
+    "cta": "Browse Courses",
+    "levels": {
+      "title": "Courses for Every Level",
+      "beginner": {
+        "level": "A1-A2",
+        "title": "Beginner",
+        "description": "Basic greetings, self-introduction, simple conversations. Perfect for elementary and junior high students."
+      },
+      "intermediate": {
+        "level": "B1-B2",
+        "title": "Intermediate",
+        "description": "Travel English, workplace communication, TOEIC prep. For high school students and working professionals."
+      },
+      "advanced": {
+        "level": "C1-C2",
+        "title": "Advanced",
+        "description": "Business presentations, debate, academic writing. For those aiming for native-level fluency."
+      }
+    },
+    "features": {
+      "interactive": {
+        "title": "Interactive Exercises",
+        "description": "Not just reading — practice with quizzes, fill-in-the-blanks, and speaking exercises"
+      },
+      "progress": {
+        "title": "Track Your Progress",
+        "description": "Visual progress bars, completion badges, and weekly reports show exactly how far you've come"
+      },
+      "pace": {
+        "title": "Learn at Your Pace",
+        "description": "No deadlines, no pressure. Complete lessons whenever you have 10 minutes free"
+      },
+      "certificate": {
+        "title": "Earn Certificates",
+        "description": "Get a completion certificate for each course to share on LinkedIn or with employers"
+      }
+    },
+    "categories": {
+      "title": "Course Categories",
+      "daily": "Daily Conversation",
+      "business": "Business English",
+      "toeic": "TOEIC Prep",
+      "eiken": "Eiken Prep",
+      "travel": "Travel English",
+      "kids": "Kids English"
+    },
+    "ctaSection": {
+      "title": "Start learning systematically today",
+      "subtitle": "3 free courses included with every account. No credit card needed.",
+      "cta": "Get Started Free"
     }
   },
   "aiVoice": {
