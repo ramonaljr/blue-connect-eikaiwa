@@ -4,7 +4,7 @@ export type SubscriptionTier = 'free' | 'pro' | 'premium'
 export type SubscriptionStatus = 'active' | 'canceled' | 'past_due' | 'trialing'
 export type CertificationStatus = 'pending' | 'approved' | 'rejected'
 export type LessonStatus = 'scheduled' | 'in_progress' | 'completed' | 'canceled'
-export type ExerciseType = 'multiple_choice' | 'fill_blank' | 'matching' | 'reorder' | 'free_response'
+export type ExerciseType = 'multiple_choice' | 'fill_blank' | 'matching' | 'reorder' | 'free_response' | 'audio' | 'conversation'
 export type ProgressStatus = 'not_started' | 'in_progress' | 'completed'
 export type AIMode = 'text_chat' | 'voice_chat' | 'voice_immersive'
 export type CreditType = 'lesson_certified' | 'lesson_community' | 'ai_voice'
@@ -123,6 +123,44 @@ export interface CourseExercise {
   explanation: string
   explanation_ja: string
   sort_order: number
+  skill_area: string
+  difficulty: number
+  audio_url: string | null
+  time_limit_seconds: number | null
+  created_at: string
+}
+
+export interface SkillProfile {
+  id: string
+  user_id: string
+  grammar_accuracy: number
+  vocabulary_accuracy: number
+  listening_accuracy: number
+  pronunciation_accuracy: number
+  fluency_score: number
+  exercises_completed: number
+  last_calculated_at: string
+  updated_at: string
+}
+
+export interface ExerciseAttempt {
+  id: string
+  user_id: string
+  exercise_id: string
+  score: number
+  time_spent_seconds: number
+  hints_used: number
+  attempts: number
+  answer_data: Record<string, unknown>
+  created_at: string
+}
+
+export interface CourseRating {
+  id: string
+  user_id: string
+  course_id: string
+  rating: number
+  review: string
   created_at: string
 }
 
