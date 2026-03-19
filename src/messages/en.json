@@ -16,41 +16,43 @@
   },
   "landing": {
     "hero": {
-      "title": "Learn English with AI and Real Tutors",
-      "subtitle": "AI conversation practice, online lessons, and structured courses to build your English skills",
-      "cta": "Get Started Free"
+      "title": "English Made Fun — With AI by Your Side",
+      "subtitle": "From elementary school to the boardroom. Your AI conversation partner and expert tutors turn \"I wish I could speak English\" into \"I just did.\" Practice 24/7, at your own pace.",
+      "cta": "Start Free",
+      "secondaryCta": "See How It Works",
+      "socialProof": "⭐ 4.9/5 — Trusted by 5,000+ learners"
     },
     "features": {
       "ai": {
         "title": "AI Conversation Partner",
-        "description": "Practice English anytime with text, voice, and roleplay"
+        "description": "Your personal English coach, available 24/7. Practice with text, voice, and roleplay — from business English to casual conversation, adapted to your level."
       },
       "courses": {
-        "title": "Structured Courses",
-        "description": "Level up systematically with CEFR-aligned curriculum"
+        "title": "English Courses",
+        "description": "TOEIC, Eiken, and daily conversation. CEFR-aligned A1-C2 curriculum, from elementary English basics to TOEIC 900+ prep."
       },
       "tutors": {
-        "title": "Live Lessons",
-        "description": "One-on-one lessons with certified and community tutors"
+        "title": "Online English Lessons",
+        "description": "One-on-one with pro tutors. Video lessons with certified and native tutors. Book from 4 lessons/month, whenever it suits you."
       }
     },
     "howItWorks": {
       "title": "How It Works",
       "step1": {
-        "title": "Create a Free Account",
-        "description": "Sign up with email or social login"
+        "title": "Sign up in 30 seconds",
+        "description": "Email only. No credit card needed"
       },
       "step2": {
-        "title": "Level Check",
-        "description": "AI assesses your English level"
+        "title": "AI checks your level",
+        "description": "5-minute chat analyzes your strengths and weaknesses"
       },
       "step3": {
-        "title": "Start Learning",
-        "description": "Mix AI practice, courses, and live lessons"
+        "title": "Start your personal plan",
+        "description": "Mix AI practice, courses, and live lessons your way"
       },
       "step4": {
-        "title": "Track Your Progress",
-        "description": "Visualize your growth with progress tracking"
+        "title": "Watch yourself grow!",
+        "description": "Weekly progress reports make your growth visible"
       }
     },
     "footer": {
@@ -67,38 +69,39 @@
       "satisfactionLabel": "Satisfaction Rate"
     },
     "problem": {
-      "title": "Sound familiar?",
+      "title": "Have you experienced this?",
       "subtitle": "Learning English in Japan comes with real challenges",
       "cost": {
-        "title": "Too Expensive",
-        "description": "Traditional English schools charge ¥300,000+ per year"
+        "title": "English school fees are brutal",
+        "description": "¥300,000+/year, textbooks extra. \"If only I could learn for less...\""
       },
       "schedule": {
-        "title": "No Time",
-        "description": "Fixed lesson times don't fit your busy schedule"
+        "title": "Too busy for fixed lesson times",
+        "description": "Work, school, club activities. \"If I could practice in my free time...\""
       },
       "confidence": {
-        "title": "Too Nervous",
-        "description": "Fear of making mistakes holds you back"
+        "title": "Making mistakes feels embarrassing",
+        "description": "Speaking English in front of others is scary. \"If I could practice without being judged...\""
       }
     },
     "solution": {
       "title": "Blue Connect solves all three",
       "cost": {
-        "title": "Affordable Plans",
-        "description": "Start free. Pro from just ¥2,980/month — fraction of traditional schools"
+        "title": "From ¥2,980/month. Yes, really.",
+        "description": "Free plan available too. 1/10th the cost of traditional schools, better learning outcomes"
       },
       "schedule": {
-        "title": "Learn Anytime",
-        "description": "AI partner available 24/7. Book tutors when it suits you"
+        "title": "5am or 2am — we're ready",
+        "description": "AI available 24/7. Book tutor lessons whenever. Zero commute time"
       },
       "confidence": {
-        "title": "Judgment-Free Practice",
-        "description": "Practice with AI first, build confidence, then try live lessons"
+        "title": "AI never judges your mistakes",
+        "description": "Make errors freely. Build confidence first, then try live lessons when you're ready"
       }
     },
     "testimonials": {
       "title": "Loved by Learners",
+      "subtitle": "Hear from learners who improved their English with Blue Connect",
       "1": {
         "name": "Yuki T.",
         "role": "Office Worker, Tokyo",
@@ -116,12 +119,14 @@
       }
     },
     "finalCta": {
-      "title": "Start your English journey today",
-      "subtitle": "Join thousands of Japanese learners building real English confidence",
-      "cta": "Get Started Free"
+      "title": "Why not start your English journey today?",
+      "subtitle": "The English learning platform chosen by 5,000+ people. Try it now with our free plan.",
+      "cta": "Start Free — Just 30 Seconds",
+      "trustLine": "No credit card required. Cancel anytime."
     },
     "transform": {
-      "title": "Your challenges, solved"
+      "title": "Have you experienced this?",
+      "subtitle": "Learning English in Japan comes with real challenges"
     },
     "featureTabs": {
       "ai": {
@@ -148,6 +153,12 @@
           "4": "Get personalized feedback"
         }
       }
+    },
+    "chatMockup": {
+      "header": "AI English Chat",
+      "userMessage": "How do I introduce myself at a business meeting?",
+      "aiMessage": "Great question! Here's a natural way: \"Hello, I'm [name] from [company]. It's a pleasure to meet you.\"",
+      "badge": "Available 24/7"
     },
     "footerNav": {
       "tagline": "Learn English with AI and real tutors",
@@ -247,7 +258,15 @@
     "welcome": {
       "morning": "Good morning",
       "afternoon": "Good afternoon",
-      "evening": "Good evening"
+      "evening": "Good evening",
+      "morningMotivation": "Let's do our best together today!",
+      "afternoonMotivation": "Let's keep practicing this afternoon!",
+      "eveningMotivation": "Great work today. How about a little English practice?"
+    },
+    "quickActionDescriptions": {
+      "aiChat": "Practice English with AI",
+      "findTutor": "Find the right tutor for you",
+      "browseCourses": "Explore courses by level"
     },
     "dailyGoal": "Daily Goal",
     "activitiesCompleted": "{count}/{total} activities",

@@ -16,41 +16,43 @@
   },
   "landing": {
     "hero": {
-      "title": "AIと人の力で、英語が話せるようになる",
-      "subtitle": "AI英会話・オンラインレッスン・構造化コースで、あなたの英語力を確実に伸ばします",
-      "cta": "無料で始める"
+      "title": "AIと一緒に、英語がもっと楽しくなる",
+      "subtitle": "小学生からビジネスパーソンまで。AI英会話パートナーとプロ講師が、あなたの「話したい」を叶えます。24時間、いつでも、どこでも。",
+      "cta": "無料で始める",
+      "secondaryCta": "3分で分かる使い方",
+      "socialProof": "⭐ 4.9/5 — 5,000人以上が利用中"
     },
     "features": {
       "ai": {
         "title": "AI英会話パートナー",
-        "description": "テキスト・音声・ロールプレイで、いつでも英語を練習"
+        "description": "24時間、あなた専用の英語コーチ。テキスト・音声・ロールプレイで、ビジネス英語も日常会話もあなたのレベルに合わせて対応します。"
       },
       "courses": {
-        "title": "構造化コース",
-        "description": "CEFRレベル別の体系的なカリキュラムで着実にレベルアップ"
+        "title": "英語コース",
+        "description": "TOEIC・英検・日常会話まで。CEFR準拠のA1〜C2レベル別カリキュラムで、小学生の英語入門からTOEIC900点対策まで体系的に学べます。"
       },
       "tutors": {
-        "title": "ライブレッスン",
-        "description": "認定講師やコミュニティ講師とのマンツーマンレッスン"
+        "title": "オンライン英会話レッスン",
+        "description": "プロ講師とマンツーマン。認定講師やネイティブ講師とのマンツーマンビデオレッスン。月4回から、好きな時間に予約できます。"
       }
     },
     "howItWorks": {
       "title": "使い方",
       "step1": {
-        "title": "無料アカウント作成",
-        "description": "メールアドレスまたはSNSで簡単登録"
+        "title": "30秒で無料登録",
+        "description": "メールアドレスだけでOK。クレジットカード不要です"
       },
       "step2": {
-        "title": "レベルチェック",
-        "description": "AIがあなたの英語レベルを判定"
+        "title": "AIがレベルを診断",
+        "description": "5分の会話でAIがあなたの強みと弱みを分析"
       },
       "step3": {
-        "title": "学習開始",
-        "description": "AI練習・コース・ライブレッスンを自由に組み合わせ"
+        "title": "自分だけの学習プランで開始",
+        "description": "AI練習・コース・ライブレッスンをあなた好みにミックス"
       },
       "step4": {
-        "title": "上達を実感",
-        "description": "進捗トラッキングで成長を可視化"
+        "title": "成長を実感しよう！",
+        "description": "毎週の進捗レポートで、上達が目に見える"
       }
     },
     "footer": {
@@ -67,38 +69,39 @@
       "satisfactionLabel": "満足度"
     },
     "problem": {
-      "title": "こんな悩み、ありませんか？",
+      "title": "こんな経験、ありませんか？",
       "subtitle": "日本での英語学習には、こんな壁があります",
       "cost": {
-        "title": "費用が高すぎる",
-        "description": "従来の英会話スクールは年間30万円以上かかります"
+        "title": "英会話スクールは高すぎる",
+        "description": "年間30万円、テキスト代も別。「もっと安く学べたら...」"
       },
       "schedule": {
-        "title": "時間がない",
-        "description": "固定のレッスン時間は忙しいスケジュールに合いません"
+        "title": "忙しくてレッスンに通えない",
+        "description": "仕事、学校、部活。「空いた時間で練習できたら...」"
       },
       "confidence": {
-        "title": "自信がない",
-        "description": "間違いを恐れて、話せなくなってしまう"
+        "title": "間違えるのが恥ずかしい",
+        "description": "人前で英語を話すのが怖い。「誰にも笑われずに練習できたら...」"
       }
     },
     "solution": {
       "title": "Blue Connectがすべて解決します",
       "cost": {
-        "title": "手頃な料金",
-        "description": "無料から始められます。Proプランは月額¥2,980 — 従来のスクールの一部の費用"
+        "title": "月¥2,980から、始められる",
+        "description": "無料プランもあり。従来のスクールの1/10の費用で、もっと質の高い学習を"
       },
       "schedule": {
-        "title": "いつでも学習",
-        "description": "AIパートナーは24時間対応。講師も好きな時間に予約"
+        "title": "朝5時でも深夜2時でも",
+        "description": "AIは24時間対応。講師レッスンも好きな時間に予約。通学時間ゼロ"
       },
       "confidence": {
-        "title": "安心して練習",
-        "description": "まずAIで練習して自信をつけ、それからライブレッスンに挑戦"
+        "title": "AIは絶対に笑わない",
+        "description": "何度間違えても大丈夫。自信がついたら、講師との実践レッスンへ"
       }
     },
     "testimonials": {
       "title": "学習者の声",
+      "subtitle": "Blue Connectで英語力を伸ばした学習者の声をご紹介します",
       "1": {
         "name": "田中 ゆき",
         "role": "会社員・東京",
@@ -116,12 +119,20 @@
       }
     },
     "finalCta": {
-      "title": "今日から英語の旅を始めましょう",
-      "subtitle": "何千人もの日本人学習者と一緒に、本物の英語力を身につけよう",
-      "cta": "無料で始める"
+      "title": "あなたの英語の旅、今日から始めませんか？",
+      "subtitle": "5,000人以上が選んだ英語学習プラットフォーム。無料プランで今すぐ体験。",
+      "cta": "無料で始める — たった30秒",
+      "trustLine": "クレジットカード不要 ・ いつでもキャンセルOK"
+    },
+    "chatMockup": {
+      "header": "AI英会話チャット",
+      "userMessage": "ビジネス会議での自己紹介の仕方を教えてください",
+      "aiMessage": "いい質問ですね！自然な言い方はこちらです：「Hello, I'm [名前] from [会社名]. It's a pleasure to meet you.」",
+      "badge": "24時間対応"
     },
     "transform": {
-      "title": "あなたの悩み、すべて解決"
+      "title": "こんな経験、ありませんか？",
+      "subtitle": "日本での英語学習には、こんな壁があります"
     },
     "featureTabs": {
       "ai": {
@@ -247,7 +258,15 @@
     "welcome": {
       "morning": "おはようございます",
       "afternoon": "こんにちは",
-      "evening": "こんばんは"
+      "evening": "こんばんは",
+      "morningMotivation": "今日も一緒にがんばりましょう！",
+      "afternoonMotivation": "午後も英語の練習、続けましょう！",
+      "eveningMotivation": "お疲れさまです。少しだけ英語に触れてみませんか？"
+    },
+    "quickActionDescriptions": {
+      "aiChat": "AIとの英会話を練習",
+      "findTutor": "あなたに合った講師を見つける",
+      "browseCourses": "レベル別コースを探す"
     },
     "dailyGoal": "今日の目標",
     "activitiesCompleted": "{count}/{total} アクティビティ完了",
