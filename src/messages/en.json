@@ -1,0 +1,62 @@
+{
+  "common": {
+    "appName": "Blue Connect Eikaiwa",
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success"
+  },
+  "landing": {
+    "hero": {
+      "title": "Learn English with AI and Real Tutors",
+      "subtitle": "AI conversation practice, online lessons, and structured courses to build your English skills",
+      "cta": "Get Started Free"
+    },
+    "features": {
+      "ai": {
+        "title": "AI Conversation Partner",
+        "description": "Practice English anytime with text, voice, and roleplay"
+      },
+      "courses": {
+        "title": "Structured Courses",
+        "description": "Level up systematically with CEFR-aligned curriculum"
+      },
+      "tutors": {
+        "title": "Live Lessons",
+        "description": "One-on-one lessons with certified and community tutors"
+      }
+    }
+  },
+  "auth": {
+    "loginTitle": "Log In",
+    "signupTitle": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithLine": "Continue with LINE"
+  },
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "tutors": "Tutors",
+    "courses": "Courses",
+    "aiChat": "AI Chat",
+    "aiVoice": "AI Voice",
+    "lessons": "Lessons",
+    "progress": "Progress",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  }
+}
