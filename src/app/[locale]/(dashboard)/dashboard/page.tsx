@@ -7,10 +7,12 @@ import { ContinueLearning } from '@/components/dashboard/continue-learning'
 import { UpcomingLessonCard } from '@/components/dashboard/upcoming-lesson-card'
 import { WeakAreas } from '@/components/dashboard/weak-areas'
 import { RecentNotifications } from '@/components/dashboard/recent-notifications'
+import { RecommendedPath } from '@/components/dashboard/recommended-path'
 import { NewContentCarousel } from '@/components/dashboard/new-content-carousel'
 import { DailyTip } from '@/components/dashboard/daily-tip'
 import { Greeting } from '@/components/dashboard/greeting'
 import { TodaysMissions } from '@/components/dashboard/todays-missions'
+import { LevelUpChecker } from '@/components/dashboard/level-up-checker'
 
 export default async function DashboardPage() {
   const user = await requireAuth()
@@ -82,6 +84,7 @@ export default async function DashboardPage() {
 
   const todayXPTotal = (todayXP ?? []).reduce((sum: number, e: { amount: number }) => sum + e.amount, 0)
   const todayMinutesEstimate = (todayXP ?? []).length * 3
+  const currentLevel = user.level ?? Math.floor(user.xp / 1000) + 1
 
   return (
     <div className="space-y-6">
@@ -129,6 +132,9 @@ export default async function DashboardPage() {
       {newCourses && newCourses.length > 0 && (
         <NewContentCarousel courses={newCourses} />
       )}
+
+      {/* Level-up celebration */}
+      <LevelUpChecker currentLevel={currentLevel} xp={user.xp} />
     </div>
   )
 }
