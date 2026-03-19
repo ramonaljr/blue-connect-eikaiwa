@@ -237,7 +237,15 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "continueWithGoogle": "Continue with Google",
-    "continueWithLine": "Continue with LINE"
+    "continueWithLine": "Continue with LINE",
+    "fullName": "Full Name",
+    "signupSubtitle": "Start your English journey for free",
+    "passwordHint": "At least 8 characters",
+    "checkEmail": "Please check your email and click the confirmation link to activate your account.",
+    "agreeToTerms": "By signing up, you agree to our",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "and": "and"
   },
   "nav": {
     "home": "Home",

@@ -125,7 +125,7 @@
       "trustLine": "クレジットカード不要 ・ いつでもキャンセルOK"
     },
     "chatMockup": {
-      "badge": "AI搭載",
+      "badge": "24時間対応",
       "header": "AI英会話チャット",
       "userMessage": "ビジネスミーティングでの自己紹介はどうすればいいですか？",
       "aiMessage": "いい質問ですね！自然な表現はこちらです：「Hello, I'm [名前] from [会社名]. It's a pleasure to meet you.」"
@@ -237,7 +237,15 @@
     "noAccount": "アカウントをお持ちでないですか？",
     "hasAccount": "すでにアカウントをお持ちですか？",
     "continueWithGoogle": "Googleで続ける",
-    "continueWithLine": "LINEで続ける"
+    "continueWithLine": "LINEで続ける",
+    "fullName": "お名前",
+    "signupSubtitle": "無料で英語学習を始めましょう",
+    "passwordHint": "8文字以上で入力してください",
+    "checkEmail": "メールを確認して、確認リンクをクリックしてアカウントを有効化してください。",
+    "agreeToTerms": "登録すると、以下に同意したことになります：",
+    "termsLink": "利用規約",
+    "privacyLink": "プライバシーポリシー",
+    "and": "および"
   },
   "nav": {
     "home": "ホーム",
