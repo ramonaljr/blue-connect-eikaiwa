@@ -28,6 +28,11 @@ export interface User {
   xp: number
   streak_days: number
   last_activity_date: string | null
+  level: number
+  streak_freezes_remaining: number
+  longest_streak: number
+  leaderboard_opt_in: boolean
+  weekly_email_opt_in: boolean
   created_at: string
   updated_at: string
   daily_goal_minutes: number
@@ -35,6 +40,52 @@ export interface User {
   ai_personality: AIPersonality
   ai_correction_level: AICorrectionLevel
   timezone: string
+}
+
+export interface Achievement {
+  id: string
+  key: string
+  title: string
+  title_ja: string
+  description: string
+  description_ja: string
+  category: string
+  icon: string
+  xp_reward: number
+  requirement_type: string
+  requirement_value: number
+  sort_order: number
+}
+
+export interface UserAchievement {
+  id: string
+  user_id: string
+  achievement_id: string
+  unlocked_at: string
+}
+
+export interface UserGoal {
+  id: string
+  user_id: string
+  title: string
+  target_value: number
+  current_value: number
+  goal_type: string
+  period: string
+  starts_at: string
+  ends_at: string
+  completed_at: string | null
+  xp_reward: number
+  created_at: string
+}
+
+export interface XPLedgerEntry {
+  id: string
+  user_id: string
+  amount: number
+  source: string
+  source_id: string | null
+  created_at: string
 }
 
 export interface DailyTip {
