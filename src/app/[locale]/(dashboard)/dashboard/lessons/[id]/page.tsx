@@ -47,7 +47,16 @@ export default async function LessonDetailPage({
         <Badge>{lesson.status}</Badge>
       </div>
 
-      <LessonRoom lessonId={lesson.id} roomUrl={lesson.daily_room_url} />
+      <LessonRoom
+        lessonId={lesson.id}
+        roomUrl={lesson.daily_room_url}
+        userId={user.id}
+        userName={user.display_name ?? 'ユーザー'}
+        tutorName={(lesson.tutor as { display_name: string } | null)?.display_name ?? '講師'}
+        scheduledAt={lesson.scheduled_at}
+        durationMinutes={lesson.duration_minutes}
+        prepNotes={lesson.prep_notes ?? null}
+      />
     </div>
   )
 }
