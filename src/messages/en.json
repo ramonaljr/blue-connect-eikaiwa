@@ -587,5 +587,49 @@
       "micPermission": "Please allow microphone access",
       "sessionExpired": "Session time limit reached"
     }
+  },
+  "tutorsPage": {
+    "title": "Learn from Expert Tutors",
+    "subtitle": "One-on-one video lessons with certified and native English tutors. Book anytime, learn anywhere.",
+    "cta": "Find Your Tutor",
+    "features": {
+      "certified": {
+        "title": "Certified & Native Tutors",
+        "description": "All tutors are verified with teaching credentials or native-level fluency"
+      },
+      "flexible": {
+        "title": "Flexible Scheduling",
+        "description": "Book lessons that fit your life — mornings, evenings, weekends"
+      },
+      "video": {
+        "title": "HD Video Lessons",
+        "description": "Crystal-clear video calls powered by Daily.co with screen sharing"
+      },
+      "feedback": {
+        "title": "Personalized Feedback",
+        "description": "Get corrections, tips, and progress notes after every lesson"
+      }
+    },
+    "howItWorks": {
+      "title": "How Tutoring Works",
+      "step1": "Browse tutor profiles and find your match",
+      "step2": "Book a lesson at a time that works for you",
+      "step3": "Join the video call and start learning",
+      "step4": "Get feedback and track your improvement"
+    },
+    "pricing": {
+      "title": "Tutor Lesson Pricing",
+      "community": "Community Tutors",
+      "communityPrice": "From ¥1,500/lesson",
+      "communityDesc": "Passionate English speakers who love teaching",
+      "certified": "Certified Tutors",
+      "certifiedPrice": "From ¥3,000/lesson",
+      "certifiedDesc": "Professional teachers with TEFL/TESOL certification"
+    },
+    "ctaSection": {
+      "title": "Ready to speak with confidence?",
+      "subtitle": "Your first lesson is included with Pro and Premium plans.",
+      "cta": "Get Started Free"
+    }
   }
 }

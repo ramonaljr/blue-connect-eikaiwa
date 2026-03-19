@@ -479,6 +479,61 @@
       "saveFailed": "フレーズの保存に失敗しました"
     }
   },
+  "coursesPage": {
+    "title": "体系的な英語コース",
+    "subtitle": "初心者から上級者まで — CEFR準拠のカリキュラムで「Hello」から流暢な英語へ、一歩ずつ。",
+    "cta": "コースを見る",
+    "levels": {
+      "title": "すべてのレベルに対応",
+      "beginner": {
+        "level": "A1-A2",
+        "title": "初級",
+        "description": "基本の挨拶、自己紹介、簡単な会話。小学生・中学生にぴったり。"
+      },
+      "intermediate": {
+        "level": "B1-B2",
+        "title": "中級",
+        "description": "旅行英語、職場コミュニケーション、TOEIC対策。高校生・社会人向け。"
+      },
+      "advanced": {
+        "level": "C1-C2",
+        "title": "上級",
+        "description": "ビジネスプレゼン、ディベート、学術ライティング。ネイティブレベルを目指す方へ。"
+      }
+    },
+    "features": {
+      "interactive": {
+        "title": "インタラクティブな演習",
+        "description": "読むだけじゃない — クイズ、穴埋め、スピーキング練習で実践"
+      },
+      "progress": {
+        "title": "進捗を追跡",
+        "description": "ビジュアルな進捗バー、達成バッジ、週間レポートで成長が一目瞭然"
+      },
+      "pace": {
+        "title": "自分のペースで",
+        "description": "期限なし、プレッシャーなし。10分の空き時間でレッスンを完了"
+      },
+      "certificate": {
+        "title": "修了証を取得",
+        "description": "コース完了で修了証を取得。LinkedInや就職活動でアピール"
+      }
+    },
+    "categories": {
+      "title": "コースカテゴリー",
+      "daily": "日常会話",
+      "business": "ビジネス英語",
+      "toeic": "TOEIC対策",
+      "eiken": "英検対策",
+      "travel": "旅行英語",
+      "kids": "キッズ英語"
+    },
+    "ctaSection": {
+      "title": "今日から体系的に学び始めよう",
+      "subtitle": "すべてのアカウントに無料コース3つ付き。クレジットカード不要。",
+      "cta": "無料で始める"
+    }
+  },
   "aiVoice": {
     "title": "AI音声練習",
     "upgradeRequired": "AI音声機能はProプラン以上でご利用いただけます",
@@ -531,6 +586,50 @@
       "connectionFailed": "接続に失敗しました。もう一度お試しください。",
       "micPermission": "マイクの使用を許可してください",
       "sessionExpired": "セッションの制限時間に達しました"
+    }
+  },
+  "tutorsPage": {
+    "title": "経験豊富な講師から学ぼう",
+    "subtitle": "認定講師やネイティブ講師とのマンツーマンビデオレッスン。好きな時間に予約、どこでも学習。",
+    "cta": "講師を探す",
+    "features": {
+      "certified": {
+        "title": "認定講師 & ネイティブ講師",
+        "description": "すべての講師は教育資格またはネイティブレベルの語学力を確認済み"
+      },
+      "flexible": {
+        "title": "柔軟なスケジュール",
+        "description": "朝でも夜でも週末でも、あなたの生活に合わせてレッスンを予約"
+      },
+      "video": {
+        "title": "高画質ビデオレッスン",
+        "description": "Daily.coによるクリアなビデオ通話、画面共有も可能"
+      },
+      "feedback": {
+        "title": "パーソナライズされたフィードバック",
+        "description": "毎回のレッスン後に、添削・アドバイス・進捗メモを受け取れます"
+      }
+    },
+    "howItWorks": {
+      "title": "レッスンの流れ",
+      "step1": "講師プロフィールを見て、あなたに合った講師を見つける",
+      "step2": "都合の良い時間にレッスンを予約",
+      "step3": "ビデオ通話に参加して学習開始",
+      "step4": "フィードバックを受けて上達を実感"
+    },
+    "pricing": {
+      "title": "レッスン料金",
+      "community": "コミュニティ講師",
+      "communityPrice": "¥1,500〜/レッスン",
+      "communityDesc": "英語を教えることが大好きな熱心なスピーカー",
+      "certified": "認定講師",
+      "certifiedPrice": "¥3,000〜/レッスン",
+      "certifiedDesc": "TEFL/TESOL資格を持つプロの教師"
+    },
+    "ctaSection": {
+      "title": "自信を持って英語を話す準備はできましたか？",
+      "subtitle": "初回レッスンはProプランとPremiumプランに含まれています。",
+      "cta": "無料で始める"
     }
   }
 }
