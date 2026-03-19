@@ -125,7 +125,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, specialty: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('specialty')} />
+            <span>{t(SPECIALTY_KEYS.find(s => s.value === filters.specialty)?.labelKey ?? 'all')}</span>
           </SelectTrigger>
           <SelectContent>
             {SPECIALTY_KEYS.map((s) => (
@@ -142,7 +142,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, minRating: parseFloat(val as string) }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('minRating')} />
+            <span>{(() => { const opt = RATING_OPTIONS.find(r => r.value === String(filters.minRating)); return opt && 'labelKey' in opt ? t(opt.labelKey) : opt?.label ?? t('all') })()}</span>
           </SelectTrigger>
           <SelectContent>
             {RATING_OPTIONS.map((opt) => (
@@ -159,7 +159,7 @@ export function TutorFilters({ onFilterChange }: TutorFiltersProps) {
           onValueChange={(val) => setFilters(prev => ({ ...prev, sort: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('sortBy')} />
+            <span>{t(SORT_KEYS.find(o => o.value === filters.sort)?.labelKey ?? 'recommended')}</span>
           </SelectTrigger>
           <SelectContent>
             {SORT_KEYS.map((opt) => (

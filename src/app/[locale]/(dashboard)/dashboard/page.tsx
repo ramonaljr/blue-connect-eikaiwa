@@ -99,6 +99,7 @@ export default async function DashboardPage() {
           streakDays={user.streak_days}
           dailyGoalMinutes={user.daily_goal_minutes}
           todayMinutes={todayMinutesEstimate}
+          todayXP={todayXPTotal}
         />
       </div>
 

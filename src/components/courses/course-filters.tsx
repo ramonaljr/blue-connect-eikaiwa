@@ -131,7 +131,7 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, category: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('category')} />
+            <span>{t(CATEGORY_KEYS.find(c => c.value === filters.category)?.labelKey ?? 'all')}</span>
           </SelectTrigger>
           <SelectContent>
             {CATEGORY_KEYS.map((cat) => (
@@ -148,7 +148,7 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, status: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('status')} />
+            <span>{t(STATUS_KEYS.find(s => s.value === filters.status)?.labelKey ?? 'all')}</span>
           </SelectTrigger>
           <SelectContent>
             {STATUS_KEYS.map((s) => (
@@ -165,7 +165,7 @@ export function CourseFilters({ onFilterChange, initialFilters }: CourseFiltersP
           onValueChange={(val) => setFilters(prev => ({ ...prev, sort: val as string }))}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('sortBy')} />
+            <span>{t(SORT_KEYS.find(o => o.value === filters.sort)?.labelKey ?? 'recommended')}</span>
           </SelectTrigger>
           <SelectContent>
             {SORT_KEYS.map((opt) => (

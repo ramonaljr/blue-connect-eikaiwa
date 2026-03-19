@@ -9,9 +9,10 @@ interface DailyProgressProps {
   streakDays: number
   dailyGoalMinutes: number
   todayMinutes: number
+  todayXP?: number
 }
 
-export function DailyProgress({ xp, streakDays, dailyGoalMinutes, todayMinutes }: DailyProgressProps) {
+export function DailyProgress({ xp, streakDays, dailyGoalMinutes, todayMinutes, todayXP = 0 }: DailyProgressProps) {
   const level = Math.floor(xp / 1000) + 1
   const radius = 18
   const circumference = 2 * Math.PI * radius
@@ -26,7 +27,7 @@ export function DailyProgress({ xp, streakDays, dailyGoalMinutes, todayMinutes }
           <Star className="size-5 text-yellow-500" />
           <div>
             <p className="text-lg font-bold leading-tight">{xp.toLocaleString()}</p>
-            <p className="text-xs text-muted-foreground">XP / Level {level}</p>
+            <p className="text-xs text-muted-foreground">{todayXP > 0 ? `+${todayXP} 今日` : `Level ${level}`}</p>
           </div>
         </CardContent>
       </Card>
