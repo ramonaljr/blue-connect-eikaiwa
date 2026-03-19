@@ -53,3 +53,30 @@ export async function submitExerciseAttempt(data: {
 
   return { success: true }
 }
+
+export async function submitCourseRating(data: {
+  courseId: string
+  rating: number
+  review: string
+}) {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) return { error: 'Unauthorized' }
+
+  const { error } = await supabase
+    .from('course_ratings')
+    .upsert(
+      {
+        user_id: user.id,
+        course_id: data.courseId,
+        rating: data.rating,
+        review: data.review,
+      },
+      { onConflict: 'user_id,course_id' }
+    )
+
+  if (error) return { error: error.message }
+  return { success: true }
+}
