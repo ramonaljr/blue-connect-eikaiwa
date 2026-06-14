@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { requireTutor } from '@/lib/auth/guard'
+import { fetchPublicProfiles } from '@/lib/public-profiles'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Calendar, BookOpen, Star, Clock } from 'lucide-react'
 
@@ -17,20 +18,27 @@ async function getTutorStats(userId: string) {
   const todayEnd = new Date()
   todayEnd.setHours(23, 59, 59, 999)
 
-  const { data: todayLessons } = await supabase
+  const { data: lessonRows } = await supabase
     .from('lessons')
-    .select('id, scheduled_at, duration_minutes, status, learner:users!lessons_learner_id_fkey(display_name)')
+    .select('id, scheduled_at, duration_minutes, status, learner_id')
     .eq('tutor_id', userId)
     .gte('scheduled_at', todayStart.toISOString())
     .lte('scheduled_at', todayEnd.toISOString())
     .in('status', ['scheduled', 'in_progress'])
     .order('scheduled_at', { ascending: true })
 
+  // Merge learner display info from public_profiles.
+  const learners = await fetchPublicProfiles(supabase, (lessonRows ?? []).map((l) => l.learner_id))
+  const todayLessons = (lessonRows ?? []).map((l) => ({
+    ...l,
+    learner: learners.get(l.learner_id) ?? null,
+  }))
+
   return {
     averageRating: profile?.average_rating ?? 0,
     totalLessons: profile?.total_lessons ?? 0,
-    todayLessonsCount: todayLessons?.length ?? 0,
-    todayLessons: todayLessons ?? [],
+    todayLessonsCount: todayLessons.length,
+    todayLessons,
   }
 }
 

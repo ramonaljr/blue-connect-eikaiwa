@@ -1,5 +1,6 @@
 import { requireAuth } from '@/lib/auth/guard'
 import { createClient } from '@/lib/supabase/server'
+import { fetchPublicProfiles } from '@/lib/public-profiles'
 import { notFound } from 'next/navigation'
 import { LessonRoom } from '@/components/lessons/lesson-room'
 import { RecordingPlayer } from '@/components/lessons/recording-player'
@@ -14,20 +15,24 @@ export default async function LessonDetailPage({
   const user = await requireAuth()
   const supabase = await createClient()
 
-  const { data: lesson } = await supabase
+  const { data: lessonRow } = await supabase
     .from('lessons')
-    .select(`
-      *,
-      tutor:users!lessons_tutor_id_fkey(display_name, avatar_url),
-      learner:users!lessons_learner_id_fkey(display_name, avatar_url)
-    `)
+    .select('*')
     .eq('id', id)
     .single()
 
-  if (!lesson) notFound()
+  if (!lessonRow) notFound()
 
-  if (lesson.learner_id !== user.id && lesson.tutor_id !== user.id) {
+  if (lessonRow.learner_id !== user.id && lessonRow.tutor_id !== user.id) {
     notFound()
+  }
+
+  // Merge tutor/learner display info from public_profiles.
+  const profiles = await fetchPublicProfiles(supabase, [lessonRow.tutor_id, lessonRow.learner_id])
+  const lesson = {
+    ...lessonRow,
+    tutor: profiles.get(lessonRow.tutor_id) ?? null,
+    learner: profiles.get(lessonRow.learner_id) ?? null,
   }
 
   const scheduledDate = new Date(lesson.scheduled_at).toLocaleString('ja-JP', {

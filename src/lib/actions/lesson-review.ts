@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
+import { fetchPublicProfiles } from '@/lib/public-profiles'
 
 export async function submitLessonReview(data: {
   lessonId: string
@@ -49,10 +50,10 @@ export async function getLessonSummary(lessonId: string) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { error: 'Unauthorized' }
 
-  const [{ data: lesson }, { data: notes }, { data: prep }] = await Promise.all([
+  const [{ data: lessonRow }, { data: notes }, { data: prep }] = await Promise.all([
     supabase
       .from('lessons')
-      .select('*, tutor:users!lessons_tutor_id_fkey(display_name, avatar_url)')
+      .select('*')
       .eq('id', lessonId)
       .single(),
     supabase
@@ -67,12 +68,17 @@ export async function getLessonSummary(lessonId: string) {
       .single(),
   ])
 
-  if (!lesson) return { error: 'Lesson not found' }
+  if (!lessonRow) return { error: 'Lesson not found' }
 
   // Check user is participant
-  if (lesson.learner_id !== user.id && lesson.tutor_id !== user.id) {
+  if (lessonRow.learner_id !== user.id && lessonRow.tutor_id !== user.id) {
     return { error: 'Unauthorized' }
   }
+
+  // Merge tutor display info from public_profiles (users is not readable for
+  // other users).
+  const tutors = await fetchPublicProfiles(supabase, [lessonRow.tutor_id])
+  const lesson = { ...lessonRow, tutor: tutors.get(lessonRow.tutor_id) ?? null }
 
   return { lesson, notes, prep }
 }

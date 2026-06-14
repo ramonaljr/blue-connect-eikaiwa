@@ -12,14 +12,26 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
   const user = await requireAuth()
   const supabase = await createClient()
 
-  // Fetch tutor profile with user info
-  const { data: tutor } = await supabase
+  // Fetch tutor profile, then merge public profile fields (the users table no
+  // longer exposes rows to other users, so we read display info from the
+  // public_profiles view instead of an embedded join).
+  const { data: tutorProfile } = await supabase
     .from('tutor_profiles')
-    .select('*, user:users!tutor_profiles_user_id_fkey(id, display_name, avatar_url, role)')
+    .select('*')
     .eq('user_id', id)
     .single()
 
-  if (!tutor) notFound()
+  if (!tutorProfile) notFound()
+
+  const { data: tutorPublic } = await supabase
+    .from('public_profiles')
+    .select('id, display_name, avatar_url, role')
+    .eq('id', id)
+    .single()
+
+  if (!tutorPublic) notFound()
+
+  const tutor = { ...tutorProfile, user: tutorPublic }
 
   // Fetch availability
   const { data: availability } = await supabase
@@ -39,14 +51,31 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
     .gte('scheduled_at', new Date().toISOString())
     .lte('scheduled_at', fourWeeksFromNow)
 
-  // Fetch reviews (lessons with ratings)
-  const { data: reviews } = await supabase
+  // Fetch reviews (lessons with ratings), then merge reviewer display info.
+  const { data: reviewRows } = await supabase
     .from('lessons')
-    .select('learner_rating, learner_review, learner_review_categories, scheduled_at, learner:users!lessons_learner_id_fkey(display_name, avatar_url)')
+    .select('learner_id, learner_rating, learner_review, learner_review_categories, scheduled_at')
     .eq('tutor_id', id)
     .not('learner_rating', 'is', null)
     .order('scheduled_at', { ascending: false })
     .limit(20)
+
+  const reviewerIds = [...new Set((reviewRows ?? []).map((r) => r.learner_id))]
+  const { data: reviewers } = reviewerIds.length
+    ? await supabase
+        .from('public_profiles')
+        .select('id, display_name, avatar_url')
+        .in('id', reviewerIds)
+    : { data: [] }
+  const reviewerById = new Map((reviewers ?? []).map((u) => [u.id, u]))
+
+  const reviews = (reviewRows ?? []).map((r) => {
+    const reviewer = reviewerById.get(r.learner_id)
+    return {
+      ...r,
+      learner: { display_name: reviewer?.display_name ?? '匿名', avatar_url: reviewer?.avatar_url ?? null },
+    }
+  })
 
   const isCertified = tutor.user.role === 'certified_tutor'
 
@@ -75,7 +104,7 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
         </TabsContent>
 
         <TabsContent value="reviews">
-          <TutorReviews reviews={(reviews ?? []).map((r) => ({ ...r, learner: Array.isArray(r.learner) ? r.learner[0] : r.learner }))} />
+          <TutorReviews reviews={reviews} />
         </TabsContent>
       </Tabs>
     </div>

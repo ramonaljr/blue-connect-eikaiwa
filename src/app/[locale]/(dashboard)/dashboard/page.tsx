@@ -1,6 +1,7 @@
 import { requireAuth } from '@/lib/auth/guard'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { fetchPublicProfiles } from '@/lib/public-profiles'
 import { DailyProgress } from '@/components/dashboard/daily-progress'
 import { QuickActions } from '@/components/dashboard/quick-actions'
 import { ContinueLearning } from '@/components/dashboard/continue-learning'
@@ -32,10 +33,10 @@ export default async function DashboardPage() {
     { data: newCourses },
     { data: todayXP },
   ] = await Promise.all([
-    // Next upcoming lesson with tutor info
+    // Next upcoming lesson (tutor display info merged below)
     supabase
       .from('lessons')
-      .select('*, tutor:users!lessons_tutor_id_fkey(display_name, avatar_url)')
+      .select('*')
       .eq('learner_id', user.id)
       .eq('status', 'scheduled')
       .gte('scheduled_at', new Date().toISOString())
@@ -82,6 +83,15 @@ export default async function DashboardPage() {
       .gte('created_at', new Date(new Date().setHours(0, 0, 0, 0)).toISOString()),
   ])
 
+  // Merge tutor display info onto the upcoming lesson (users is not readable
+  // for other users; display fields come from public_profiles).
+  const nextLessonEnriched = nextLesson
+    ? {
+        ...nextLesson,
+        tutor: (await fetchPublicProfiles(supabase, [nextLesson.tutor_id])).get(nextLesson.tutor_id) ?? null,
+      }
+    : null
+
   const todayXPTotal = (todayXP ?? []).reduce((sum: number, e: { amount: number }) => sum + e.amount, 0)
   const todayMinutesEstimate = (todayXP ?? []).length * 3
   const currentLevel = user.level ?? Math.floor(user.xp / 1000) + 1
@@ -117,8 +127,8 @@ export default async function DashboardPage() {
             recentConversation={recentConversation}
             recentCourseProgress={recentCourseProgress}
           />
-          {nextLesson && (
-            <UpcomingLessonCard lesson={nextLesson} />
+          {nextLessonEnriched && (
+            <UpcomingLessonCard lesson={nextLessonEnriched} />
           )}
         </div>
 

@@ -1,7 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getStripe } from '@/lib/stripe/client'
 import { createClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import type { SubscriptionTier } from '@/lib/types/database'
+
+// Premium includes 4 certified-tutor lesson credits per billing cycle.
+const PREMIUM_MONTHLY_CREDITS = 4
+// 33 days gives slack so credits never lapse before the next monthly charge.
+const CREDIT_VALIDITY_DAYS = 33
+
+async function grantPremiumCredits(supabase: SupabaseClient, userId: string) {
+  const expiresAt = new Date()
+  expiresAt.setDate(expiresAt.getDate() + CREDIT_VALIDITY_DAYS)
+
+  await supabase.from('credits').insert({
+    user_id: userId,
+    type: 'lesson_certified',
+    amount: PREMIUM_MONTHLY_CREDITS,
+    source: 'subscription',
+    expires_at: expiresAt.toISOString(),
+  })
+}
 
 export async function POST(request: NextRequest) {
   // Use service role for webhook (no user context)
@@ -13,7 +32,6 @@ export async function POST(request: NextRequest) {
   const sig = request.headers.get('stripe-signature')!
 
   let event
-
   try {
     event = getStripe().webhooks.constructEvent(
       body,
@@ -24,82 +42,123 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Webhook signature verification failed' }, { status: 400 })
   }
 
-  switch (event.type) {
-    case 'checkout.session.completed': {
-      const session = event.data.object
-      const userId = session.metadata?.supabase_user_id
-      const tier = session.metadata?.tier as SubscriptionTier
+  // Idempotency: claim the event id before processing. Stripe retries events,
+  // and without this a retried checkout.session.completed would grant credits
+  // multiple times.
+  const { error: claimError } = await supabase
+    .from('processed_stripe_events')
+    .insert({ event_id: event.id })
 
-      if (userId && tier) {
-        await supabase
-          .from('users')
-          .update({
-            subscription_tier: tier,
-            subscription_status: 'active',
-          })
-          .eq('id', userId)
+  if (claimError) {
+    // 23505 = unique violation => already processed, safe to ack.
+    if (claimError.code === '23505') {
+      return NextResponse.json({ received: true, duplicate: true })
+    }
+    // Unexpected error claiming the event: signal failure so Stripe retries.
+    return NextResponse.json({ error: 'Failed to record event' }, { status: 500 })
+  }
 
-        // Grant monthly credits for Premium
-        if (tier === 'premium') {
-          const expiresAt = new Date()
-          expiresAt.setDate(expiresAt.getDate() + 30)
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object
+        const userId = session.metadata?.supabase_user_id
+        const tier = session.metadata?.tier as SubscriptionTier
 
-          await supabase.from('credits').insert({
-            user_id: userId,
-            type: 'lesson_certified',
-            amount: 4,
-            source: 'subscription',
-            expires_at: expiresAt.toISOString(),
-          })
+        if (userId && tier) {
+          await supabase
+            .from('users')
+            .update({
+              subscription_tier: tier,
+              subscription_status: 'active',
+            })
+            .eq('id', userId)
+
+          // Initial grant for Premium. Renewals are handled by
+          // invoice.payment_succeeded (billing_reason === 'subscription_cycle').
+          if (tier === 'premium') {
+            await grantPremiumCredits(supabase, userId)
+          }
         }
+        break
       }
-      break
-    }
 
-    case 'customer.subscription.updated': {
-      const subscription = event.data.object
-      const customerId = subscription.customer as string
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object
+        // Only re-grant on recurring cycles; the first invoice is covered by
+        // checkout.session.completed to avoid a double grant.
+        if (invoice.billing_reason !== 'subscription_cycle') break
 
-      const { data: user } = await supabase
-        .from('users')
-        .select('id')
-        .eq('stripe_customer_id', customerId)
-        .single()
-
-      if (user) {
-        const status = subscription.status === 'active' ? 'active'
-          : subscription.status === 'past_due' ? 'past_due'
-          : 'canceled'
-
-        await supabase
+        const customerId = invoice.customer as string
+        const { data: user } = await supabase
           .from('users')
-          .update({ subscription_status: status })
-          .eq('id', user.id)
+          .select('id, subscription_tier')
+          .eq('stripe_customer_id', customerId)
+          .single()
+
+        if (user) {
+          await supabase
+            .from('users')
+            .update({ subscription_status: 'active' })
+            .eq('id', user.id)
+
+          if (user.subscription_tier === 'premium') {
+            await grantPremiumCredits(supabase, user.id)
+          }
+        }
+        break
       }
-      break
-    }
 
-    case 'customer.subscription.deleted': {
-      const subscription = event.data.object
-      const customerId = subscription.customer as string
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object
+        const customerId = subscription.customer as string
 
-      const { data: user } = await supabase
-        .from('users')
-        .select('id')
-        .eq('stripe_customer_id', customerId)
-        .single()
-
-      if (user) {
-        await supabase
+        const { data: user } = await supabase
           .from('users')
-          .update({
-            subscription_tier: 'free',
-            subscription_status: 'canceled',
-          })
-          .eq('id', user.id)
+          .select('id')
+          .eq('stripe_customer_id', customerId)
+          .single()
+
+        if (user) {
+          const status = subscription.status === 'active' ? 'active'
+            : subscription.status === 'past_due' ? 'past_due'
+            : 'canceled'
+
+          await supabase
+            .from('users')
+            .update({ subscription_status: status })
+            .eq('id', user.id)
+        }
+        break
       }
-      break
+
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object
+        const customerId = subscription.customer as string
+
+        const { data: user } = await supabase
+          .from('users')
+          .select('id')
+          .eq('stripe_customer_id', customerId)
+          .single()
+
+        if (user) {
+          await supabase
+            .from('users')
+            .update({
+              subscription_tier: 'free',
+              subscription_status: 'canceled',
+            })
+            .eq('id', user.id)
+        }
+        break
+      }
     }
+  } catch (err) {
+    // Release the claim so Stripe's retry can reprocess this event.
+    await supabase.from('processed_stripe_events').delete().eq('event_id', event.id)
+    console.error(`Stripe webhook handler failed for ${event.id}:`, err)
+    return NextResponse.json({ error: 'Handler failed' }, { status: 500 })
   }
 
   return NextResponse.json({ received: true })

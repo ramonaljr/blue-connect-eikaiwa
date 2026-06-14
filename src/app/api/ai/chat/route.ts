@@ -46,6 +46,37 @@ export async function POST(request: NextRequest) {
     scenario?: string
   }
 
+  // Input validation / cost controls: bound the number of messages and the
+  // size of each one so a single request can't blow up Anthropic token cost.
+  const MAX_MESSAGES = 50
+  const MAX_MESSAGE_CHARS = 4000
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return new Response(JSON.stringify({ error: 'No messages provided' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+  if (messages.length > MAX_MESSAGES) {
+    return new Response(JSON.stringify({ error: 'Too many messages in request' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+  for (const m of messages) {
+    if (
+      (m.role !== 'user' && m.role !== 'assistant') ||
+      typeof m.content !== 'string' ||
+      m.content.length === 0 ||
+      m.content.length > MAX_MESSAGE_CHARS
+    ) {
+      return new Response(JSON.stringify({ error: 'Invalid message in request' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+  }
+
   const systemPrompt = buildTutorSystemPrompt({
     name: user.display_name || user.full_name,
     level: user.english_level,
@@ -58,7 +89,7 @@ export async function POST(request: NextRequest) {
   const anthropic = getAnthropic()
 
   const stream = anthropic.messages.stream({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-6',
     max_tokens: 1024,
     system: systemPrompt,
     messages: messages.map((m: AIMessage) => ({
@@ -115,12 +146,15 @@ export async function POST(request: NextRequest) {
           )
         }
 
-        // Award XP if conversation has 5+ user messages
+        // Award XP once, exactly when the conversation reaches 5 user messages.
+        // awardXP is also idempotent on (user, 'ai_chat', conversationId) as a
+        // backstop, so retries or batched sends can't farm repeated XP.
         const messageCount = allMessages.filter(m => m.role === 'user').length
-        if (messageCount >= 5) {
+        const convId = conversationId ?? newConversationId
+        if (messageCount === 5 && convId) {
           const { awardXP } = await import('@/lib/actions/progress')
           const { updateGoalProgress } = await import('@/lib/actions/goals')
-          await awardXP(user.id, 30, 'ai_chat', conversationId ?? newConversationId)
+          await awardXP(user.id, 30, 'ai_chat', convId)
           await updateGoalProgress(user.id, 'ai_chats', 1)
         }
 

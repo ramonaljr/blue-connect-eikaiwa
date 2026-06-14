@@ -23,13 +23,25 @@ export async function awardXP(
 ) {
   const supabase = await createClient()
 
-  // 1. Insert into xp_ledger
-  await supabase.from('xp_ledger').insert({
+  // 1. Insert into xp_ledger. When a sourceId is supplied the (user, source,
+  //    source_id) unique index makes this idempotent: a duplicate award (e.g.
+  //    the same AI conversation hitting the threshold on every message) is
+  //    rejected here and we return before mutating the user's XP/streak.
+  const { error: ledgerError } = await supabase.from('xp_ledger').insert({
     user_id: userId,
     amount,
     source,
     source_id: sourceId ?? null,
   })
+
+  // 23505 = unique-constraint violation: this (user, source, source_id) was
+  // already awarded, so stop here to avoid double-applying XP (this is what
+  // closes the AI-chat farming exploit). Other insert errors (e.g. a
+  // non-UUID source_id such as a generated daily-mission id) are tolerated so
+  // those awards keep working as before.
+  if (ledgerError?.code === '23505') {
+    return
+  }
 
   // 2. Get current user state
   const { data: user } = await supabase
@@ -250,7 +262,7 @@ export async function getWeeklyLeaderboard(userId: string) {
   if (topUserIds.length === 0) return { rankings: [], userRank: 0 }
 
   const { data: users } = await supabase
-    .from('users')
+    .from('public_profiles')
     .select('id, display_name, avatar_url, leaderboard_opt_in')
     .in('id', topUserIds)
 
