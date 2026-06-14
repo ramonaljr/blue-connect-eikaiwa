@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 
 // XP values by activity type and optional difficulty
 const XP_VALUES: Record<string, number | { base: number; perDifficulty: number }> = {
@@ -21,7 +22,10 @@ export async function awardXP(
   source: string,
   sourceId?: string
 ) {
-  const supabase = await createClient()
+  // Privileged: writes xp_ledger + users.xp/level/streak. Runs as the service
+  // role so these tables can deny direct writes from the authenticated role
+  // (anti-forgery). Callers always pass the acting user's own id.
+  const supabase = createServiceClient()
 
   // 1. Insert into xp_ledger. When a sourceId is supplied the (user, source,
   //    source_id) unique index makes this idempotent: a duplicate award (e.g.
@@ -121,7 +125,8 @@ async function checkAchievements(
   currentStreak: number,
   currentLevel: number
 ) {
-  const supabase = await createClient()
+  // Privileged: inserts user_achievements + updates users.xp. Service role.
+  const supabase = createServiceClient()
 
   // Get all achievements not yet unlocked by this user
   const { data: allAchievements } = await supabase
@@ -296,8 +301,9 @@ export async function toggleLeaderboardOptIn(optIn: boolean) {
 // Helper for updating streak without awarding XP (for daily check)
 export async function updateStreak(userId: string) {
   // Same streak logic as in awardXP but without XP change
-  // Used by daily cron to detect broken streaks
-  const supabase = await createClient()
+  // Used by daily cron to detect broken streaks. Privileged (writes
+  // users.streak fields), so it runs as the service role.
+  const supabase = createServiceClient()
   const { data: user } = await supabase
     .from('users')
     .select('streak_days, last_activity_date, streak_freezes_remaining, longest_streak')

@@ -6,6 +6,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 // XP is applied a second time for the same source.
 const fromMock = vi.fn()
 
+// awardXP runs as the service role (privileged write), so mock that client.
+vi.mock('@/lib/supabase/service', () => ({
+  createServiceClient: vi.fn(() => ({ from: fromMock })),
+}))
 vi.mock('@/lib/supabase/server', () => ({
   createClient: vi.fn(async () => ({ from: fromMock })),
 }))
