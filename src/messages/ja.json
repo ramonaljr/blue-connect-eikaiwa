@@ -16,47 +16,174 @@
   },
   "landing": {
     "hero": {
-      "title": "AIと人の力で、英語が話せるようになる",
-      "subtitle": "AI英会話・オンラインレッスン・構造化コースで、あなたの英語力を確実に伸ばします",
-      "cta": "無料で始める"
+      "title": "AIと一緒に、英語がもっと楽しくなる",
+      "subtitle": "小学生からビジネスパーソンまで。AI英会話パートナーとプロ講師が、あなたの「話したい」を叶えます。24時間、いつでも、どこでも。",
+      "cta": "無料で始める",
+      "secondaryCta": "3分で分かる使い方",
+      "socialProof": "⭐ 4.9/5 — 5,000人以上が利用中"
     },
     "features": {
       "ai": {
         "title": "AI英会話パートナー",
-        "description": "テキスト・音声・ロールプレイで、いつでも英語を練習"
+        "description": "24時間、あなた専用の英語コーチ。テキスト・音声・ロールプレイで、ビジネス英語も日常会話もあなたのレベルに合わせて対応します。"
       },
       "courses": {
-        "title": "構造化コース",
-        "description": "CEFRレベル別の体系的なカリキュラムで着実にレベルアップ"
+        "title": "英語コース",
+        "description": "TOEIC・英検・日常会話まで。CEFR準拠のA1〜C2レベル別カリキュラムで、小学生の英語入門からTOEIC900点対策まで体系的に学べます。"
       },
       "tutors": {
-        "title": "ライブレッスン",
-        "description": "認定講師やコミュニティ講師とのマンツーマンレッスン"
+        "title": "オンライン英会話レッスン",
+        "description": "プロ講師とマンツーマン。認定講師やネイティブ講師とのマンツーマンビデオレッスン。月4回から、好きな時間に予約できます。"
       }
     },
     "howItWorks": {
       "title": "使い方",
       "step1": {
-        "title": "無料アカウント作成",
-        "description": "メールアドレスまたはSNSで簡単登録"
+        "title": "30秒で無料登録",
+        "description": "メールアドレスだけでOK。クレジットカード不要です"
       },
       "step2": {
-        "title": "レベルチェック",
-        "description": "AIがあなたの英語レベルを判定"
+        "title": "AIがレベルを診断",
+        "description": "5分の会話でAIがあなたの強みと弱みを分析"
       },
       "step3": {
-        "title": "学習開始",
-        "description": "AI練習・コース・ライブレッスンを自由に組み合わせ"
+        "title": "自分だけの学習プランで開始",
+        "description": "AI練習・コース・ライブレッスンをあなた好みにミックス"
       },
       "step4": {
-        "title": "上達を実感",
-        "description": "進捗トラッキングで成長を可視化"
+        "title": "成長を実感しよう！",
+        "description": "毎週の進捗レポートで、上達が目に見える"
       }
     },
     "footer": {
       "cta": "今すぐ始めよう",
       "ctaDescription": "無料プランで今日から英語学習をスタート",
       "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    },
+    "stats": {
+      "learners": "5,000+",
+      "learnersLabel": "アクティブな学習者",
+      "tutors": "50+",
+      "tutorsLabel": "経験豊富な講師",
+      "satisfaction": "98%",
+      "satisfactionLabel": "満足度"
+    },
+    "problem": {
+      "title": "こんな経験、ありませんか？",
+      "subtitle": "日本での英語学習には、こんな壁があります",
+      "cost": {
+        "title": "英会話スクールは高すぎる",
+        "description": "年間30万円、テキスト代も別。「もっと安く学べたら...」"
+      },
+      "schedule": {
+        "title": "忙しくてレッスンに通えない",
+        "description": "仕事、学校、部活。「空いた時間で練習できたら...」"
+      },
+      "confidence": {
+        "title": "間違えるのが恥ずかしい",
+        "description": "人前で英語を話すのが怖い。「誰にも笑われずに練習できたら...」"
+      }
+    },
+    "solution": {
+      "title": "Blue Connectがすべて解決します",
+      "cost": {
+        "title": "月¥2,980から、始められる",
+        "description": "無料プランもあり。従来のスクールの1/10の費用で、もっと質の高い学習を"
+      },
+      "schedule": {
+        "title": "朝5時でも深夜2時でも",
+        "description": "AIは24時間対応。講師レッスンも好きな時間に予約。通学時間ゼロ"
+      },
+      "confidence": {
+        "title": "AIは絶対に笑わない",
+        "description": "何度間違えても大丈夫。自信がついたら、講師との実践レッスンへ"
+      }
+    },
+    "testimonials": {
+      "1": {
+        "name": "田中 ゆき",
+        "role": "会社員・東京",
+        "quote": "職場で英語を話すのが恥ずかしかったのですが、Blue ConnectのAIと3ヶ月練習した後、初めて英語でプレゼンができました！"
+      },
+      "2": {
+        "name": "村田 健二",
+        "role": "大学生・大阪",
+        "quote": "AI練習とリアル講師レッスンの組み合わせが最高です。TOEICスコアが150点上がりました。"
+      },
+      "3": {
+        "name": "花田 さくら",
+        "role": "フリーランス・福岡",
+        "quote": "夜2時にインスピレーションが湧いた時も練習できるのが嬉しい。AIは間違いを絶対に笑わない。"
+      },
+      "title": "学習者の声",
+      "subtitle": "Blue Connectで英語力を伸ばした学習者の声をご紹介します"
+    },
+    "finalCta": {
+      "title": "あなたの英語の旅、今日から始めませんか？",
+      "subtitle": "5,000人以上が選んだ英語学習プラットフォーム。無料プランで今すぐ体験。",
+      "cta": "無料で始める — たった30秒",
+      "trustLine": "クレジットカード不要 ・ いつでもキャンセルOK"
+    },
+    "chatMockup": {
+      "badge": "24時間対応",
+      "header": "AI英会話チャット",
+      "userMessage": "ビジネスミーティングでの自己紹介はどうすればいいですか？",
+      "aiMessage": "いい質問ですね！自然な表現はこちらです：「Hello, I'm [名前] from [会社名]. It's a pleasure to meet you.」"
+    },
+    "transform": {
+      "title": "こんな経験、ありませんか？",
+      "subtitle": "日本での英語学習には、こんな壁があります"
+    },
+    "featureTabs": {
+      "ai": {
+        "bullets": {
+          "1": "24時間いつでも英会話練習",
+          "2": "リアルタイムの発音フィードバック",
+          "3": "実際の場面を想定したロールプレイ",
+          "4": "あなたのレベルに自動適応"
+        }
+      },
+      "courses": {
+        "bullets": {
+          "1": "CEFR準拠のA1〜C2レベル",
+          "2": "インタラクティブな演習とクイズ",
+          "3": "達成バッジで進捗を追跡",
+          "4": "自分のペースで学習"
+        }
+      },
+      "tutors": {
+        "bullets": {
+          "1": "認定講師とコミュニティ講師",
+          "2": "Daily.coによるビデオ通話",
+          "3": "スケジュールに合わせて予約",
+          "4": "パーソナライズされたフィードバック"
+        }
+      }
+    },
+    "footerNav": {
+      "tagline": "AIとリアル講師で英語を学ぼう",
+      "product": "プロダクト",
+      "productLinks": {
+        "features": "機能",
+        "pricing": "料金",
+        "courses": "コース",
+        "tutors": "講師"
+      },
+      "company": "会社情報",
+      "companyLinks": {
+        "about": "会社概要",
+        "blog": "ブログ",
+        "contact": "お問い合わせ"
+      },
+      "support": "サポート",
+      "supportLinks": {
+        "help": "ヘルプセンター",
+        "faq": "よくある質問",
+        "terms": "利用規約",
+        "privacy": "プライバシーポリシー"
+      },
+      "newsletter": "最新情報を受け取る",
+      "emailPlaceholder": "メールアドレス"
     }
   },
   "pricing": {
@@ -98,6 +225,25 @@
         "5": "学習プラン作成",
         "6": "1対1コーチング"
       }
+    },
+    "heroSubtitle": "無料から始めて、準備ができたらアップグレード。いつでもキャンセルOK。",
+    "trustLine": "無料プランはクレジットカード不要",
+    "popular": "一番人気",
+    "faq": {
+      "title": "よくある質問",
+      "q1": "プランの変更はいつでもできますか？",
+      "a1": "はい！アップグレード、ダウングレード、キャンセルはいつでも可能です。変更は次の請求サイクルから適用されます。",
+      "q2": "返金ポリシーはありますか？",
+      "a2": "はい、すべての有料プランに14日間の返金保証があります。理由を問わず返金いたします。",
+      "q3": "どんな支払い方法がありますか？",
+      "a3": "主要なクレジットカード、デビットカード、コンビニ払いに対応しています。",
+      "q4": "契約前に講師レッスンを試せますか？",
+      "a4": "ProプランとPremiumプランにはライブ講師レッスンが含まれています。まずはProプランでお試しください！"
+    },
+    "ctaSection": {
+      "title": "今日から英語の旅を始めよう",
+      "subtitle": "5,000人以上の学習者と一緒に、本物の英語力を身につけましょう。",
+      "cta": "無料で始める"
     }
   },
   "auth": {
@@ -110,7 +256,15 @@
     "noAccount": "アカウントをお持ちでないですか？",
     "hasAccount": "すでにアカウントをお持ちですか？",
     "continueWithGoogle": "Googleで続ける",
-    "continueWithLine": "LINEで続ける"
+    "continueWithLine": "LINEで続ける",
+    "fullName": "お名前",
+    "signupSubtitle": "無料で英語学習を始めましょう",
+    "passwordHint": "8文字以上で入力してください",
+    "checkEmail": "メールを確認して、確認リンクをクリックしてアカウントを有効化してください。",
+    "agreeToTerms": "登録すると、以下に同意したことになります：",
+    "termsLink": "利用規約",
+    "privacyLink": "プライバシーポリシー",
+    "and": "および"
   },
   "nav": {
     "home": "ホーム",
@@ -122,6 +276,521 @@
     "lessons": "レッスン",
     "progress": "学習進捗",
     "dashboard": "ダッシュボード",
-    "settings": "設定"
+    "settings": "設定",
+    "phrases": "フレーズ帳",
+    "sidebarGroups": {
+      "learn": "学ぶ",
+      "connect": "つながる",
+      "track": "記録"
+    }
+  },
+  "dashboard": {
+    "welcome": {
+      "morning": "おはようございます",
+      "afternoon": "こんにちは",
+      "evening": "こんばんは",
+      "morningMotivation": "今日も一緒にがんばりましょう！",
+      "afternoonMotivation": "午後も英語の練習、続けましょう！",
+      "eveningMotivation": "お疲れさまです。少しだけ英語に触れてみませんか？"
+    },
+    "quickActionDescriptions": {
+      "aiChat": "AIとの英会話を練習",
+      "findTutor": "あなたに合った講師を見つける",
+      "browseCourses": "レベル別コースを探す"
+    },
+    "dailyGoal": "今日の目標",
+    "activitiesCompleted": "{count}/{total} アクティビティ完了",
+    "streak": "日連続",
+    "stats": {
+      "studyTime": "学習時間",
+      "thisWeek": "今週",
+      "lessonsCompleted": "完了レッスン",
+      "wordsLearned": "習得単語",
+      "nextLesson": "次のレッスン"
+    },
+    "sections": {
+      "continueLearning": "学習を続ける",
+      "upcomingLessons": "今後のレッスン",
+      "recentActivity": "最近のアクティビティ",
+      "quickActions": "クイックアクション",
+      "achievements": "実績",
+      "weeklyProgress": "週間の進捗",
+      "recommended": "おすすめ"
+    },
+    "quickActions": {
+      "aiChat": "AI英会話を始める",
+      "findTutor": "講師を探す",
+      "browseCourses": "コースを見る",
+      "aiVoice": "音声で練習する",
+      "courses": "コースを見る",
+      "tutors": "講師を探す"
+    },
+    "noUpcoming": "予定されたレッスンはありません",
+    "joinLesson": "参加",
+    "viewAll": "すべて見る",
+    "tip": {
+      "loading": "今日のヒントを読み込み中..."
+    },
+    "progress": {
+      "xp": "XP",
+      "level": "レベル {level}",
+      "streak": "日連続",
+      "goal": "今日の目標",
+      "goalProgress": "{current}/{target}分"
+    },
+    "continueLearning": {
+      "title": "学習を続ける",
+      "aiConversation": "AI会話",
+      "course": "コース",
+      "continue": "続ける",
+      "empty": "まだ学習を始めていません。AI英会話から始めてみましょう！",
+      "startNow": "始める"
+    },
+    "upcomingLesson": {
+      "title": "次のレッスン",
+      "in": "あと",
+      "hours": "時間",
+      "minutes": "分",
+      "join": "参加する",
+      "prepare": "準備する",
+      "duration": "{minutes}分"
+    },
+    "weakAreas": {
+      "title": "おすすめ"
+    },
+    "notifications": {
+      "title": "通知",
+      "viewAll": "すべて見る",
+      "empty": "新しい通知はありません",
+      "minutesAgo": "{count}分前",
+      "hoursAgo": "{count}時間前",
+      "daysAgo": "{count}日前"
+    },
+    "newContent": {
+      "title": "新着コース"
+    },
+    "activity": {
+      "aiPractice": "AI英会話練習を完了",
+      "courseFinished": "コース完了: 基本の挨拶",
+      "badgeEarned": "バッジ獲得: はじめの一歩",
+      "timeAgo2h": "2時間前",
+      "timeAgo1d": "1日前",
+      "timeAgo2d": "2日前"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "tabs": {
+      "profile": "プロフィール",
+      "learning": "学習設定",
+      "subscription": "サブスクリプション",
+      "connected": "アカウント連携",
+      "account": "アカウント管理"
+    },
+    "profile": {
+      "title": "プロフィール情報",
+      "avatar": "プロフィール画像",
+      "avatarHint": "クリックして画像を変更",
+      "displayName": "表示名",
+      "fullName": "氏名",
+      "englishLevel": "英語レベル",
+      "timezone": "タイムゾーン",
+      "save": "保存",
+      "saving": "保存中...",
+      "saved": "プロフィールを更新しました",
+      "error": "プロフィールの更新に失敗しました"
+    },
+    "learning": {
+      "title": "学習設定",
+      "dailyGoal": "日々の学習目標",
+      "topics": "興味のあるトピック",
+      "personality": "AIチューターの性格",
+      "correctionLevel": "添削レベル",
+      "saved": "学習設定を更新しました",
+      "error": "学習設定の更新に失敗しました"
+    },
+    "subscription": {
+      "title": "サブスクリプション",
+      "currentPlan": "現在のプラン",
+      "upgrade": "アップグレード",
+      "managePlan": "プランを管理",
+      "purchaseCredits": "クレジットを購入",
+      "purchase": "購入"
+    },
+    "connected": {
+      "title": "アカウント連携",
+      "connected": "接続済み",
+      "notConnected": "未接続",
+      "connect": "連携する",
+      "disconnect": "連携解除",
+      "comingSoon": "近日公開"
+    },
+    "account": {
+      "title": "アカウント管理",
+      "changePassword": "パスワード変更",
+      "newPassword": "新しいパスワード",
+      "confirmPassword": "パスワード確認",
+      "passwordMismatch": "パスワードが一致しません",
+      "passwordChanged": "パスワードを変更しました",
+      "exportData": "データエクスポート",
+      "exportDescription": "すべての学習データをJSON形式でダウンロードできます",
+      "exportButton": "データをエクスポート",
+      "exporting": "エクスポート中...",
+      "deleteAccount": "アカウント削除",
+      "deleteWarning": "アカウントを削除すると、30日後にすべてのデータが完全に削除されます。この操作は取り消せません。",
+      "deleteConfirm": "確認のため「DELETE」と入力してください",
+      "deleteButton": "アカウントを削除"
+    }
+  },
+  "aiChat": {
+    "title": "AI英会話チャット",
+    "subtitle": "英語で話しかけてみましょう",
+    "scenarioPicker": {
+      "title": "シナリオを選択",
+      "subtitle": "英会話の練習をしたいシーンを選びましょう",
+      "freeConversation": "自由会話",
+      "customTopic": "カスタムトピック",
+      "customPlaceholder": "練習したいトピックを入力...",
+      "start": "開始"
+    },
+    "history": {
+      "title": "会話履歴",
+      "empty": "まだ会話がありません",
+      "freeChat": "自由会話",
+      "messages": "{count}件のメッセージ"
+    },
+    "usage": {
+      "remaining": "本日の残り回数: {remaining}/3",
+      "upgrade": "アップグレードして無制限に"
+    },
+    "actions": {
+      "newChat": "新しい会話",
+      "speak": "読み上げ",
+      "save": "保存",
+      "explain": "解説",
+      "back": "戻る"
+    },
+    "corrections": {
+      "original": "元の表現",
+      "corrected": "正しい表現",
+      "explanation": "解説"
+    },
+    "phrases": {
+      "saved": "フレーズを保存しました",
+      "saveFailed": "フレーズの保存に失敗しました"
+    }
+  },
+  "coursesPage": {
+    "title": "体系的な英語コース",
+    "subtitle": "初心者から上級者まで — CEFR準拠のカリキュラムで「Hello」から流暢な英語へ、一歩ずつ。",
+    "cta": "コースを見る",
+    "levels": {
+      "title": "すべてのレベルに対応",
+      "beginner": {
+        "level": "A1-A2",
+        "title": "初級",
+        "description": "基本の挨拶、自己紹介、簡単な会話。小学生・中学生にぴったり。"
+      },
+      "intermediate": {
+        "level": "B1-B2",
+        "title": "中級",
+        "description": "旅行英語、職場コミュニケーション、TOEIC対策。高校生・社会人向け。"
+      },
+      "advanced": {
+        "level": "C1-C2",
+        "title": "上級",
+        "description": "ビジネスプレゼン、ディベート、学術ライティング。ネイティブレベルを目指す方へ。"
+      }
+    },
+    "features": {
+      "interactive": {
+        "title": "インタラクティブな演習",
+        "description": "読むだけじゃない — クイズ、穴埋め、スピーキング練習で実践"
+      },
+      "progress": {
+        "title": "進捗を追跡",
+        "description": "ビジュアルな進捗バー、達成バッジ、週間レポートで成長が一目瞭然"
+      },
+      "pace": {
+        "title": "自分のペースで",
+        "description": "期限なし、プレッシャーなし。10分の空き時間でレッスンを完了"
+      },
+      "certificate": {
+        "title": "修了証を取得",
+        "description": "コース完了で修了証を取得。LinkedInや就職活動でアピール"
+      }
+    },
+    "categories": {
+      "title": "コースカテゴリー",
+      "daily": "日常会話",
+      "business": "ビジネス英語",
+      "toeic": "TOEIC対策",
+      "eiken": "英検対策",
+      "travel": "旅行英語",
+      "kids": "キッズ英語"
+    },
+    "ctaSection": {
+      "title": "今日から体系的に学び始めよう",
+      "subtitle": "すべてのアカウントに無料コース3つ付き。クレジットカード不要。",
+      "cta": "無料で始める"
+    }
+  },
+  "aiVoice": {
+    "title": "AI音声練習",
+    "upgradeRequired": "AI音声機能はProプラン以上でご利用いただけます",
+    "upgradeDescription": "AIと英語で会話し、発音スコアをリアルタイムで確認できます",
+    "upgradeCta": "プランをアップグレード",
+    "tabs": {
+      "voiceChat": "音声チャット",
+      "roleplay": "ロールプレイ",
+      "pronunciation": "発音練習"
+    },
+    "controls": {
+      "startRecording": "話す",
+      "stopRecording": "停止",
+      "slowDown": "ゆっくり",
+      "slowDownOn": "通常速度",
+      "endSession": "終了",
+      "listen": "聞く",
+      "record": "録音",
+      "next": "次へ",
+      "connecting": "接続中..."
+    },
+    "transcript": {
+      "title": "トランスクリプト",
+      "you": "あなた",
+      "ai": "AI",
+      "showTranscript": "トランスクリプトを表示",
+      "hideTranscript": "トランスクリプトを非表示"
+    },
+    "pronunciation": {
+      "title": "発音練習",
+      "targetPhrase": "次のフレーズを発音してください",
+      "score": "発音スコア",
+      "excellent": "素晴らしい！",
+      "good": "いい感じ！",
+      "needsPractice": "もう少し練習しましょう"
+    },
+    "summary": {
+      "title": "セッション結果",
+      "duration": "所要時間",
+      "avgScore": "平均発音スコア",
+      "messageCount": "メッセージ数",
+      "corrections": "修正箇所",
+      "practiceAgain": "もう一度練習",
+      "tryDifferent": "別のシナリオ"
+    },
+    "timer": {
+      "remaining": "残り{minutes}分"
+    },
+    "errors": {
+      "connectionFailed": "接続に失敗しました。もう一度お試しください。",
+      "micPermission": "マイクの使用を許可してください",
+      "sessionExpired": "セッションの制限時間に達しました"
+    }
+  },
+  "progress": {
+    "title": "学習進捗",
+    "tabs": {
+      "overview": "概要",
+      "skills": "スキル",
+      "activity": "アクティビティ",
+      "achievements": "実績",
+      "goals": "目標"
+    },
+    "stats": {
+      "xp": "XP",
+      "level": "レベル {level}",
+      "streak": "日連続",
+      "longestStreak": "最長記録: {days}日",
+      "cefrLevel": "CEFRレベル",
+      "monthlyTime": "今月の学習時間",
+      "hours": "{hours}時間",
+      "minutes": "{minutes}分"
+    },
+    "heatmap": {
+      "title": "学習アクティビティ",
+      "noActivity": "アクティビティなし",
+      "xpEarned": "獲得XP: {xp}"
+    },
+    "streak": {
+      "title": "連続学習カレンダー",
+      "active": "学習済み",
+      "missed": "未学習",
+      "today": "今日"
+    }
+  },
+  "skills": {
+    "grammar": "文法",
+    "vocabulary": "語彙",
+    "listening": "リスニング",
+    "pronunciation": "発音",
+    "fluency": "流暢さ",
+    "accuracy": "正確率: {percent}%",
+    "exercisesCompleted": "演習完了: {count}問"
+  },
+  "activity": {
+    "title": "アクティビティ",
+    "filter": {
+      "all": "すべて",
+      "aiChat": "AIチャット",
+      "aiVoice": "AI音声",
+      "exercises": "演習",
+      "lessons": "レッスン"
+    },
+    "loadMore": "もっと見る",
+    "empty": "アクティビティはまだありません"
+  },
+  "achievements": {
+    "title": "実績",
+    "unlocked": "達成済み",
+    "locked": "未達成",
+    "count": "{unlocked} / {total} 達成",
+    "categories": {
+      "all": "すべて",
+      "consistency": "継続",
+      "ai_practice": "AI練習",
+      "pronunciation": "発音",
+      "courses": "コース",
+      "lessons": "レッスン",
+      "social": "ソーシャル",
+      "xp": "XP",
+      "cefr": "CEFR"
+    },
+    "unlockedOn": "達成日: {date}",
+    "reward": "+{xp} XP"
+  },
+  "goals": {
+    "title": "目標",
+    "active": "進行中の目標",
+    "completed": "完了した目標",
+    "addGoal": "目標を追加",
+    "suggestions": "おすすめの目標",
+    "custom": "カスタム目標",
+    "goalTitle": "目標タイトル",
+    "targetValue": "目標値",
+    "goalType": "目標タイプ",
+    "period": "期間",
+    "weekly": "週間",
+    "monthly": "月間",
+    "create": "作成",
+    "delete": "削除",
+    "noGoals": "目標を設定して学習を加速しましょう"
+  },
+  "leaderboard": {
+    "title": "ランキング",
+    "thisWeek": "今週のランキング",
+    "optIn": "ランキングに参加する",
+    "optInDescription": "他の学習者と週間XPを競い合いましょう",
+    "join": "参加する",
+    "leave": "ランキングから退出",
+    "yourRank": "あなたの順位: {rank}位",
+    "anonymous": "匿名"
+  },
+  "weeklySummary": {
+    "title": "週間の進捗",
+    "xpEarned": "獲得XP",
+    "exercises": "演習完了",
+    "aiSessions": "AIセッション",
+    "lessons": "レッスン",
+    "studyDays": "学習日数",
+    "vsLastWeek": "先週比"
+  },
+  "gamification": {
+    "xp": "XP",
+    "level": "レベル",
+    "streak": "連続学習",
+    "badge": "バッジ",
+    "achievement": "実績",
+    "leaderboard": "ランキング",
+    "dailyBonus": "デイリーボーナス",
+    "levelUp": "レベルアップ！",
+    "newAchievement": "新しい実績を達成しました！",
+    "streakMilestone": "{days}日連続達成！"
+  },
+  "filters": {
+    "all": "すべて",
+    "allCategories": "すべてのカテゴリー",
+    "allSpecialties": "すべての専門",
+    "recommended": "おすすめ",
+    "rating": "評価順",
+    "priceLow": "価格（低い順）",
+    "priceHigh": "価格（高い順）",
+    "experienced": "経験豊富",
+    "noResults": "条件に一致する結果がありません",
+    "searchCourses": "コースを検索...",
+    "searchTutors": "講師を検索...",
+    "level": "レベル",
+    "category": "カテゴリー",
+    "status": "ステータス",
+    "sortBy": "並び替え",
+    "newest": "新着",
+    "difficulty": "難易度",
+    "notStarted": "未開始",
+    "inProgress": "学習中",
+    "completed": "完了",
+    "foundations": "基礎",
+    "dailyConversation": "日常会話",
+    "businessEnglish": "ビジネス英語",
+    "toeicPrep": "TOEIC対策",
+    "eikenPrep": "英検対策",
+    "travelEnglish": "旅行英語",
+    "advancedDiscussion": "上級ディスカッション",
+    "conversation": "会話",
+    "business": "ビジネス",
+    "toeic": "TOEIC",
+    "eiken": "英検",
+    "pronunciation": "発音",
+    "grammar": "文法",
+    "travel": "旅行",
+    "specialty": "専門分野",
+    "minRating": "最低評価",
+    "allTutors": "すべて",
+    "certifiedTutor": "認定講師",
+    "communityTutor": "コミュニティ"
+  },
+  "tutorsPage": {
+    "title": "経験豊富な講師から学ぼう",
+    "subtitle": "認定講師やネイティブ講師とのマンツーマンビデオレッスン。好きな時間に予約、どこでも学習。",
+    "cta": "講師を探す",
+    "features": {
+      "certified": {
+        "title": "認定講師 & ネイティブ講師",
+        "description": "すべての講師は教育資格またはネイティブレベルの語学力を確認済み"
+      },
+      "flexible": {
+        "title": "柔軟なスケジュール",
+        "description": "朝でも夜でも週末でも、あなたの生活に合わせてレッスンを予約"
+      },
+      "video": {
+        "title": "高画質ビデオレッスン",
+        "description": "Daily.coによるクリアなビデオ通話、画面共有も可能"
+      },
+      "feedback": {
+        "title": "パーソナライズされたフィードバック",
+        "description": "毎回のレッスン後に、添削・アドバイス・進捗メモを受け取れます"
+      }
+    },
+    "howItWorks": {
+      "title": "レッスンの流れ",
+      "step1": "講師プロフィールを見て、あなたに合った講師を見つける",
+      "step2": "都合の良い時間にレッスンを予約",
+      "step3": "ビデオ通話に参加して学習開始",
+      "step4": "フィードバックを受けて上達を実感"
+    },
+    "pricing": {
+      "title": "レッスン料金",
+      "community": "コミュニティ講師",
+      "communityPrice": "¥1,500〜/レッスン",
+      "communityDesc": "英語を教えることが大好きな熱心なスピーカー",
+      "certified": "認定講師",
+      "certifiedPrice": "¥3,000〜/レッスン",
+      "certifiedDesc": "TEFL/TESOL資格を持つプロの教師"
+    },
+    "ctaSection": {
+      "title": "自信を持って英語を話す準備はできましたか？",
+      "subtitle": "初回レッスンはProプランとPremiumプランに含まれています。",
+      "cta": "無料で始める"
+    }
   }
 }

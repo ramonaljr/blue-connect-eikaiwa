@@ -1,108 +1,60 @@
 import { requireAuth } from '@/lib/auth/guard'
 import { createClient } from '@/lib/supabase/server'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Flame, Star, BookOpen, MessageSquare, Mic } from 'lucide-react'
+import { ProgressPageContent } from '@/components/progress/progress-page-content'
 
 export default async function ProgressPage() {
   const user = await requireAuth()
   const supabase = await createClient()
 
-  const { data: conversations } = await supabase
-    .from('ai_conversations')
-    .select('mode, created_at')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
-    .limit(30)
+  const ninetyDaysAgo = new Date()
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
 
-  const { data: completedLessons } = await supabase
-    .from('lessons')
-    .select('id')
-    .eq('learner_id', user.id)
-    .eq('status', 'completed')
+  const startOfMonth = new Date()
+  startOfMonth.setDate(1)
+  startOfMonth.setHours(0, 0, 0, 0)
 
-  const { data: courseProgress } = await supabase
-    .from('learner_progress')
-    .select('status')
-    .eq('user_id', user.id)
-    .eq('status', 'completed')
+  // Fetch remaining data in parallel
+  const [xpLedgerResult, monthlyXpResult] = await Promise.all([
+    // XP ledger last 90 days for heatmap
+    supabase
+      .from('xp_ledger')
+      .select('amount, created_at')
+      .eq('user_id', user.id)
+      .gte('created_at', ninetyDaysAgo.toISOString())
+      .order('created_at', { ascending: true }),
+    // Monthly XP entries count for study time estimate
+    supabase
+      .from('xp_ledger')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .gte('created_at', startOfMonth.toISOString()),
+  ])
 
-  const textChats = conversations?.filter((c) => c.mode === 'text_chat').length ?? 0
-  const voiceSessions = conversations?.filter((c) => c.mode !== 'text_chat').length ?? 0
+  // Aggregate XP ledger by date for heatmap
+  const xpEntries = xpLedgerResult.data ?? []
+  const heatmapMap = new Map<string, number>()
+  for (const entry of xpEntries) {
+    const date = entry.created_at.split('T')[0]
+    heatmapMap.set(date, (heatmapMap.get(date) ?? 0) + entry.amount)
+  }
+  const heatmapData = Array.from(heatmapMap.entries()).map(([date, value]) => ({
+    date,
+    value,
+  }))
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold">学習進捗</h1>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">XP</CardTitle>
-            <Star className="h-4 w-4 text-yellow-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{user.xp.toLocaleString()}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">連続学習</CardTitle>
-            <Flame className="h-4 w-4 text-orange-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{user.streak_days}日</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">CEFRレベル</CardTitle>
-            <Badge variant="secondary">{user.english_level}</Badge>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{user.english_level}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">完了レッスン</CardTitle>
-            <BookOpen className="h-4 w-4 text-blue-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{completedLessons?.length ?? 0}</div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MessageSquare className="h-5 w-5" />
-              AI テキストチャット
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{textChats} 回</p>
-            <p className="text-sm text-muted-foreground">過去30日間</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Mic className="h-5 w-5" />
-              AI 音声セッション
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{voiceSessions} 回</p>
-            <p className="text-sm text-muted-foreground">過去30日間</p>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    <ProgressPageContent
+      user={{
+        id: user.id,
+        xp: user.xp,
+        level: user.level,
+        streakDays: user.streak_days,
+        longestStreak: user.longest_streak,
+        englishLevel: user.english_level,
+        lastActivityDate: user.last_activity_date,
+      }}
+      heatmapData={heatmapData}
+      monthlyXpEntries={monthlyXpResult.count ?? 0}
+    />
   )
 }

@@ -1,16 +1,152 @@
 import { requireAuth } from '@/lib/auth/guard'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import { fetchPublicProfiles } from '@/lib/public-profiles'
+import { DailyProgress } from '@/components/dashboard/daily-progress'
+import { QuickActions } from '@/components/dashboard/quick-actions'
+import { ContinueLearning } from '@/components/dashboard/continue-learning'
+import { UpcomingLessonCard } from '@/components/dashboard/upcoming-lesson-card'
+import { WeakAreas } from '@/components/dashboard/weak-areas'
+import { RecentNotifications } from '@/components/dashboard/recent-notifications'
+import { RecommendedPath } from '@/components/dashboard/recommended-path'
+import { NewContentCarousel } from '@/components/dashboard/new-content-carousel'
+import { DailyTip } from '@/components/dashboard/daily-tip'
+import { Greeting } from '@/components/dashboard/greeting'
+import { TodaysMissions } from '@/components/dashboard/todays-missions'
+import { LevelUpChecker } from '@/components/dashboard/level-up-checker'
 
 export default async function DashboardPage() {
   const user = await requireAuth()
 
+  if (!user.onboarding_completed) {
+    redirect('/dashboard/onboarding')
+  }
+
+  const supabase = await createClient()
+
+  // Fetch all dashboard data in parallel
+  const [
+    { data: nextLesson },
+    { data: recentConversation },
+    { data: recentCourseProgress },
+    { data: notifications },
+    { data: newCourses },
+    { data: todayXP },
+  ] = await Promise.all([
+    // Next upcoming lesson (tutor display info merged below)
+    supabase
+      .from('lessons')
+      .select('*')
+      .eq('learner_id', user.id)
+      .eq('status', 'scheduled')
+      .gte('scheduled_at', new Date().toISOString())
+      .order('scheduled_at')
+      .limit(1)
+      .single(),
+    // Most recent AI conversation
+    supabase
+      .from('ai_conversations')
+      .select('id, mode, scenario, created_at, messages')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single(),
+    // Most recent in-progress course
+    supabase
+      .from('learner_progress')
+      .select('*, course:courses(title, title_ja, thumbnail_url)')
+      .eq('user_id', user.id)
+      .eq('status', 'in_progress')
+      .order('updated_at', { ascending: false })
+      .limit(1)
+      .single(),
+    // Unread notifications
+    supabase
+      .from('notifications')
+      .select('*')
+      .eq('user_id', user.id)
+      .eq('is_read', false)
+      .order('created_at', { ascending: false })
+      .limit(5),
+    // Recently published courses
+    supabase
+      .from('courses')
+      .select('id, title, title_ja, level, category, thumbnail_url')
+      .eq('is_published', true)
+      .order('created_at', { ascending: false })
+      .limit(5),
+    // Today's XP from xp_ledger
+    supabase
+      .from('xp_ledger')
+      .select('amount')
+      .eq('user_id', user.id)
+      .gte('created_at', new Date(new Date().setHours(0, 0, 0, 0)).toISOString()),
+  ])
+
+  // Merge tutor display info onto the upcoming lesson (users is not readable
+  // for other users; display fields come from public_profiles).
+  const nextLessonEnriched = nextLesson
+    ? {
+        ...nextLesson,
+        tutor: (await fetchPublicProfiles(supabase, [nextLesson.tutor_id])).get(nextLesson.tutor_id) ?? null,
+      }
+    : null
+
+  const todayXPTotal = (todayXP ?? []).reduce((sum: number, e: { amount: number }) => sum + e.amount, 0)
+  const todayMinutesEstimate = (todayXP ?? []).length * 3
+  const currentLevel = user.level ?? Math.floor(user.xp / 1000) + 1
+
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">
-        こんにちは、{user.display_name}さん
-      </h1>
-      <p className="text-muted-foreground">
-        今日も英語の練習を始めましょう！
-      </p>
+      {/* Welcome + Daily Progress */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <Greeting displayName={user.display_name} />
+          <DailyTip />
+        </div>
+        <DailyProgress
+          xp={user.xp}
+          streakDays={user.streak_days}
+          dailyGoalMinutes={user.daily_goal_minutes}
+          todayMinutes={todayMinutesEstimate}
+          todayXP={todayXPTotal}
+        />
+      </div>
+
+      {/* Quick Actions */}
+      <QuickActions />
+
+      {/* Today's Missions */}
+      <TodaysMissions />
+
+      {/* Main content grid */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Left column */}
+        <div className="space-y-6">
+          <ContinueLearning
+            recentConversation={recentConversation}
+            recentCourseProgress={recentCourseProgress}
+          />
+          {nextLessonEnriched && (
+            <UpcomingLessonCard lesson={nextLessonEnriched} />
+          )}
+        </div>
+
+        {/* Right column */}
+        <div className="space-y-6">
+          <RecommendedPath />
+          <WeakAreas englishLevel={user.english_level} />
+          <RecentNotifications notifications={notifications ?? []} />
+        </div>
+      </div>
+
+      {/* New content */}
+      {newCourses && newCourses.length > 0 && (
+        <NewContentCarousel courses={newCourses} />
+      )}
+
+      {/* Level-up celebration */}
+      <LevelUpChecker currentLevel={currentLevel} xp={user.xp} />
     </div>
   )
 }

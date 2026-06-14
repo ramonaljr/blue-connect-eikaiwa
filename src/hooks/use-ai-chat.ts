@@ -1,16 +1,30 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import type { AIMessage } from '@/lib/types/database'
+import type { AIMessage, AICorrection } from '@/lib/types/database'
+
+function parseCorrections(text: string): { cleanText: string; corrections: AICorrection[] } {
+  const correctionRegex = /\[CORRECTION\]([\s\S]*?)\[\/CORRECTION\]/g
+  const found: AICorrection[] = []
+  const cleanText = text.replace(correctionRegex, (_, json) => {
+    try {
+      found.push(JSON.parse(json))
+    } catch { /* skip malformed */ }
+    return ''
+  })
+  return { cleanText: cleanText.trim(), corrections: found }
+}
 
 export function useAIChat() {
   const [messages, setMessages] = useState<AIMessage[]>([])
+  const [corrections, setCorrections] = useState<Map<number, AICorrection[]>>(new Map())
   const [isStreaming, setIsStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [conversationId, setConversationId] = useState<string | null>(null)
+  const [scenario, setScenario] = useState<string | null>(null)
   const abortRef = useRef<AbortController | null>(null)
 
-  const sendMessage = useCallback(async (content: string, scenario?: string) => {
+  const sendMessage = useCallback(async (content: string) => {
     setError(null)
     const userMessage: AIMessage = {
       role: 'user',
@@ -92,6 +106,28 @@ export function useAIChat() {
           }
         }
       }
+
+      // After streaming completes, parse corrections from assistant content
+      const { cleanText, corrections: foundCorrections } = parseCorrections(assistantContent)
+      if (foundCorrections.length > 0) {
+        // Update the assistant message with clean text (corrections stripped)
+        setMessages((prev) => {
+          const updated = [...prev]
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            content: cleanText,
+          }
+          return updated
+        })
+
+        // Store corrections keyed by the assistant message index
+        const assistantIndex = updatedMessages.length // index of assistant message in array
+        setCorrections((prev) => {
+          const next = new Map(prev)
+          next.set(assistantIndex, foundCorrections)
+          return next
+        })
+      }
     } catch (err) {
       if ((err as Error).name !== 'AbortError') {
         setError('Failed to send message')
@@ -99,14 +135,43 @@ export function useAIChat() {
     } finally {
       setIsStreaming(false)
     }
-  }, [messages, conversationId])
+  }, [messages, conversationId, scenario])
+
+  const loadConversation = useCallback((conv: { id: string; messages: AIMessage[]; scenario?: string }) => {
+    setConversationId(conv.id)
+    setMessages(conv.messages)
+    setScenario(conv.scenario ?? null)
+  }, [])
+
+  const startWithScenario = useCallback((scenarioKey: string | null, customTopic?: string) => {
+    setMessages([])
+    setConversationId(null)
+    setError(null)
+    setScenario(null)
+    setCorrections(new Map())
+    abortRef.current?.abort()
+    setScenario(scenarioKey ? (customTopic || scenarioKey) : null)
+  }, [])
 
   const reset = useCallback(() => {
     setMessages([])
     setConversationId(null)
     setError(null)
+    setScenario(null)
+    setCorrections(new Map())
     abortRef.current?.abort()
   }, [])
 
-  return { messages, isStreaming, error, sendMessage, reset }
+  return {
+    messages,
+    corrections,
+    isStreaming,
+    error,
+    conversationId,
+    scenario,
+    sendMessage,
+    reset,
+    loadConversation,
+    startWithScenario,
+  }
 }

@@ -16,47 +16,174 @@
   },
   "landing": {
     "hero": {
-      "title": "Learn English with AI and Real Tutors",
-      "subtitle": "AI conversation practice, online lessons, and structured courses to build your English skills",
-      "cta": "Get Started Free"
+      "title": "English Made Fun — With AI by Your Side",
+      "subtitle": "From elementary school to the boardroom. Your AI conversation partner and expert tutors turn \"I wish I could speak English\" into \"I just did.\" Practice 24/7, at your own pace.",
+      "cta": "Start Free",
+      "secondaryCta": "See How It Works",
+      "socialProof": "⭐ 4.9/5 — Trusted by 5,000+ learners"
     },
     "features": {
       "ai": {
         "title": "AI Conversation Partner",
-        "description": "Practice English anytime with text, voice, and roleplay"
+        "description": "Your personal English coach, available 24/7. Practice with text, voice, and roleplay — from business English to casual conversation, adapted to your level."
       },
       "courses": {
-        "title": "Structured Courses",
-        "description": "Level up systematically with CEFR-aligned curriculum"
+        "title": "English Courses",
+        "description": "TOEIC, Eiken, and daily conversation. CEFR-aligned A1-C2 curriculum, from elementary English basics to TOEIC 900+ prep."
       },
       "tutors": {
-        "title": "Live Lessons",
-        "description": "One-on-one lessons with certified and community tutors"
+        "title": "Online English Lessons",
+        "description": "One-on-one with pro tutors. Video lessons with certified and native tutors. Book from 4 lessons/month, whenever it suits you."
       }
     },
     "howItWorks": {
       "title": "How It Works",
       "step1": {
-        "title": "Create a Free Account",
-        "description": "Sign up with email or social login"
+        "title": "Sign up in 30 seconds",
+        "description": "Email only. No credit card needed"
       },
       "step2": {
-        "title": "Level Check",
-        "description": "AI assesses your English level"
+        "title": "AI checks your level",
+        "description": "5-minute chat analyzes your strengths and weaknesses"
       },
       "step3": {
-        "title": "Start Learning",
-        "description": "Mix AI practice, courses, and live lessons"
+        "title": "Start your personal plan",
+        "description": "Mix AI practice, courses, and live lessons your way"
       },
       "step4": {
-        "title": "Track Your Progress",
-        "description": "Visualize your growth with progress tracking"
+        "title": "Watch yourself grow!",
+        "description": "Weekly progress reports make your growth visible"
       }
     },
     "footer": {
       "cta": "Get Started Today",
       "ctaDescription": "Start learning English today with our free plan",
       "copyright": "© 2026 Blue Connect Eikaiwa. All rights reserved."
+    },
+    "stats": {
+      "learners": "5,000+",
+      "learnersLabel": "Active Learners",
+      "tutors": "50+",
+      "tutorsLabel": "Expert Tutors",
+      "satisfaction": "98%",
+      "satisfactionLabel": "Satisfaction Rate"
+    },
+    "problem": {
+      "title": "Have you experienced this?",
+      "subtitle": "Learning English in Japan comes with real challenges",
+      "cost": {
+        "title": "English school fees are brutal",
+        "description": "¥300,000+/year, textbooks extra. \"If only I could learn for less...\""
+      },
+      "schedule": {
+        "title": "Too busy for fixed lesson times",
+        "description": "Work, school, club activities. \"If I could practice in my free time...\""
+      },
+      "confidence": {
+        "title": "Making mistakes feels embarrassing",
+        "description": "Speaking English in front of others is scary. \"If I could practice without being judged...\""
+      }
+    },
+    "solution": {
+      "title": "Blue Connect solves all three",
+      "cost": {
+        "title": "From ¥2,980/month. Yes, really.",
+        "description": "Free plan available too. 1/10th the cost of traditional schools, better learning outcomes"
+      },
+      "schedule": {
+        "title": "5am or 2am — we're ready",
+        "description": "AI available 24/7. Book tutor lessons whenever. Zero commute time"
+      },
+      "confidence": {
+        "title": "AI never judges your mistakes",
+        "description": "Make errors freely. Build confidence first, then try live lessons when you're ready"
+      }
+    },
+    "testimonials": {
+      "title": "Loved by Learners",
+      "subtitle": "Hear from learners who improved their English with Blue Connect",
+      "1": {
+        "name": "Yuki T.",
+        "role": "Office Worker, Tokyo",
+        "quote": "I was too shy to speak English at work. After 3 months with Blue Connect's AI, I gave my first presentation in English!"
+      },
+      "2": {
+        "name": "Kenji M.",
+        "role": "University Student, Osaka",
+        "quote": "The mix of AI practice and real tutor lessons is perfect. My TOEIC score jumped 150 points."
+      },
+      "3": {
+        "name": "Sakura H.",
+        "role": "Freelancer, Fukuoka",
+        "quote": "I love that I can practice at 2am when inspiration hits. The AI never judges my mistakes."
+      }
+    },
+    "finalCta": {
+      "title": "Why not start your English journey today?",
+      "subtitle": "The English learning platform chosen by 5,000+ people. Try it now with our free plan.",
+      "cta": "Start Free — Just 30 Seconds",
+      "trustLine": "No credit card required. Cancel anytime."
+    },
+    "transform": {
+      "title": "Have you experienced this?",
+      "subtitle": "Learning English in Japan comes with real challenges"
+    },
+    "featureTabs": {
+      "ai": {
+        "bullets": {
+          "1": "24/7 conversation practice",
+          "2": "Real-time pronunciation feedback",
+          "3": "Roleplay scenarios for real situations",
+          "4": "Adapts to your level automatically"
+        }
+      },
+      "courses": {
+        "bullets": {
+          "1": "CEFR-aligned A1 to C2 levels",
+          "2": "Interactive exercises and quizzes",
+          "3": "Track progress with completion badges",
+          "4": "Learn at your own pace"
+        }
+      },
+      "tutors": {
+        "bullets": {
+          "1": "Certified and community tutors",
+          "2": "Video calls powered by Daily.co",
+          "3": "Book lessons that fit your schedule",
+          "4": "Get personalized feedback"
+        }
+      }
+    },
+    "chatMockup": {
+      "header": "AI English Chat",
+      "userMessage": "How do I introduce myself at a business meeting?",
+      "aiMessage": "Great question! Here's a natural way: \"Hello, I'm [name] from [company]. It's a pleasure to meet you.\"",
+      "badge": "Available 24/7"
+    },
+    "footerNav": {
+      "tagline": "Learn English with AI and real tutors",
+      "product": "Product",
+      "productLinks": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "courses": "Courses",
+        "tutors": "Tutors"
+      },
+      "company": "Company",
+      "companyLinks": {
+        "about": "About",
+        "blog": "Blog",
+        "contact": "Contact"
+      },
+      "support": "Support",
+      "supportLinks": {
+        "help": "Help Center",
+        "faq": "FAQ",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      },
+      "newsletter": "Get updates",
+      "emailPlaceholder": "Your email"
     }
   },
   "pricing": {
@@ -98,6 +225,25 @@
         "5": "Custom learning plan",
         "6": "1-on-1 coaching"
       }
+    },
+    "heroSubtitle": "Start free, upgrade when you're ready. Cancel anytime.",
+    "trustLine": "No credit card required for free plan",
+    "popular": "Most Popular",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "Can I switch plans anytime?",
+      "a1": "Yes! Upgrade, downgrade, or cancel at any time. Changes take effect at your next billing cycle.",
+      "q2": "Is there a refund policy?",
+      "a2": "Yes, we offer a 14-day money-back guarantee on all paid plans. No questions asked.",
+      "q3": "What payment methods do you accept?",
+      "a3": "We accept all major credit cards, debit cards, and convenience store payments (コンビニ払い).",
+      "q4": "Can I try tutoring before subscribing?",
+      "a4": "Pro and Premium plans include live tutor lessons. Start with Pro to try it out!"
+    },
+    "ctaSection": {
+      "title": "Start your English journey today",
+      "subtitle": "Join 5,000+ learners building real English confidence.",
+      "cta": "Get Started Free"
     }
   },
   "auth": {
@@ -110,7 +256,15 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "continueWithGoogle": "Continue with Google",
-    "continueWithLine": "Continue with LINE"
+    "continueWithLine": "Continue with LINE",
+    "fullName": "Full Name",
+    "signupSubtitle": "Start your English journey for free",
+    "passwordHint": "At least 8 characters",
+    "checkEmail": "Please check your email and click the confirmation link to activate your account.",
+    "agreeToTerms": "By signing up, you agree to our",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "and": "and"
   },
   "nav": {
     "home": "Home",
@@ -122,6 +276,521 @@
     "lessons": "Lessons",
     "progress": "Progress",
     "dashboard": "Dashboard",
-    "settings": "Settings"
+    "settings": "Settings",
+    "phrases": "Phrase Book",
+    "sidebarGroups": {
+      "learn": "Learn",
+      "connect": "Connect",
+      "track": "Track"
+    }
+  },
+  "dashboard": {
+    "welcome": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "morningMotivation": "Let's do our best together today!",
+      "afternoonMotivation": "Let's keep practicing this afternoon!",
+      "eveningMotivation": "Great work today. How about a little English practice?"
+    },
+    "quickActionDescriptions": {
+      "aiChat": "Practice English with AI",
+      "findTutor": "Find the right tutor for you",
+      "browseCourses": "Explore courses by level"
+    },
+    "dailyGoal": "Daily Goal",
+    "activitiesCompleted": "{count}/{total} activities",
+    "streak": "day streak",
+    "stats": {
+      "studyTime": "Study Time",
+      "thisWeek": "this week",
+      "lessonsCompleted": "Lessons Done",
+      "wordsLearned": "Words Learned",
+      "nextLesson": "Next Lesson"
+    },
+    "sections": {
+      "continueLearning": "Continue Learning",
+      "upcomingLessons": "Upcoming Lessons",
+      "recentActivity": "Recent Activity",
+      "quickActions": "Quick Actions",
+      "achievements": "Achievements",
+      "weeklyProgress": "Weekly Progress",
+      "recommended": "Recommended For You"
+    },
+    "quickActions": {
+      "aiChat": "Start AI Chat",
+      "findTutor": "Find a Tutor",
+      "browseCourses": "Browse Courses",
+      "aiVoice": "Practice Speaking",
+      "courses": "Browse Courses",
+      "tutors": "Find Tutors"
+    },
+    "noUpcoming": "No upcoming lessons",
+    "joinLesson": "Join",
+    "viewAll": "View All",
+    "tip": {
+      "loading": "Loading today's tip..."
+    },
+    "progress": {
+      "xp": "XP",
+      "level": "Level {level}",
+      "streak": "day streak",
+      "goal": "Today's goal",
+      "goalProgress": "{current}/{target} min"
+    },
+    "continueLearning": {
+      "title": "Continue Learning",
+      "aiConversation": "AI Conversation",
+      "course": "Course",
+      "continue": "Continue",
+      "empty": "You haven't started learning yet. Try starting with AI Chat!",
+      "startNow": "Start"
+    },
+    "upcomingLesson": {
+      "title": "Next Lesson",
+      "in": "in",
+      "hours": "hours",
+      "minutes": "minutes",
+      "join": "Join",
+      "prepare": "Prepare",
+      "duration": "{minutes} min"
+    },
+    "weakAreas": {
+      "title": "Recommended"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "viewAll": "View all",
+      "empty": "No new notifications",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago"
+    },
+    "newContent": {
+      "title": "New Courses"
+    },
+    "activity": {
+      "aiPractice": "Completed AI conversation practice",
+      "courseFinished": "Finished Course: Basic Greetings",
+      "badgeEarned": "Earned badge: First Steps",
+      "timeAgo2h": "2h ago",
+      "timeAgo1d": "1d ago",
+      "timeAgo2d": "2d ago"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "profile": "Profile",
+      "learning": "Learning",
+      "subscription": "Subscription",
+      "connected": "Connected Accounts",
+      "account": "Account"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "avatar": "Profile Photo",
+      "avatarHint": "Click to change photo",
+      "displayName": "Display Name",
+      "fullName": "Full Name",
+      "englishLevel": "English Level",
+      "timezone": "Timezone",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Profile updated successfully",
+      "error": "Failed to update profile"
+    },
+    "learning": {
+      "title": "Learning Preferences",
+      "dailyGoal": "Daily Learning Goal",
+      "topics": "Topics of Interest",
+      "personality": "AI Tutor Personality",
+      "correctionLevel": "Correction Level",
+      "saved": "Learning preferences updated successfully",
+      "error": "Failed to update learning preferences"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "currentPlan": "Current Plan",
+      "upgrade": "Upgrade",
+      "managePlan": "Manage Plan",
+      "purchaseCredits": "Purchase Credits",
+      "purchase": "Purchase"
+    },
+    "connected": {
+      "title": "Connected Accounts",
+      "connected": "Connected",
+      "notConnected": "Not Connected",
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "comingSoon": "Coming Soon"
+    },
+    "account": {
+      "title": "Account Management",
+      "changePassword": "Change Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "passwordMismatch": "Passwords do not match",
+      "passwordChanged": "Password changed successfully",
+      "exportData": "Export Data",
+      "exportDescription": "Download all your learning data in JSON format",
+      "exportButton": "Export Data",
+      "exporting": "Exporting...",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "Deleting your account will permanently remove all data after 30 days. This action cannot be undone.",
+      "deleteConfirm": "Type \"DELETE\" to confirm",
+      "deleteButton": "Delete Account"
+    }
+  },
+  "aiChat": {
+    "title": "AI English Chat",
+    "subtitle": "Try speaking in English",
+    "scenarioPicker": {
+      "title": "Select a Scenario",
+      "subtitle": "Choose a scene to practice English conversation",
+      "freeConversation": "Free Conversation",
+      "customTopic": "Custom Topic",
+      "customPlaceholder": "Enter a topic you'd like to practice...",
+      "start": "Start"
+    },
+    "history": {
+      "title": "Conversation History",
+      "empty": "No conversations yet",
+      "freeChat": "Free Conversation",
+      "messages": "{count} messages"
+    },
+    "usage": {
+      "remaining": "Remaining today: {remaining}/3",
+      "upgrade": "Upgrade for unlimited"
+    },
+    "actions": {
+      "newChat": "New Conversation",
+      "speak": "Speak",
+      "save": "Save",
+      "explain": "Explain",
+      "back": "Back"
+    },
+    "corrections": {
+      "original": "Original",
+      "corrected": "Corrected",
+      "explanation": "Explanation"
+    },
+    "phrases": {
+      "saved": "Phrase saved",
+      "saveFailed": "Failed to save phrase"
+    }
+  },
+  "coursesPage": {
+    "title": "Structured English Courses",
+    "subtitle": "From beginner to advanced — CEFR-aligned curriculum that takes you from \"Hello\" to fluent, step by step.",
+    "cta": "Browse Courses",
+    "levels": {
+      "title": "Courses for Every Level",
+      "beginner": {
+        "level": "A1-A2",
+        "title": "Beginner",
+        "description": "Basic greetings, self-introduction, simple conversations. Perfect for elementary and junior high students."
+      },
+      "intermediate": {
+        "level": "B1-B2",
+        "title": "Intermediate",
+        "description": "Travel English, workplace communication, TOEIC prep. For high school students and working professionals."
+      },
+      "advanced": {
+        "level": "C1-C2",
+        "title": "Advanced",
+        "description": "Business presentations, debate, academic writing. For those aiming for native-level fluency."
+      }
+    },
+    "features": {
+      "interactive": {
+        "title": "Interactive Exercises",
+        "description": "Not just reading — practice with quizzes, fill-in-the-blanks, and speaking exercises"
+      },
+      "progress": {
+        "title": "Track Your Progress",
+        "description": "Visual progress bars, completion badges, and weekly reports show exactly how far you've come"
+      },
+      "pace": {
+        "title": "Learn at Your Pace",
+        "description": "No deadlines, no pressure. Complete lessons whenever you have 10 minutes free"
+      },
+      "certificate": {
+        "title": "Earn Certificates",
+        "description": "Get a completion certificate for each course to share on LinkedIn or with employers"
+      }
+    },
+    "categories": {
+      "title": "Course Categories",
+      "daily": "Daily Conversation",
+      "business": "Business English",
+      "toeic": "TOEIC Prep",
+      "eiken": "Eiken Prep",
+      "travel": "Travel English",
+      "kids": "Kids English"
+    },
+    "ctaSection": {
+      "title": "Start learning systematically today",
+      "subtitle": "3 free courses included with every account. No credit card needed.",
+      "cta": "Get Started Free"
+    }
+  },
+  "aiVoice": {
+    "title": "AI Voice Practice",
+    "upgradeRequired": "AI Voice is available on Pro plan and above",
+    "upgradeDescription": "Practice English conversation with AI and get real-time pronunciation scores",
+    "upgradeCta": "Upgrade Plan",
+    "tabs": {
+      "voiceChat": "Voice Chat",
+      "roleplay": "Roleplay",
+      "pronunciation": "Pronunciation"
+    },
+    "controls": {
+      "startRecording": "Speak",
+      "stopRecording": "Stop",
+      "slowDown": "Slow Down",
+      "slowDownOn": "Normal Speed",
+      "endSession": "End Session",
+      "listen": "Listen",
+      "record": "Record",
+      "next": "Next",
+      "connecting": "Connecting..."
+    },
+    "transcript": {
+      "title": "Transcript",
+      "you": "You",
+      "ai": "AI",
+      "showTranscript": "Show Transcript",
+      "hideTranscript": "Hide Transcript"
+    },
+    "pronunciation": {
+      "title": "Pronunciation Practice",
+      "targetPhrase": "Please pronounce the following phrase",
+      "score": "Pronunciation Score",
+      "excellent": "Excellent!",
+      "good": "Good job!",
+      "needsPractice": "Keep practicing!"
+    },
+    "summary": {
+      "title": "Session Results",
+      "duration": "Duration",
+      "avgScore": "Average Pronunciation Score",
+      "messageCount": "Messages",
+      "corrections": "Corrections",
+      "practiceAgain": "Practice Again",
+      "tryDifferent": "Try Different Scenario"
+    },
+    "timer": {
+      "remaining": "{minutes} min remaining"
+    },
+    "errors": {
+      "connectionFailed": "Connection failed. Please try again.",
+      "micPermission": "Please allow microphone access",
+      "sessionExpired": "Session time limit reached"
+    }
+  },
+  "progress": {
+    "title": "Learning Progress",
+    "tabs": {
+      "overview": "Overview",
+      "skills": "Skills",
+      "activity": "Activity",
+      "achievements": "Achievements",
+      "goals": "Goals"
+    },
+    "stats": {
+      "xp": "XP",
+      "level": "Level {level}",
+      "streak": "day streak",
+      "longestStreak": "Longest streak: {days} days",
+      "cefrLevel": "CEFR Level",
+      "monthlyTime": "Study time this month",
+      "hours": "{hours} hours",
+      "minutes": "{minutes} min"
+    },
+    "heatmap": {
+      "title": "Learning Activity",
+      "noActivity": "No activity",
+      "xpEarned": "XP earned: {xp}"
+    },
+    "streak": {
+      "title": "Streak Calendar",
+      "active": "Completed",
+      "missed": "Missed",
+      "today": "Today"
+    }
+  },
+  "skills": {
+    "grammar": "Grammar",
+    "vocabulary": "Vocabulary",
+    "listening": "Listening",
+    "pronunciation": "Pronunciation",
+    "fluency": "Fluency",
+    "accuracy": "Accuracy: {percent}%",
+    "exercisesCompleted": "Exercises completed: {count}"
+  },
+  "activity": {
+    "title": "Activity",
+    "filter": {
+      "all": "All",
+      "aiChat": "AI Chat",
+      "aiVoice": "AI Voice",
+      "exercises": "Exercises",
+      "lessons": "Lessons"
+    },
+    "loadMore": "Load more",
+    "empty": "No activity yet"
+  },
+  "achievements": {
+    "title": "Achievements",
+    "unlocked": "Unlocked",
+    "locked": "Locked",
+    "count": "{unlocked} / {total} unlocked",
+    "categories": {
+      "all": "All",
+      "consistency": "Consistency",
+      "ai_practice": "AI Practice",
+      "pronunciation": "Pronunciation",
+      "courses": "Courses",
+      "lessons": "Lessons",
+      "social": "Social",
+      "xp": "XP",
+      "cefr": "CEFR"
+    },
+    "unlockedOn": "Unlocked on {date}",
+    "reward": "+{xp} XP"
+  },
+  "goals": {
+    "title": "Goals",
+    "active": "Active Goals",
+    "completed": "Completed Goals",
+    "addGoal": "Add Goal",
+    "suggestions": "Suggested Goals",
+    "custom": "Custom Goal",
+    "goalTitle": "Goal Title",
+    "targetValue": "Target Value",
+    "goalType": "Goal Type",
+    "period": "Period",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "create": "Create",
+    "delete": "Delete",
+    "noGoals": "Set a goal to accelerate your learning"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "thisWeek": "This Week's Rankings",
+    "optIn": "Join the Leaderboard",
+    "optInDescription": "Compete with other learners on weekly XP",
+    "join": "Join",
+    "leave": "Leave Leaderboard",
+    "yourRank": "Your rank: #{rank}",
+    "anonymous": "Anonymous"
+  },
+  "weeklySummary": {
+    "title": "Weekly Progress",
+    "xpEarned": "XP Earned",
+    "exercises": "Exercises Done",
+    "aiSessions": "AI Sessions",
+    "lessons": "Lessons",
+    "studyDays": "Study Days",
+    "vsLastWeek": "vs. last week"
+  },
+  "gamification": {
+    "xp": "XP",
+    "level": "Level",
+    "streak": "Streak",
+    "badge": "Badge",
+    "achievement": "Achievement",
+    "leaderboard": "Leaderboard",
+    "dailyBonus": "Daily Bonus",
+    "levelUp": "Level Up!",
+    "newAchievement": "New achievement unlocked!",
+    "streakMilestone": "{days}-day streak achieved!"
+  },
+  "filters": {
+    "all": "All",
+    "allCategories": "All Categories",
+    "allSpecialties": "All Specialties",
+    "recommended": "Recommended",
+    "rating": "Rating",
+    "priceLow": "Price (Low to High)",
+    "priceHigh": "Price (High to Low)",
+    "experienced": "Most Experienced",
+    "noResults": "No results match your filters",
+    "searchCourses": "Search courses...",
+    "searchTutors": "Search tutors...",
+    "level": "Level",
+    "category": "Category",
+    "status": "Status",
+    "sortBy": "Sort by",
+    "newest": "Newest",
+    "difficulty": "Difficulty",
+    "notStarted": "Not Started",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "foundations": "Foundations",
+    "dailyConversation": "Daily Conversation",
+    "businessEnglish": "Business English",
+    "toeicPrep": "TOEIC Prep",
+    "eikenPrep": "EIKEN Prep",
+    "travelEnglish": "Travel English",
+    "advancedDiscussion": "Advanced Discussion",
+    "conversation": "Conversation",
+    "business": "Business",
+    "toeic": "TOEIC",
+    "eiken": "EIKEN",
+    "pronunciation": "Pronunciation",
+    "grammar": "Grammar",
+    "travel": "Travel",
+    "specialty": "Specialty",
+    "minRating": "Min. Rating",
+    "allTutors": "All",
+    "certifiedTutor": "Certified",
+    "communityTutor": "Community"
+  },
+  "tutorsPage": {
+    "title": "Learn from Expert Tutors",
+    "subtitle": "One-on-one video lessons with certified and native English tutors. Book anytime, learn anywhere.",
+    "cta": "Find Your Tutor",
+    "features": {
+      "certified": {
+        "title": "Certified & Native Tutors",
+        "description": "All tutors are verified with teaching credentials or native-level fluency"
+      },
+      "flexible": {
+        "title": "Flexible Scheduling",
+        "description": "Book lessons that fit your life — mornings, evenings, weekends"
+      },
+      "video": {
+        "title": "HD Video Lessons",
+        "description": "Crystal-clear video calls powered by Daily.co with screen sharing"
+      },
+      "feedback": {
+        "title": "Personalized Feedback",
+        "description": "Get corrections, tips, and progress notes after every lesson"
+      }
+    },
+    "howItWorks": {
+      "title": "How Tutoring Works",
+      "step1": "Browse tutor profiles and find your match",
+      "step2": "Book a lesson at a time that works for you",
+      "step3": "Join the video call and start learning",
+      "step4": "Get feedback and track your improvement"
+    },
+    "pricing": {
+      "title": "Tutor Lesson Pricing",
+      "community": "Community Tutors",
+      "communityPrice": "From ¥1,500/lesson",
+      "communityDesc": "Passionate English speakers who love teaching",
+      "certified": "Certified Tutors",
+      "certifiedPrice": "From ¥3,000/lesson",
+      "certifiedDesc": "Professional teachers with TEFL/TESOL certification"
+    },
+    "ctaSection": {
+      "title": "Ready to speak with confidence?",
+      "subtitle": "Your first lesson is included with Pro and Premium plans.",
+      "cta": "Get Started Free"
+    }
   }
 }

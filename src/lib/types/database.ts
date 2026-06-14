@@ -4,12 +4,15 @@ export type SubscriptionTier = 'free' | 'pro' | 'premium'
 export type SubscriptionStatus = 'active' | 'canceled' | 'past_due' | 'trialing'
 export type CertificationStatus = 'pending' | 'approved' | 'rejected'
 export type LessonStatus = 'scheduled' | 'in_progress' | 'completed' | 'canceled'
-export type ExerciseType = 'multiple_choice' | 'fill_blank' | 'matching' | 'reorder' | 'free_response'
+export type ExerciseType = 'multiple_choice' | 'fill_blank' | 'matching' | 'reorder' | 'free_response' | 'audio' | 'conversation'
 export type ProgressStatus = 'not_started' | 'in_progress' | 'completed'
 export type AIMode = 'text_chat' | 'voice_chat' | 'voice_immersive'
 export type CreditType = 'lesson_certified' | 'lesson_community' | 'ai_voice'
 export type CreditSource = 'subscription' | 'purchase'
 export type NotificationType = 'lesson_reminder' | 'review_request' | 'subscription' | 'system'
+export type FriendshipStatus = 'pending' | 'accepted' | 'declined'
+export type AIPersonality = 'friendly' | 'strict' | 'balanced'
+export type AICorrectionLevel = 'gentle' | 'moderate' | 'thorough'
 
 export interface User {
   id: string
@@ -26,8 +29,74 @@ export interface User {
   xp: number
   streak_days: number
   last_activity_date: string | null
+  level: number
+  streak_freezes_remaining: number
+  longest_streak: number
+  leaderboard_opt_in: boolean
+  weekly_email_opt_in: boolean
   created_at: string
   updated_at: string
+  daily_goal_minutes: number
+  preferred_topics: string[]
+  ai_personality: AIPersonality
+  ai_correction_level: AICorrectionLevel
+  timezone: string
+  onboarding_completed: boolean
+  onboarding_completed_at: string | null
+}
+
+export interface Achievement {
+  id: string
+  key: string
+  title: string
+  title_ja: string
+  description: string
+  description_ja: string
+  category: string
+  icon: string
+  xp_reward: number
+  requirement_type: string
+  requirement_value: number
+  sort_order: number
+}
+
+export interface UserAchievement {
+  id: string
+  user_id: string
+  achievement_id: string
+  unlocked_at: string
+}
+
+export interface UserGoal {
+  id: string
+  user_id: string
+  title: string
+  target_value: number
+  current_value: number
+  goal_type: string
+  period: string
+  starts_at: string
+  ends_at: string
+  completed_at: string | null
+  xp_reward: number
+  created_at: string
+}
+
+export interface XPLedgerEntry {
+  id: string
+  user_id: string
+  amount: number
+  source: string
+  source_id: string | null
+  created_at: string
+}
+
+export interface DailyTip {
+  id: string
+  user_id: string
+  tip_text: string
+  generated_for: string
+  created_at: string
 }
 
 export interface TutorProfile {
@@ -70,6 +139,40 @@ export interface Lesson {
   learner_rating: number | null
   learner_review: string | null
   created_at: string
+  learner_review_categories: Record<string, number> | null
+  cancellation_reason: string | null
+  canceled_at: string | null
+  canceled_by: string | null
+  credit_refund_amount: number | null
+}
+
+export interface LessonPreparation {
+  id: string
+  lesson_id: string
+  topics: string
+  vocabulary: string[]
+  goals: string[]
+  created_at: string
+  updated_at: string
+}
+
+export interface LessonNote {
+  id: string
+  lesson_id: string
+  shared_notes: string
+  tutor_private_notes: string
+  ai_summary: string
+  transcript_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface LessonChat {
+  id: string
+  lesson_id: string
+  user_id: string
+  message: string
+  created_at: string
 }
 
 export interface Course {
@@ -108,6 +211,44 @@ export interface CourseExercise {
   explanation: string
   explanation_ja: string
   sort_order: number
+  skill_area: string
+  difficulty: number
+  audio_url: string | null
+  time_limit_seconds: number | null
+  created_at: string
+}
+
+export interface SkillProfile {
+  id: string
+  user_id: string
+  grammar_accuracy: number
+  vocabulary_accuracy: number
+  listening_accuracy: number
+  pronunciation_accuracy: number
+  fluency_score: number
+  exercises_completed: number
+  last_calculated_at: string
+  updated_at: string
+}
+
+export interface ExerciseAttempt {
+  id: string
+  user_id: string
+  exercise_id: string
+  score: number
+  time_spent_seconds: number
+  hints_used: number
+  attempts: number
+  answer_data: Record<string, unknown>
+  created_at: string
+}
+
+export interface CourseRating {
+  id: string
+  user_id: string
+  course_id: string
+  rating: number
+  review: string
   created_at: string
 }
 
@@ -132,6 +273,10 @@ export interface AIConversation {
   duration_seconds: number
   pronunciation_score: number | null
   created_at: string
+  scenario_key: string | null
+  title: string | null
+  recording_url: string | null
+  summary: Record<string, unknown> | null
 }
 
 export interface AIMessage {
@@ -146,6 +291,32 @@ export interface AICorrection {
   explanation: string
   explanation_ja: string
   type: 'grammar' | 'vocabulary' | 'pronunciation' | 'usage'
+}
+
+export interface SavedPhrase {
+  id: string
+  user_id: string
+  phrase: string
+  translation: string
+  context: string
+  source_conversation_id: string | null
+  created_at: string
+}
+
+export interface PronunciationScore {
+  id: string
+  user_id: string
+  conversation_id: string | null
+  utterance_text: string
+  overall_score: number
+  phoneme_scores: PhonemeScore[]
+  created_at: string
+}
+
+export interface PhonemeScore {
+  phoneme: string
+  score: number
+  offset: number
 }
 
 export interface Credit {
@@ -168,4 +339,36 @@ export interface Notification {
   is_read: boolean
   action_url: string | null
   created_at: string
+}
+
+export interface Friendship {
+  id: string
+  requester_id: string
+  addressee_id: string
+  status: FriendshipStatus
+  created_at: string
+  updated_at: string
+}
+
+export type OrgPlan = 'team' | 'enterprise'
+export type OrgMemberRole = 'admin' | 'manager' | 'member'
+
+export interface Organization {
+  id: string
+  name: string
+  slug: string
+  admin_user_id: string
+  plan: OrgPlan
+  max_seats: number
+  stripe_customer_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface OrganizationMember {
+  id: string
+  organization_id: string
+  user_id: string
+  role: OrgMemberRole
+  joined_at: string
 }
