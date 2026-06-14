@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { requireTutor } from '@/lib/auth/guard'
 import { fetchPublicProfiles } from '@/lib/public-profiles'
+import { getTutorEarnings } from '@/lib/actions/payouts'
+import { TutorPayoutsCard } from '@/components/tutors/tutor-payouts-card'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Calendar, BookOpen, Star, Clock } from 'lucide-react'
 
@@ -50,7 +52,7 @@ const statCards = [
 
 export default async function TutorDashboardPage() {
   const user = await requireTutor()
-  const stats = await getTutorStats(user.id)
+  const [stats, earnings] = await Promise.all([getTutorStats(user.id), getTutorEarnings()])
 
   return (
     <div className="space-y-6">
@@ -58,6 +60,13 @@ export default async function TutorDashboardPage() {
         <h1 className="text-2xl font-bold">講師ダッシュボード</h1>
         <p className="text-muted-foreground">レッスンとスケジュールの概要</p>
       </div>
+
+      <TutorPayoutsCard
+        paidTotal={earnings.paidTotal}
+        pendingTotal={earnings.pendingTotal}
+        payoutsEnabled={earnings.payoutsEnabled}
+        onboardingStarted={earnings.onboardingStarted}
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {statCards.map((card) => (

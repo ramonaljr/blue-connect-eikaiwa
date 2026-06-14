@@ -81,7 +81,7 @@ export function SignupForm() {
         <form action={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="fullName">{t('fullName')}</Label>
-            <Input id="fullName" name="fullName" placeholder="山田 太郎" required className="h-10" />
+            <Input id="fullName" name="fullName" placeholder={t('namePlaceholder')} required className="h-10" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">{t('email')}</Label>
@@ -102,7 +102,7 @@ export function SignupForm() {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-muted-foreground">または</span>
+            <span className="bg-card px-2 text-muted-foreground">{tc('or')}</span>
           </div>
         </div>
 

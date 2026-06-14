@@ -3,6 +3,7 @@ import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@/lib/supabase/server'
 import { buildTutorSystemPrompt } from '@/lib/ai/system-prompts'
 import { checkAIChatLimit } from '@/lib/rate-limit'
+import { captureException } from '@/lib/observability'
 import type { AIMessage } from '@/lib/types/database'
 
 let _anthropic: Anthropic | null = null
@@ -161,6 +162,7 @@ export async function POST(request: NextRequest) {
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))
         controller.close()
       } catch (err) {
+        captureException(err, { scope: 'ai.chat.stream', userId: user.id, conversationId })
         controller.error(err)
       }
     },

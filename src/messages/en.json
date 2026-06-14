@@ -12,7 +12,8 @@
     "edit": "Edit",
     "loading": "Loading...",
     "error": "An error occurred",
-    "success": "Success"
+    "success": "Success",
+    "or": "or"
   },
   "landing": {
     "hero": {
@@ -259,6 +260,7 @@
     "continueWithLine": "Continue with LINE",
     "fullName": "Full Name",
     "signupSubtitle": "Start your English journey for free",
+    "namePlaceholder": "John Smith",
     "passwordHint": "At least 8 characters",
     "checkEmail": "Please check your email and click the confirmation link to activate your account.",
     "agreeToTerms": "By signing up, you agree to our",

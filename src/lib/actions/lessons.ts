@@ -34,6 +34,55 @@ export async function bookLesson(formData: {
   return { success: true, lessonId }
 }
 
+// Marks a lesson completed (tutor only) and triggers the tutor payout. This is
+// the trigger point for the 70% revenue-share transfer; payoutForLesson is
+// idempotent and never throws, so completion succeeds even if payout is
+// deferred (e.g. tutor not yet onboarded to Stripe Connect).
+export async function completeLesson(lessonId: string) {
+  const supabase = await createClient()
+  const { data: { user: authUser } } = await supabase.auth.getUser()
+
+  if (!authUser) {
+    return { error: 'Unauthorized' }
+  }
+
+  const { data: lesson } = await supabase
+    .from('lessons')
+    .select('id, tutor_id, status')
+    .eq('id', lessonId)
+    .single()
+
+  if (!lesson) {
+    return { error: 'Lesson not found' }
+  }
+  if (lesson.tutor_id !== authUser.id) {
+    return { error: 'Unauthorized' }
+  }
+  if (lesson.status === 'completed') {
+    return { success: true }
+  }
+  if (lesson.status === 'canceled') {
+    return { error: 'キャンセル済みのレッスンは完了にできません' }
+  }
+
+  const { error } = await supabase
+    .from('lessons')
+    .update({ status: 'completed' })
+    .eq('id', lessonId)
+    .eq('tutor_id', authUser.id)
+
+  if (error) {
+    return { error: 'レッスンの完了に失敗しました' }
+  }
+
+  const { payoutForLesson } = await import('./payouts')
+  await payoutForLesson(lessonId)
+
+  revalidatePath('/tutor')
+  revalidatePath('/dashboard/lessons')
+  return { success: true }
+}
+
 export async function cancelLesson(lessonId: string, reason?: string) {
   const supabase = await createClient()
   const { data: { user: authUser } } = await supabase.auth.getUser()

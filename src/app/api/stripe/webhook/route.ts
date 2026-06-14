@@ -3,6 +3,7 @@ import { getStripe } from '@/lib/stripe/client'
 import { createClient } from '@supabase/supabase-js'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { SubscriptionTier } from '@/lib/types/database'
+import { captureException } from '@/lib/observability'
 
 // Premium includes 4 certified-tutor lesson credits per billing cycle.
 const PREMIUM_MONTHLY_CREDITS = 4
@@ -132,6 +133,19 @@ export async function POST(request: NextRequest) {
         break
       }
 
+      case 'account.updated': {
+        // Stripe Connect: flip the tutor's payouts_enabled once their Express
+        // account can both accept charges and receive payouts.
+        const account = event.data.object
+        const enabled = Boolean(account.charges_enabled) && Boolean(account.payouts_enabled)
+
+        await supabase
+          .from('tutor_profiles')
+          .update({ payouts_enabled: enabled })
+          .eq('stripe_connect_account_id', account.id)
+        break
+      }
+
       case 'customer.subscription.deleted': {
         const subscription = event.data.object
         const customerId = subscription.customer as string
@@ -157,7 +171,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     // Release the claim so Stripe's retry can reprocess this event.
     await supabase.from('processed_stripe_events').delete().eq('event_id', event.id)
-    console.error(`Stripe webhook handler failed for ${event.id}:`, err)
+    captureException(err, { scope: 'stripe.webhook', eventId: event.id, eventType: event.type })
     return NextResponse.json({ error: 'Handler failed' }, { status: 500 })
   }
 
