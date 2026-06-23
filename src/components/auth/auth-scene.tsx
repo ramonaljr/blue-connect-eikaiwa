@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Float, MeshTransmissionMaterial } from '@react-three/drei'
 import { View3D } from '@/components/three/view3d'
 import { ShaderBackdrop } from '@/components/three/shader-backdrop'
@@ -22,6 +23,20 @@ export function AuthScene() {
   const palette = pickPalette(isDark)
   const primary = linearColor(palette.primary)
   const accent = linearColor(palette.accent)
+
+  // The brand panel is `hidden lg:flex`. Below lg its tracked element is
+  // zero-size — rendering a View into it spams GL_INVALID_FRAMEBUFFER_OPERATION
+  // every frame. Only mount the scene when the panel is actually visible.
+  const [panelVisible, setPanelVisible] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const update = () => setPanelVisible(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  if (!panelVisible) return null
 
   return (
     <View3D className="absolute inset-0">
