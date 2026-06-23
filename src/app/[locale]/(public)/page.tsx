@@ -13,9 +13,17 @@ import {
   SectionReveal, StaggerContainer, StaggerItem, AnimatedCounter,
 } from '@/components/ui/motion'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { ChatMockup } from '@/components/landing/chat-mockup'
 import { FeatureTabs } from '@/components/landing/feature-tabs'
 import { FooterNav } from '@/components/landing/footer-nav'
+import { TiltCard } from '@/components/three/tilt-card'
+
+// WebGL hero scene — client-only + code-split so three never hits the server bundle.
+const HeroScene = dynamic(
+  () => import('@/components/landing/hero-scene').then((m) => m.HeroScene),
+  { ssr: false },
+)
 
 const steps = [
   { key: 'step1' as const, icon: UserPlus, step: 1 },
@@ -41,8 +49,10 @@ export default function HomePage() {
     <main className="flex flex-col overflow-x-hidden">
       {/* Hero — Split Layout */}
       <section className="relative px-4 py-20 md:py-32">
+        {/* Static gradient = `off`-tier fallback; WebGL scene draws over it when active. */}
         <div className="bg-gradient-mesh absolute inset-0 -z-10" />
-        <div className="container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
+        <HeroScene />
+        <div className="relative z-10 container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
           <div className="flex-1 text-center md:text-left">
             <SectionReveal>
               <h1 className="text-5xl font-black tracking-tighter md:text-6xl lg:text-7xl">
@@ -83,7 +93,9 @@ export default function HomePage() {
             </SectionReveal>
           </div>
           <SectionReveal delay={0.2} direction="right" className="w-full max-w-lg flex-1">
-            <ChatMockup />
+            <TiltCard intensity={7}>
+              <ChatMockup />
+            </TiltCard>
           </SectionReveal>
         </div>
       </section>
