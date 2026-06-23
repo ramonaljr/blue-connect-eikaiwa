@@ -144,6 +144,7 @@ export default function HomePage() {
               <StaggerItem key={key}>
                 <div className="flex flex-col items-center gap-3">
                   {/* Problem card */}
+                  <TiltCard intensity={7} className="w-full">
                   <Card className="w-full border-none bg-gradient-to-b from-destructive/8 to-destructive/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-destructive/10">
@@ -153,11 +154,13 @@ export default function HomePage() {
                       <CardDescription>{t(`problem.${key}.description`)}</CardDescription>
                     </CardHeader>
                   </Card>
+                  </TiltCard>
 
                   {/* Arrow connector */}
                   <ArrowDown className="size-5 text-primary/40" />
 
                   {/* Solution card */}
+                  <TiltCard intensity={7} className="w-full">
                   <Card className="w-full border-none bg-gradient-to-b from-primary/8 to-primary/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-primary/10">
@@ -167,6 +170,7 @@ export default function HomePage() {
                       <CardDescription>{t(`solution.${key}.description`)}</CardDescription>
                     </CardHeader>
                   </Card>
+                  </TiltCard>
                 </div>
               </StaggerItem>
             ))}
@@ -227,6 +231,7 @@ export default function HomePage() {
           <StaggerContainer className="grid gap-6 md:grid-cols-3" staggerDelay={0.12}>
             {testimonials.map((id, idx) => (
               <StaggerItem key={id}>
+                <TiltCard intensity={6} className="h-full">
                 <Card className={cn('glass border-l-[3px] shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:shadow-xl', accentColors[idx])}>
                   <CardHeader>
                     <div className="mb-3 flex items-center gap-1">
@@ -248,6 +253,7 @@ export default function HomePage() {
                     </div>
                   </CardHeader>
                 </Card>
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
