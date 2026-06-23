@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { View, Preload } from '@react-three/drei'
 import { useDepthCapability } from '@/lib/three/use-depth-capability'
@@ -18,6 +19,16 @@ import { useDepthCapability } from '@/lib/three/use-depth-capability'
 export function SceneCanvas() {
   const tier = useDepthCapability()
 
+  // Pause the render loop when the tab is hidden (saves battery; the canvas is
+  // always mounted across the whole app).
+  const [active, setActive] = useState(true)
+  useEffect(() => {
+    const onVisibility = () => setActive(!document.hidden)
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [])
+
   // `off` (no WebGL / reduced motion) → never mount a context; surfaces fall
   // back to their static CSS backgrounds.
   if (tier === 'off') return null
@@ -26,7 +37,7 @@ export function SceneCanvas() {
     <Canvas
       eventSource={typeof document !== 'undefined' ? document.body : undefined}
       eventPrefix="client"
-      frameloop="always"
+      frameloop={active ? 'always' : 'never'}
       dpr={tier === 'lite' ? [1, 1.5] : [1, 2]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       style={{

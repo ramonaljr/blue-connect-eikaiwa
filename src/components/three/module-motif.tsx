@@ -47,7 +47,7 @@ export function ModuleMotif({ variant }: { variant: MotifVariant }) {
     lite ? (
       <meshStandardMaterial color={color} roughness={0.15} metalness={0.2} emissive={color} emissiveIntensity={0.3} />
     ) : (
-      <MeshTransmissionLike color={color} />
+      <GlassyMaterial color={color} />
     )
 
   switch (variant) {
@@ -219,8 +219,8 @@ function RoundedBoxGeo({ size }: { size: [number, number, number] }) {
   return <boxGeometry args={size} />
 }
 
-/** Transmission material wrapper (full tier). */
-function MeshTransmissionLike({ color }: { color: THREE.Color }) {
+/** Subtly animated glassy material used on the `full` tier. */
+function GlassyMaterial({ color }: { color: THREE.Color }) {
   return (
     <MeshDistortMaterial
       color={color}

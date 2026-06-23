@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useIsDark, pickPalette } from '@/lib/three/colors'
-import { setLinear } from './utils'
+import { linearColor, setLinear } from './utils'
 
 const vertexShader = /* glsl */ `
   varying vec2 vUv;
@@ -73,16 +73,18 @@ export function ShaderBackdrop() {
   // Stable initial uniforms (memoized value is safe to pass into JSX). All
   // mutation happens through the material ref in effects/frames, never on this
   // object directly — which is what the compiler lint requires.
-  const uniforms = useMemo(
-    () => ({
+  const uniforms = useMemo(() => {
+    // Seed with the light palette so the first frame isn't black; the effect
+    // below corrects for dark mode after mount.
+    const seed = pickPalette(false)
+    return {
       uTime: { value: 0 },
       uPointer: { value: new THREE.Vector2(0, 0) },
-      uColorA: { value: new THREE.Color() },
-      uColorB: { value: new THREE.Color() },
-      uColorBg: { value: new THREE.Color() },
-    }),
-    [],
-  )
+      uColorA: { value: linearColor(seed.primary) },
+      uColorB: { value: linearColor(seed.accent) },
+      uColorBg: { value: linearColor(seed.bg) },
+    }
+  }, [])
 
   // Recolor on theme change (via the material ref, outside render).
   useEffect(() => {

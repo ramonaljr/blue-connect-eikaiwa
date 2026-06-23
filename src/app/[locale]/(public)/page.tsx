@@ -18,6 +18,7 @@ import { ChatMockup } from '@/components/landing/chat-mockup'
 import { FeatureTabs } from '@/components/landing/feature-tabs'
 import { FooterNav } from '@/components/landing/footer-nav'
 import { TiltCard } from '@/components/three/tilt-card'
+import { useDepthCapability } from '@/lib/three/use-depth-capability'
 
 // WebGL hero scene — client-only + code-split so three never hits the server bundle.
 const HeroScene = dynamic(
@@ -42,6 +43,7 @@ const testimonials = ['1', '2', '3'] as const
 
 export default function HomePage() {
   const t = useTranslations('landing')
+  const depthTier = useDepthCapability()
 
   const accentColors = ['border-l-primary', 'border-l-accent', 'border-l-[oklch(0.65_0.18_155)]']
 
@@ -51,7 +53,7 @@ export default function HomePage() {
       <section className="relative px-4 py-20 md:py-32">
         {/* Static gradient = `off`-tier fallback; WebGL scene draws over it when active. */}
         <div className="bg-gradient-mesh absolute inset-0 -z-10" />
-        <HeroScene />
+        {depthTier !== 'off' && <HeroScene />}
         <div className="relative z-10 container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
           <div className="flex-1 text-center md:text-left">
             <SectionReveal>
