@@ -33,7 +33,7 @@ export function Glow({
   color: THREE.Color | string
   opacity?: number
 }) {
-  const texture = useMemo(makeRadialTexture, [])
+  const texture = useMemo(() => makeRadialTexture(), [])
 
   return (
     <sprite position={position} scale={[scale, scale, 1]}>

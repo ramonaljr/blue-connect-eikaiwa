@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useIsDark, pickPalette } from '@/lib/three/colors'
@@ -68,7 +68,11 @@ const fragmentShader = /* glsl */ `
 export function ShaderBackdrop() {
   const isDark = useIsDark()
   const { viewport } = useThree()
+  const materialRef = useRef<THREE.ShaderMaterial>(null)
 
+  // Stable initial uniforms (memoized value is safe to pass into JSX). All
+  // mutation happens through the material ref in effects/frames, never on this
+  // object directly — which is what the compiler lint requires.
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
@@ -80,21 +84,28 @@ export function ShaderBackdrop() {
     [],
   )
 
-  // Recolor on theme change (cheap; mutates existing colors).
-  const palette = pickPalette(isDark)
-  setLinear(uniforms.uColorA.value, palette.primary)
-  setLinear(uniforms.uColorB.value, palette.accent)
-  setLinear(uniforms.uColorBg.value, palette.bg)
+  // Recolor on theme change (via the material ref, outside render).
+  useEffect(() => {
+    const m = materialRef.current
+    if (!m) return
+    const palette = pickPalette(isDark)
+    setLinear(m.uniforms.uColorA.value, palette.primary)
+    setLinear(m.uniforms.uColorB.value, palette.accent)
+    setLinear(m.uniforms.uColorBg.value, palette.bg)
+  }, [isDark])
 
   useFrame((state) => {
-    uniforms.uTime.value = state.clock.elapsedTime
-    uniforms.uPointer.value.lerp(state.pointer, 0.04)
+    const m = materialRef.current
+    if (!m) return
+    m.uniforms.uTime.value = state.clock.elapsedTime
+    m.uniforms.uPointer.value.lerp(state.pointer, 0.04)
   })
 
   return (
     <mesh scale={[viewport.width * 1.6, viewport.height * 1.6, 1]} position={[0, 0, -5]}>
       <planeGeometry args={[1, 1]} />
       <shaderMaterial
+        ref={materialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
