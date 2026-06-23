@@ -13,9 +13,18 @@ import {
   SectionReveal, StaggerContainer, StaggerItem, AnimatedCounter,
 } from '@/components/ui/motion'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { ChatMockup } from '@/components/landing/chat-mockup'
 import { FeatureTabs } from '@/components/landing/feature-tabs'
 import { FooterNav } from '@/components/landing/footer-nav'
+import { TiltCard } from '@/components/three/tilt-card'
+import { useDepthCapability } from '@/lib/three/use-depth-capability'
+
+// WebGL hero scene — client-only + code-split so three never hits the server bundle.
+const HeroScene = dynamic(
+  () => import('@/components/landing/hero-scene').then((m) => m.HeroScene),
+  { ssr: false },
+)
 
 const steps = [
   { key: 'step1' as const, icon: UserPlus, step: 1 },
@@ -34,6 +43,7 @@ const testimonials = ['1', '2', '3'] as const
 
 export default function HomePage() {
   const t = useTranslations('landing')
+  const depthTier = useDepthCapability()
 
   const accentColors = ['border-l-primary', 'border-l-accent', 'border-l-[oklch(0.65_0.18_155)]']
 
@@ -41,8 +51,10 @@ export default function HomePage() {
     <main className="flex flex-col overflow-x-hidden">
       {/* Hero — Split Layout */}
       <section className="relative px-4 py-20 md:py-32">
+        {/* Static gradient = `off`-tier fallback; WebGL scene draws over it when active. */}
         <div className="bg-gradient-mesh absolute inset-0 -z-10" />
-        <div className="container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
+        {depthTier !== 'off' && <HeroScene />}
+        <div className="relative z-10 container mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row">
           <div className="flex-1 text-center md:text-left">
             <SectionReveal>
               <h1 className="text-5xl font-black tracking-tighter md:text-6xl lg:text-7xl">
@@ -83,7 +95,9 @@ export default function HomePage() {
             </SectionReveal>
           </div>
           <SectionReveal delay={0.2} direction="right" className="w-full max-w-lg flex-1">
-            <ChatMockup />
+            <TiltCard intensity={7}>
+              <ChatMockup />
+            </TiltCard>
           </SectionReveal>
         </div>
       </section>
@@ -132,6 +146,7 @@ export default function HomePage() {
               <StaggerItem key={key}>
                 <div className="flex flex-col items-center gap-3">
                   {/* Problem card */}
+                  <TiltCard intensity={7} className="w-full">
                   <Card className="w-full border-none bg-gradient-to-b from-destructive/8 to-destructive/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-destructive/10">
@@ -141,11 +156,13 @@ export default function HomePage() {
                       <CardDescription>{t(`problem.${key}.description`)}</CardDescription>
                     </CardHeader>
                   </Card>
+                  </TiltCard>
 
                   {/* Arrow connector */}
                   <ArrowDown className="size-5 text-primary/40" />
 
                   {/* Solution card */}
+                  <TiltCard intensity={7} className="w-full">
                   <Card className="w-full border-none bg-gradient-to-b from-primary/8 to-primary/3 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardHeader>
                       <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-primary/10">
@@ -155,6 +172,7 @@ export default function HomePage() {
                       <CardDescription>{t(`solution.${key}.description`)}</CardDescription>
                     </CardHeader>
                   </Card>
+                  </TiltCard>
                 </div>
               </StaggerItem>
             ))}
@@ -215,6 +233,7 @@ export default function HomePage() {
           <StaggerContainer className="grid gap-6 md:grid-cols-3" staggerDelay={0.12}>
             {testimonials.map((id, idx) => (
               <StaggerItem key={id}>
+                <TiltCard intensity={6} className="h-full">
                 <Card className={cn('glass border-l-[3px] shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:shadow-xl', accentColors[idx])}>
                   <CardHeader>
                     <div className="mb-3 flex items-center gap-1">
@@ -236,6 +255,7 @@ export default function HomePage() {
                     </div>
                   </CardHeader>
                 </Card>
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerContainer>

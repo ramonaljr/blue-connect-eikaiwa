@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useTransition } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Compass, ChevronRight, BookOpen, MessageSquare, Mic, Users, PenTool } from 'lucide-react'
+import { Compass, ChevronRight, BookOpen, MessageSquare, Mic, Users, PenTool, type LucideIcon } from 'lucide-react'
 import { getAdaptivePath } from '@/lib/actions/adaptive-path'
 import Link from 'next/link'
 
-const typeIcons: Record<string, React.ElementType> = {
+const typeIcons: Record<string, LucideIcon> = {
   course: BookOpen, ai_chat: MessageSquare, ai_voice: Mic, tutor: Users, exercise: PenTool,
 }
 

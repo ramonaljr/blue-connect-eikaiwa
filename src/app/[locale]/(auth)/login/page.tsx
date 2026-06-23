@@ -1,10 +1,12 @@
 import { LoginForm } from '@/components/auth/login-form'
+import { AuthSceneMount } from '@/components/auth/auth-scene-mount'
 
 export default function LoginPage() {
   return (
     <main className="flex min-h-screen">
       {/* Brand Panel — hidden on mobile */}
       <div className="relative hidden w-1/2 items-center justify-center overflow-hidden bg-gradient-mesh lg:flex">
+        <AuthSceneMount />
         <div className="relative z-10 max-w-md px-8">
           <h1 className="text-4xl font-black tracking-tight text-foreground">
             Blue Connect<br />
