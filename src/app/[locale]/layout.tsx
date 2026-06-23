@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import { SceneCanvasMount } from '@/components/three/scene-canvas-mount'
 import '@/app/globals.css'
 
 const notoSansJP = Noto_Sans_JP({
@@ -41,7 +42,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={notoSansJP.variable} suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen font-sans antialiased">
         <script dangerouslySetInnerHTML={{ __html: `
           try {
             const theme = localStorage.getItem('theme');
@@ -50,6 +51,7 @@ export default async function RootLayout({
         ` }} />
         <NextIntlClientProvider messages={messages}>
           {children}
+          <SceneCanvasMount />
         </NextIntlClientProvider>
       </body>
     </html>
