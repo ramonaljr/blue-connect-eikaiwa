@@ -9,6 +9,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { ProgressRing, AnimatedCounter, StaggerContainer, StaggerItem, SectionReveal } from '@/components/ui/motion'
+import { TiltCard } from '@/components/three/tilt-card'
 import { cn } from '@/lib/utils'
 
 const statCards = [
@@ -72,6 +73,7 @@ export function DashboardContent({ userName }: { userName: string }) {
       <StaggerContainer className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {statCards.map(({ key, icon: Icon, value, suffix, color, borderColor }) => (
           <StaggerItem key={key}>
+            <TiltCard intensity={8} className="h-full">
             <Card className={cn('border-t-2 glass shadow-elevated', borderColor)}>
               <CardContent className="pt-4">
                 <div className="flex items-center justify-between">
@@ -86,6 +88,7 @@ export function DashboardContent({ userName }: { userName: string }) {
                 <p className="text-xs text-muted-foreground">{t(`stats.${key}`)}</p>
               </CardContent>
             </Card>
+            </TiltCard>
           </StaggerItem>
         ))}
       </StaggerContainer>
@@ -96,6 +99,7 @@ export function DashboardContent({ userName }: { userName: string }) {
         <div className="grid gap-3 sm:grid-cols-3">
           {quickActions.map(({ key, icon: Icon, href, color }) => (
             <Link key={key} href={href}>
+              <TiltCard intensity={6}>
               <Card className="cursor-pointer border-l-4 border-l-transparent transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-l-primary">
                 <CardContent className="flex items-center gap-4 py-4">
                   <div className={cn('flex size-10 items-center justify-center rounded-xl', color)}>
@@ -108,6 +112,7 @@ export function DashboardContent({ userName }: { userName: string }) {
                   <ArrowRight className="size-4 text-muted-foreground" />
                 </CardContent>
               </Card>
+              </TiltCard>
             </Link>
           ))}
         </div>

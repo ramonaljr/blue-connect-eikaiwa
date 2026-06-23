@@ -1,5 +1,6 @@
 import { DashboardSidebar } from '@/components/layout/dashboard-sidebar'
 import { DashboardHeader } from '@/components/layout/dashboard-header'
+import { DashboardSceneMount } from '@/components/three/dashboard-scene-mount'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function DashboardLayout({
@@ -21,7 +22,10 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen bg-[oklch(0.965_0.008_250)] dark:bg-background">
+    // Transparent root lets the fixed WebGL canvas show through content gaps;
+    // sidebar/header/cards remain opaque and paint over it.
+    <div className="flex h-screen">
+      <DashboardSceneMount />
       <DashboardSidebar streakDays={streakDays} />
       <div className="flex flex-1 flex-col overflow-hidden">
         <DashboardHeader />
